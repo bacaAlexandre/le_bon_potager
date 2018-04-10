@@ -1,0 +1,11 @@
+{
+    "name": "vendor/framework-php",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Lucien Brouillaud",
+            "email": "lucien.brouillaud@wanadoo.fr"
+        }
+    ],
+    "require": {}
+}
