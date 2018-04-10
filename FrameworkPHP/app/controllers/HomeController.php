@@ -6,7 +6,7 @@ class HomeController extends Controller
         $this->display('home.index');
     }
 
-    public function edit($id) {
-        $this->display('home.edit', ['id' => $id]);
+    public function edit() {
+        $this->display('home.edit');
     }
 }

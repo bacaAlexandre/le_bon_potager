@@ -19,11 +19,11 @@ class Framework
 
         define("ROOT", dirname(getcwd()) . DS);
 
-        define("APP_PATH", ROOT . 'App' . DS);
+        define("APP_PATH", ROOT . 'app' . DS);
 
         define("CONFIG_PATH", ROOT . 'config' . DS);
 
-        define("CORE_PATH", ROOT . "Core" . DS);
+        define("CORE_PATH", ROOT . "core" . DS);
 
         define("PUBLIC_PATH", ROOT . "public" . DS);
 
@@ -45,7 +45,11 @@ class Framework
 
         require CORE_PATH . "Controller.php";
 
+        require CORE_PATH . "Database.php";
+
         require CORE_PATH . "Loader.php";
+
+        require CORE_PATH . "Model.php";
 
         require CORE_PATH . "Route.php";
 

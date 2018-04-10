@@ -7,5 +7,7 @@
             "email": "lucien.brouillaud@wanadoo.fr"
         }
     ],
-    "require": {}
+    "require": {
+        "vlucas/phpdotenv": "^2.4"
+    }
 }
