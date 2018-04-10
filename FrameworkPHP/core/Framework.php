@@ -45,7 +45,11 @@ class Framework
 
         require CORE_PATH . "Controller.php";
 
+        require CORE_PATH . "Database.php";
+
         require CORE_PATH . "Loader.php";
+
+        require CORE_PATH . "Model.php";
 
         require CORE_PATH . "Route.php";
 

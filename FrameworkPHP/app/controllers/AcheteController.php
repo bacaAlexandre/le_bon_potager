@@ -1,6 +1,6 @@
 <?php
 
-class AccueilController extends Controller
+class AcheteController extends Controller
 {
     public function index()
     {

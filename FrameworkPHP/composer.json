@@ -3,9 +3,27 @@
     "type": "library",
     "authors": [
         {
-            "name": "Lucien Brouillaud",
-            "email": "lucien.brouillaud@wanadoo.fr"
+            "name": "Alexandre BACA",
+            "email": "alexandre.baca@viacesi.fr"
+        },
+        {
+            "name": "Nicolas KAMPHAUS",
+            "email": "nicolas.kamphaus@viacesi.fr"
+        },
+        {
+            "name": "Charles GILLET",
+            "email": "charles.gillet@viacesi.fr"
+        },
+        {
+            "name": "Christophe COUERBE",
+            "email": "christophe.couerbe@viacesi.fr"
+        },
+        {
+            "name": "Lucien BROUILLAUD",
+            "email": "lucien.brouillaud@viacesi.fr"
         }
     ],
-    "require": {}
+    "require": {
+        "vlucas/phpdotenv": "^2.4"
+    }
 }
