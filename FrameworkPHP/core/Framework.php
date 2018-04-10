@@ -6,62 +6,29 @@ class Framework
     public static function run()
     {
         self::init();
-
-        self::autoload();
-
+        require CORE_PATH . "Controller.php";
+        require CORE_PATH . "Database.php";
+        require CORE_PATH . "Loader.php";
+        require CORE_PATH . "Model.php";
+        require CORE_PATH . "Route.php";
+        include CONFIG_PATH . "routes.php";
+        session_start();
+        spl_autoload_register(array(__CLASS__, 'load'));
         Route::dispatch(self::get_uri());
     }
 
-
     private static function init()
     {
-
         define("DS", DIRECTORY_SEPARATOR);
-
         define("ROOT", dirname(getcwd()) . DS);
-
         define("APP_PATH", ROOT . 'app' . DS);
-
         define("CONFIG_PATH", ROOT . 'config' . DS);
-
         define("CORE_PATH", ROOT . "core" . DS);
-
         define("PUBLIC_PATH", ROOT . "public" . DS);
-
         define("CONTROLLER_PATH", APP_PATH . "controllers" . DS);
-
         define("MODEL_PATH", APP_PATH . "models" . DS);
-
         define("VIEW_PATH", APP_PATH . "views" . DS);
-
-        //define('DB_PATH', FRAMEWORK_PATH . "database" . DS);
-
-        //define("LIB_PATH", FRAMEWORK_PATH . "libraries" . DS);
-
-        //define("HELPER_PATH", FRAMEWORK_PATH . "helpers" . DS);
-
         define("UPLOAD_PATH", PUBLIC_PATH . "uploads" . DS);
-
-
-        require CORE_PATH . "Controller.php";
-
-        require CORE_PATH . "Database.php";
-
-        require CORE_PATH . "Loader.php";
-
-        require CORE_PATH . "Model.php";
-
-        require CORE_PATH . "Route.php";
-
-        include CONFIG_PATH . "routes.php";
-
-        session_start();
-
-    }
-
-    private static function autoload()
-    {
-        spl_autoload_register(array(__CLASS__, 'load'));
     }
 
     private static function load($classname)

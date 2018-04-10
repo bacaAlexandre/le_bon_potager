@@ -6,12 +6,14 @@ class Model {
     protected $table;
     protected $fields = array();
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->db = new Database();
         $this->getFields();
     }
 
-    private function getFields(){
+    private function getFields()
+    {
         $sql = "DESC ". $this->table;
         $row = $this->db->query($sql);
         foreach ($row as $col) {
@@ -23,7 +25,8 @@ class Model {
         }
     }
 
-    public function insert($data){
+    public function insert($data)
+    {
         $fields = '';
         $values = '';
         foreach ($data as $key => $val) {
@@ -42,7 +45,8 @@ class Model {
         }
     }
 
-    public function update($data) {
+    public function update($data)
+    {
         $fields = '';
         $where = 0;
         foreach ($data as $key => $val) {
@@ -59,32 +63,32 @@ class Model {
         return $this->db->execute($sql);
     }
 
-    public function delete($pk) {
-        if (is_array($pk)) {
-            $where = "`{$this->fields['pk']}` in (".implode(',', $pk).")";
+    public function delete($primary_key)
+    {
+        if (is_array($primary_key)) {
+            $where = "`{$this->fields['pk']}` in (".implode(',', $primary_key).")";
         } else {
-            $where = "`{$this->fields['pk']}`=$pk";
+            $where = "`{$this->fields['pk']}`=$primary_key";
         }
         $sql = "DELETE FROM `{$this->table}` WHERE $where";
         return $this->db->execute($sql);
     }
 
-    public function find($primary_key) {
+    public function find($primary_key)
+    {
         $sql = "select * from `$this->table` where `$this->fields['pk']` = $primary_key";
         return $this->db->getFirst($sql);
     }
 
-    public function count() {
+    public function count()
+    {
         $sql = "select count(*) AS total from $this->table";
         return $this->db->getFirst($sql)->total;
     }
 
-    public function pageRows($offset, $limit,$where = '') {
-        if (empty($where)){
-            $sql = "select * from {$this->table} limit $offset, $limit";
-        } else {
-            $sql = "select * from {$this->table}  where $where limit $offset, $limit";
-        }
-        return $this->db->getAll($sql);
+    public function all()
+    {
+        $sql = "select * from $this->table";
+        return $this->db->query($sql);
     }
 }
