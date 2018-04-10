@@ -1,6 +1,6 @@
 <?php
 
-class AccueilController extends Controller
+class VentController extends Controller
 {
     public function index()
     {
