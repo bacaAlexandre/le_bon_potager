@@ -11,7 +11,7 @@ class HomeController extends Controller
     public function edit($id)
     {
         $this->display('home.edit', ['id' => $id]);
-
+// test
 
     }
 }
