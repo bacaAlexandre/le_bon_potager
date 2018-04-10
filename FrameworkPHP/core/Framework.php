@@ -3,8 +3,8 @@
 class Framework
 {
 
-    public static function run() {
-
+    public static function run()
+    {
         self::init();
 
         self::autoload();
@@ -13,17 +13,18 @@ class Framework
     }
 
 
-    private static function init() {
+    private static function init()
+    {
 
         define("DS", DIRECTORY_SEPARATOR);
 
         define("ROOT", dirname(getcwd()) . DS);
 
-        define("APP_PATH", ROOT . 'App' . DS);
+        define("APP_PATH", ROOT . 'app' . DS);
 
         define("CONFIG_PATH", ROOT . 'config' . DS);
 
-        define("CORE_PATH", ROOT . "Core" . DS);
+        define("CORE_PATH", ROOT . "core" . DS);
 
         define("PUBLIC_PATH", ROOT . "public" . DS);
 
@@ -42,7 +43,6 @@ class Framework
         define("UPLOAD_PATH", PUBLIC_PATH . "uploads" . DS);
 
 
-
         require CORE_PATH . "Controller.php";
 
         require CORE_PATH . "Loader.php";
@@ -57,23 +57,20 @@ class Framework
 
     private static function autoload()
     {
-        spl_autoload_register(array(__CLASS__,'load'));
+        spl_autoload_register(array(__CLASS__, 'load'));
     }
 
     private static function load($classname)
     {
-        if (substr($classname, -10) == "Controller")
-        {
+        if (substr($classname, -10) == "Controller") {
             require_once CONTROLLER_PATH . "$classname.php";
-        }
-        elseif (substr($classname, -5) == "Model")
-        {
+        } elseif (substr($classname, -5) == "Model") {
             require_once MODEL_PATH . "$classname.php";
         }
     }
 
-    private static function get_uri() {
-
+    private static function get_uri()
+    {
         if (isset($_SERVER['PATH_INFO'])) {
             return $_SERVER['PATH_INFO'];
         }
@@ -102,7 +99,7 @@ class Framework
                 $_GET = array();
             }
             $uri = parse_url($uri, PHP_URL_PATH);
-            return '/'.str_replace(array('//', '../'), '/', trim($uri, '/'));
+            return '/' . str_replace(array('//', '../'), '/', trim($uri, '/'));
         }
         return false;
     }
