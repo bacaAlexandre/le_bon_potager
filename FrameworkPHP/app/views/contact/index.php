@@ -6,5 +6,6 @@
   <label for="phone">Votre téléphone :</label> <input type="tel" name="phone" id="phone"><br>
   <label for="message">Votre message :</label> <textarea id="message"></textarea><br>
   <input type="checkbox" id="copy"> <label for="copy">Je souhaite recevoir une copie de cet email</label>
+  <input type="submit" value="Envoyer l'email">
  </fieldset>
 </form>
