@@ -4,7 +4,7 @@ class ConnexionInscriptionController extends Controller
 {
     public function index()
     {
-        $this->display('connexion.index');
+        $this->display('connexionInscription.index');
     }
 
     public function connexion()
