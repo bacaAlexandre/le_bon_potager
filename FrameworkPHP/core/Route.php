@@ -5,18 +5,20 @@ class Route
 
     private static $routes = [];
 
+    private $uri;
     private $route;
     private $controller;
     private $action;
     private $method;
 
-    public function __construct($route, $path, $method = 'GET')
+    public function __construct($uri, $path, $method = 'GET')
     {
         $path = preg_split('/@/', $path);
-        $route = preg_replace('/\//', '\\/', $route);
+        $route = preg_replace('/\//', '\\/', $uri);
         $route = preg_replace_callback('/\{([a-z]+)(?:\:([^\}]+))?\}/', function($match) {
             return empty($match[2]) ? "(?P<$match[1]>[a-z]+)" : "(?P<$match[1]>$match[2])";
         }, $route);
+        $this->uri = $uri;
         $this->route = '/^' . $route . '$/';
         $this->controller = $path[0];
         $this->action = (empty($path[1])) ? 'index' : $path[1];
@@ -59,7 +61,31 @@ class Route
         $controller->index(404);
     }
 
-    private static function getMethod() {
+    public static function get_uri($path, $args = []) {
+        $http = isset($_SERVER['HTTPS']) && strtolower($_SERVER['HTTPS']) !== 'off' ? 'https' : 'http';
+        $host = $_SERVER['SERVER_NAME'];
+        $dir = dirname($_SERVER['SCRIPT_NAME']);
+
+        $path = preg_split('/@/', $path);
+        $controller = $path[0];
+        $action = (empty($path[1])) ? 'index' : $path[1];
+        foreach (self::$routes as $route) {
+            if (($controller == $route->controller) && ($action == $route->action)) {
+                $uri = $route->uri;
+                $uri = preg_replace_callback('/\{([a-z]+)(?:\:([^\}]+))?\}/', function($match) use ($args) {
+                    if (array_key_exists($match[1], $args)) {
+                        return $args[$match[1]];
+                    }
+                    return false;
+                }, $uri);
+                return  $http . '://' . $host . $dir . $uri;
+            }
+        }
+        return false;
+    }
+
+    private static function getMethod()
+    {
         return isset($_SERVER['REQUEST_METHOD']) ? $_SERVER['REQUEST_METHOD'] : 'GET';
     }
 

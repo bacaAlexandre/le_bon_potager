@@ -9,9 +9,10 @@ class Controller{
         $this->loader = new Loader();
     }
 
-    public function redirect($url)
+    public function redirect($path, $args = [])
     {
-        header("Location:$url");
+        $uri = Route::get_uri($path, $args);
+        header("Location:$uri");
         exit;
     }
 

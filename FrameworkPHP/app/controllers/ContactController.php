@@ -17,6 +17,6 @@ class ContactController extends Controller
     {
         $nickname = $_POST['nickname'];
         //TODO
-        return $this->redirect('accueil');
+        return $this->redirect('AccueilController@index');
     }
 }
