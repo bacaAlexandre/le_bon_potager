@@ -12,7 +12,7 @@
           <label for="password_con">Votre mot de passe :</label>
           <input type="password" name="password" id="password_con" class="form-control">
         </div>
-        <button type="submit" class="btn btn-success">Se connecter</button>
+        <button type="submit" class="btn btn-primary">Se connecter</button>
       </fieldset>
     </div>
   </form>
@@ -64,7 +64,7 @@
           <input type="checkbox" id="copy" class="form-check-input">
           <label for="copy" class="form-check-label">Je souhaite recevoir une copie de cet email</label>
         </div>
-        <button type="submit" class="btn btn-success">S'inscrir</button>
+        <button type="submit" class="btn btn-primary">S'inscrire</button>
       </fieldset>
     </div>
   </form>
