@@ -29,7 +29,7 @@
           <input type="password" name="password" id="password" class="form-control">
         </div>
         <div class="form-group">
-          <label for="password_repeat">Confirmer votre mot de passe :</label>
+          <label for="password_repeat">Confirmation de votre mot de passe :</label>
           <input type="password_repeat" name="password_repeat" id="password_repeat" class="form-control">
         </div>
         <div class="form-group">
@@ -37,7 +37,7 @@
           <input type="pseudo" name="pseudo" id="pseudo" class="form-control">
         </div>
         <div class="form-group">
-          <label for="address">Votre adresse :</label>
+          <label for="address">Rue :</label>
           <textarea rows="5" id="address" class="form-control"></textarea>
         </div>
         <div class="form-group">

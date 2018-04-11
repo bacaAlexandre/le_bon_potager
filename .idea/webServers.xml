@@ -3,7 +3,7 @@
   <component name="WebServers">
     <option name="servers">
       <webServer id="1893359d-6d52-4093-a519-94a4721bf8c8" name="Le_Bon_Potager" url="http://localhost">
-        <fileTransfer port="0" mountedRoot="C:\wamp640\www\CESI\Projet_web" accessType="MOUNT" />
+        <fileTransfer port="0" mountedRoot="C:\wamp640\www\CESI\Projet_web\LeBonPotager" accessType="MOUNT" />
       </webServer>
     </option>
   </component>
