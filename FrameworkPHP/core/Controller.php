@@ -24,6 +24,8 @@ class Controller{
                 $$key = $value;
             }
             require_once $view_path;
+        } else {
+            throw new Exception(404);
         }
     }
 }
