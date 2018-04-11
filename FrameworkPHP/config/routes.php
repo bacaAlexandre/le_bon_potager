@@ -16,4 +16,4 @@ Route::post('/contact', 'ContactController@store');
 
 
 //////// Annonce ////////
-Route::get('/annonce','AnnonceCOntroller@index');
+Route::get('/annonce','AnnonceController@index');
