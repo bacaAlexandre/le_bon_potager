@@ -1,6 +1,6 @@
 <?php include(VIEW_PATH.'default/header.php'); ?>
 <div class="row">
-      <form action="/verification.php" method="post">
+      <form action="<?php Route::get_uri('ConnexionInscriptionController@connexion') ?>" method="post">
         <div class="col-md-6 md-6">
           <fieldset>
             <legend>Connexion</legend>
