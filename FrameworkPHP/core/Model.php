@@ -9,10 +9,10 @@ class Model {
     public function __construct()
     {
         $this->db = new Database();
-        $this->getFields();
+        $this->get_fields();
     }
 
-    private function getFields()
+    private function get_fields()
     {
         $sql = "DESC ". $this->table;
         $row = $this->db->query($sql);

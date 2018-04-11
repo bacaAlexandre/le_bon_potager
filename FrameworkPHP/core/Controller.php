@@ -1,13 +1,6 @@
 <?php
 
-class Controller{
-
-    protected $loader;
-
-    public function __construct()
-    {
-        $this->loader = new Loader();
-    }
+class Controller {
 
     public function redirect($path, $args = [])
     {
@@ -18,13 +11,12 @@ class Controller{
 
     public function display($view, $args = [])
     {
-        $view_path = VIEW_PATH . preg_replace('/\./', DS, $view ). ".php";
-
-        if (file_exists($view_path)) {
+        $view_path = preg_replace('/\./', DS, $view);
+        if (file_exists(VIEW_PATH . "$view_path.php")) {
             foreach ($args as $key => $value) {
                 $$key = $value;
             }
-            require_once $view_path;
+            require VIEW_PATH . "$view_path.php";
             return true;
         }
         return false;

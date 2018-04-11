@@ -37,9 +37,9 @@ class Route
 
     public static function dispatch($url)
     {
-        $url = self::parseUrl($url);
+        $url = self::parse_url($url);
         foreach (self::$routes as $route) {
-            if ((preg_match($route->route, $url, $matches)) && (self::getMethod() == $route->method)) {
+            if ((preg_match($route->route, $url, $matches)) && (self::get_method() == $route->method)) {
                 $controller_name = $route->controller;
                 if (class_exists($controller_name)) {
                     $controller = new $controller_name();
@@ -57,14 +57,20 @@ class Route
                 }
             }
         }
-        $controller = new ErrorController();
-        $controller->index(404);
+        /**
+         * Erreur 404
+         */
+        require VIEW_PATH . "error/404.php";
     }
 
     public static function get_uri($path, $args = []) {
         $http = isset($_SERVER['HTTPS']) && strtolower($_SERVER['HTTPS']) !== 'off' ? 'https' : 'http';
         $host = $_SERVER['SERVER_NAME'];
-        $dir = (dirname($_SERVER['SCRIPT_NAME']) !== '\\' ? dirname($_SERVER['SCRIPT_NAME']) : '');
+        $dir = dirname($_SERVER['SCRIPT_NAME']);
+
+        if (strpos(dirname($_SERVER['SCRIPT_NAME']), '\\') === 0) {
+            $dir = substr($dir, 1);
+        }
 
         $path = preg_split('/@/', $path);
         $controller = $path[0];
@@ -84,12 +90,12 @@ class Route
         return false;
     }
 
-    private static function getMethod()
+    private static function get_method()
     {
         return isset($_SERVER['REQUEST_METHOD']) ? $_SERVER['REQUEST_METHOD'] : 'GET';
     }
 
-    private static function parseUrl($url)
+    private static function parse_url($url)
     {
         $split = explode('&', $url, 2);
         $url = (strpos($split[0], '=') === false) ? $split[0] : $url;
