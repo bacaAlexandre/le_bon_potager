@@ -1,3 +1,4 @@
-/FrameworkPHP/.idea/
+/.idea/
+/node_modules/
 /FrameworkPHP/vendor/
 /FrameworkPHP/.env

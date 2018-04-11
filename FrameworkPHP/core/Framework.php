@@ -78,13 +78,12 @@ class Framework
 
     private static function get_uri() {
 
-        if (isset($_SERVER['PATH_INFO'])) {
+        /*if (isset($_SERVER['PATH_INFO'])) {
             return $_SERVER['PATH_INFO'];
-        }
-
+        }*/
+        
         if (isset($_SERVER['REQUEST_URI'])) {
             $uri = $_SERVER['REQUEST_URI'];
-
             if (strpos($uri, $_SERVER['SCRIPT_NAME']) === 0) {
                 $uri = substr($uri, strlen($_SERVER['SCRIPT_NAME']));
             } elseif (strpos($uri, dirname($_SERVER['SCRIPT_NAME'])) === 0) {

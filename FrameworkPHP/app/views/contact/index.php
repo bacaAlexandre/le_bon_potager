@@ -1,4 +1,7 @@
-<form>
+<?php
+require_once("header.php");
+?>
+<form action="/verification.php" method="post">
  <fieldset>
   <legend>Contacter l'annonceur</legend>
   <label for="nickname">Votre pseudo :</label> <input type="text" name="nickname" id="nickname"><br>
