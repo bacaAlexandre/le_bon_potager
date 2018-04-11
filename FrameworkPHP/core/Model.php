@@ -80,6 +80,11 @@ class Model {
         return $this->db->getFirst($sql);
     }
 
+    public function findBy($data)
+    {
+        //TODO
+    }
+
     public function count()
     {
         $sql = "select count(*) AS total from $this->table";
