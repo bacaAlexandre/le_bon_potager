@@ -37,7 +37,7 @@ class Route
     {
         $url = self::parseUrl($url);
         foreach (self::$routes as $route) {
-            if (preg_match($route->route, $url, $matches)) {
+            if ((preg_match($route->route, $url, $matches)) && (self::getMethod() == $route->method)) {
                 $controller_name = $route->controller;
                 if (class_exists($controller_name)) {
                     $controller = new $controller_name();
@@ -57,6 +57,10 @@ class Route
         }
         $controller = new ErrorController();
         $controller->index(404);
+    }
+
+    private static function getMethod() {
+        return isset($_SERVER['REQUEST_METHOD']) ? $_SERVER['REQUEST_METHOD'] : 'GET';
     }
 
     private static function parseUrl($url)

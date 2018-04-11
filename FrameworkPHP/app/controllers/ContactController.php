@@ -2,11 +2,21 @@
 
 class ContactController extends Controller
 {
-    public function index() {
-        $this->display('contact.index');
+
+    public function index()
+    {
+        return $this->display('contact.index');
     }
 
-    public function edit($id) {
-        $this->display('contact.edit', ['id' => $id]);
+    public function edit()
+    {
+
+    }
+
+    public function store()
+    {
+        $nickname = $_POST['nickname'];
+        //TODO
+        return $this->redirect('accueil');
     }
 }
