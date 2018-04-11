@@ -42,10 +42,6 @@ class Framework
 
     private static function get_uri()
     {
-        if (isset($_SERVER['PATH_INFO'])) {
-            return $_SERVER['PATH_INFO'];
-        }
-        
         if (isset($_SERVER['REQUEST_URI'])) {
             $uri = $_SERVER['REQUEST_URI'];
             if (strpos($uri, $_SERVER['SCRIPT_NAME']) === 0) {
