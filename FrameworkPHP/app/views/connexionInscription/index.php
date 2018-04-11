@@ -6,7 +6,7 @@
         <legend>Connexion</legend>
         <div class="form-group">
           <label for="email_con">Votre e-mail :</label>
-          <input type="email" name="email" id="email_con" class="form-control">
+          <input type="email" name="email" id="email_con" class="form-control" value="<?php echo (isset($email_connexion)? $email_connexion : "") ?>">
         </div>
         <div class="form-group">
           <label for="password_con">Votre mot de passe :</label>
@@ -16,7 +16,7 @@
       </fieldset>
     </div>
   </form>
-  <form action="/verification.php" method="post">
+  <form action="<?php Route::get_uri('ConnexionInscriptionController@connexion') ?>" method="post">
     <div class="col-md-6 md-6">
       <fieldset>
         <legend>Inscription</legend>
