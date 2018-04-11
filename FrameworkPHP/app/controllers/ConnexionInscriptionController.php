@@ -11,5 +11,4 @@ class ConnexionInscriptionController extends Controller
     {
         var_dump($_POST);
     }
-
 }
