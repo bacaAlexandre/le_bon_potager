@@ -1,6 +1,6 @@
 <?php
 
-class AnnonceController
+class AnnonceController extends Controller
 {
     public function index()
     {

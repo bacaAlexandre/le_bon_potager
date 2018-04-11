@@ -29,6 +29,7 @@ class Framework
         define("MODEL_PATH", APP_PATH . "models" . DS);
         define("VIEW_PATH", APP_PATH . "views" . DS);
         define("UPLOAD_PATH", PUBLIC_PATH . "uploads" . DS);
+        define("TITLE", "Le bon potager");
     }
 
     private static function load($classname)

@@ -1,5 +1,5 @@
-/.idea/
-/.vscode/
-/node_modules/
-/FrameworkPHP/vendor/
-/FrameworkPHP/.env
+.idea/
+.vscode/
+node_modules/
+FrameworkPHP/vendor/
+FrameworkPHP/.env

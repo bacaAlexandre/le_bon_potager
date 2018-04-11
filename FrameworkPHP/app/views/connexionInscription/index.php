@@ -12,7 +12,7 @@
           <label for="password_con">Votre mot de passe :</label>
           <input type="password" name="password" id="password_con" class="form-control" minlength="8" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d-+_]{8,}$" required>
         </div>
-        <button type="submit" class="btn btn-success">Se connecter</button>
+        <button type="submit" class="btn btn-primary">Se connecter</button>
       </fieldset>
     </form>
   </div>
