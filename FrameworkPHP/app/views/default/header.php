@@ -36,10 +36,10 @@
                 <a class="nav-link" href="#">Nos annonces</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Vos produits</a>
+                <a class="nav-link" href="#">Mon potager</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Mon potager</a>
+                <a class="nav-link" href="#">Mon compte</a>
             </li>
         </ul>
     </div>
