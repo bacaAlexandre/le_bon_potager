@@ -4,7 +4,6 @@ Route::get('/', 'HomeController@index');
 Route::get('/home/{id:[0-9]+}', 'HomeController@edit');
 
 
-
 //////// Accueil  ////////
 Route::get('/accueil', 'AccueilController@index');
 
@@ -14,6 +13,10 @@ Route::get('/contact', 'ContactController@index');
 Route::post('/contact', 'ContactController@store');
 
 
-
 //////// Annonce ////////
-Route::get('/annonce','AnnonceController@index');
+Route::get('/annonce', 'AnnonceController@index');
+
+
+//////// ConnexionInscription ////////
+Route::get('/connexion', 'ConnexionInscriptionController@index');
+Route::post('/connexion', 'ConnexionInscriptionController@connexion');
