@@ -42,6 +42,9 @@ nav {
     margin: 1.2em .2em;
     width: 100vw;
   }
+  header {
+    text-align: center;
+  }
   footer {
     text-align: center;
     margin-top: 1em;
