@@ -65,7 +65,7 @@ class Framework
                 $_GET = array();
             }
             $uri = parse_url($uri, PHP_URL_PATH);
-            return str_replace(array('//', '../'), '/', trim($uri, '/'));
+            return '/' . str_replace(array('//', '../'), '/', trim($uri, '/'));
         }
         return false;
     }
