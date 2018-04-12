@@ -5,11 +5,35 @@ class ConnexionInscriptionController extends Controller
 
     public function index()
     {
-        $this->display('connexionInscription.index');
+        $req = new Model('T_DEPARTEMENT');
+        $department = $req->findAll();
+
+        $req = new Model('T_VILLE');
+        $city = $req->findAll();
+
+        $req = new Model('T_CODE_POSTAL');
+        $postalCode = $req->findAll();
+
+        $this->display('connexionInscription.index',array(
+            'department' => $department,
+            'city' => $city,
+            'postalCode' => $postalCode,
+        ));
     }
 
     public function connexion()
     {
+        var_dump("connexion");
+        $req = new Model('T_DEPARTEMENT');
+        $department = $req->findAll();
+
+        $req = new Model('T_VILLE');
+        $city = $req->findAll();
+
+        $req = new Model('T_CODE_POSTAL');
+        $postalCode = $req->findAll();
+
+
         $email = $_POST['email'];
         $password = $_POST['password'];
         $message = "";
@@ -21,22 +45,31 @@ class ConnexionInscriptionController extends Controller
         } elseif (empty($password)) {
             $error = true;
             $message = "champ password vide";
-        } elseif (preg_match("/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d-+_]{8,}$/", $password)) {
+        } elseif (preg_match("/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d-+_]{8,}$/", $password) == 0) {
             $error = true;
             $message = "format mot de passe invalide";
         }
         if ($error == true) {
             return $this->display('connexionInscription.index', array(
-                'erreur' => $message,
+                'erreur' => "<div class='alert alert-danger' role='alert'>$message</div>",
                 'email_connexion' => $email,
             ));
-        }else{
+        } else {
             $req = new Model('T_UTILISATEURS');
-            $test = $req->findBy(array(
+            $data = $req->findBy(array(
                 'utiEmail' => $email,
+                'utiMdp' => $password,
             ));
-            var_dump($test);
-            //TODO : requete select l'utilisateur dans la bdd avec sont email + mdp
+            if ($data == false) {
+                return $this->display('connexionInscription.index', array(
+                    'error_connexion' => "<div class='alert alert-danger' role='alert'>Votre email ou votre mot de passe est incorrect</div>",
+                    'email_connexion' => $email,
+                ));
+            }else {
+                $this->session()->login($data->id_utilisateur);
+                return $this->display('accueil.index');
+                //TODO : ajout donné en section
+            }
         }
     }
 
@@ -64,18 +97,27 @@ class ConnexionInscriptionController extends Controller
         } elseif (empty($_POST['city'])) {
             $error = true;
             $message = "champ ville vide";
+        } elseif ($_POST['password'] != $_POST['password_repeat']) {
+            $error = true;
+            $message = "Les 2 mot de passe ne sont pas identique";
+        } elseif (preg_match("/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d-+_]{8,}$/", $_POST['password']) == 0) {
+            $error = true;
+            $message = "format mot de passe invalide";
         }
 
         if ($error == true) {
             return $this->display('connexionInscription.index', array(
-                'erreur' => $message,
-                'email' => $_POST['email'],
+                'error_registration' => $message,
+                'email_registration' => $_POST['email'],
                 'pseudo' => $_POST['pseudo'],
                 'address' => $_POST['address'],
                 'postal_code' => $_POST['postal_code'],
                 'city' => $_POST['city'],
+                'department' => $_POST['dep'],
+                'phone' => $_POST['phone'],
+                'biography' => $_POST['biography'],
             ));
-        }else{
+        } else {
             //TODO: requete pour crée l'utilisateur en bdd
         }
     }

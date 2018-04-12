@@ -10,8 +10,8 @@ class Framework
         require CORE_PATH . "Database.php";
         require CORE_PATH . "Model.php";
         require CORE_PATH . "Route.php";
+        require CORE_PATH . "Session.php";
         include CONFIG_PATH . "routes.php";
-        session_start();
         spl_autoload_register(array(__CLASS__, 'load'));
         Route::dispatch(self::get_uri());
     }
@@ -50,12 +50,14 @@ class Framework
                 $uri = substr($uri, strlen(dirname($_SERVER['SCRIPT_NAME'])));
             }
 
-            if (strpos($uri, '?/') === 0) {
+            if (strncmp($uri, '?/', 2) === 0) {
                 $uri = substr($uri, 2);
             }
 
-            $parts = preg_split('/\?/', $uri, 2);
+            $parts = preg_split('#\?#i', $uri, 2);
             $uri = $parts[0];
+
+            
 
             if (isset($parts[1])) {
                 $_SERVER['QUERY_STRING'] = $parts[1];
