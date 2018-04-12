@@ -24,7 +24,7 @@ Route::get('/connexion', 'ConnexionInscriptionController@index');
 Route::post('/connexion/login', 'ConnexionInscriptionController@connexion');
 Route::post('/connexion/register', 'ConnexionInscriptionController@inscription');
 Route::get('/connexion/register/{token}', 'ConnexionInscriptionController@confirm');
-
+Route::get('/connexion/logout', 'ConnexionInscriptionController@logout');
 
 //////// Admin liste Utilisateur ////////
 Route::get('/admin/utilisateur', 'AdminUtilisateurController@index');

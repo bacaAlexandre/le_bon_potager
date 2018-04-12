@@ -161,4 +161,11 @@ class ConnexionInscriptionController extends Controller
         }
         return $this->redirect('ConnexionInscriptionController@index');
     }
+
+    public function logout() {
+        if ($this->session()->is_logged()) {
+            $this->session()->logout();
+        }
+        return $this->redirect('AccueilController@index');
+    }
 }
