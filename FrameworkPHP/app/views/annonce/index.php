@@ -17,6 +17,9 @@
 
         </select>
     </form>
+        <button type="search" class="btn btn-success">Rechercher</button>
+    </form>
+
 
 
 <?php include(VIEW_PATH . 'default/footer.php'); ?>
