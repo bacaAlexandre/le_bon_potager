@@ -1,4 +1,4 @@
-<?php include(VIEW_PATH.'default/header.php'); ?>
+<?php include(VIEW_PATH.'default/nav.php'); ?>
 <div class="row rounded-top">
   <h1>Bienvenue sur le bon potager</h1>
 </div>

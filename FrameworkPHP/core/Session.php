@@ -10,9 +10,35 @@ class Session
         session_start();
     }
 
+    public function set($key, $value)
+    {
+        $_SESSION[$key] = $value;
+    }
+
+    public function set_flash($key, $value)
+    {
+        $_SESSION['flash'][$key] = $value;
+        return $_SESSION['flash'][$key];
+    }
+
+    public function get($key)
+    {
+        return $_SESSION[$key];
+    }
+
+    public function get_flash()
+    {
+        if (isset($_SESSION['flash'])) {
+            $array = $_SESSION['flash'];
+            unset($_SESSION['flash']);
+            return $array;
+        }
+        return array();
+    }
+
     public function login($userId)
     {
-        $_SESSION['userId'] = $userId;
+        $this->set('userId', $userId);
         $selector = base64_encode(random_bytes(8));
         $token = bin2hex(random_bytes(32));
         $cookieValue = $selector . ':' . base64_encode($token);
@@ -56,6 +82,6 @@ class Session
 
     public function get_user_id()
     {
-        return $_SESSION['userId'];
+        return $this->get('userId');
     }
 }

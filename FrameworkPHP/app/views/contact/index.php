@@ -1,4 +1,4 @@
-<?php include(VIEW_PATH.'default/header.php'); ?>
+<?php include(VIEW_PATH.'default/nav.php'); ?>
 <div class="row">
       <div class="col-md-6 md-6">
         <form action="/verification.php" method="post">

@@ -15,5 +15,7 @@ Route::get('/annonce', 'AnnonceController@index');
 
 //////// ConnexionInscription ////////
 Route::get('/connexion', 'ConnexionInscriptionController@index');
-Route::post('/connexion', 'ConnexionInscriptionController@connexion');
-Route::post('/connexion', 'ConnexionInscriptionController@inscription');
+Route::post('/connexion/login', 'ConnexionInscriptionController@connexion');
+Route::post('/connexion/register', 'ConnexionInscriptionController@inscription');
+
+
