@@ -41,7 +41,8 @@ class ConnexionInscriptionController extends Controller
                     'erreur' => "<div class='alert alert-danger' role='alert'>Votre email ou votre mot de passe est incorrect</div>",
                     'email_connexion' => $email,
                 ));
-            }else{
+            }else {
+                $this->session()->login($data->id_utilisateur);
                 return $this->display('accueil.index');
                 //TODO : ajout donné en section
             }
