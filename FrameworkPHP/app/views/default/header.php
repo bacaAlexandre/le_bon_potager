@@ -35,7 +35,7 @@
             <a class="nav-link" href="<?php echo Route::get_uri('AnnonceController@index'); ?>">Nos annonces</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Mon potager</a>
+            <a class="nav-link" href="<?php echo Route::get_uri('MonPotagerController@index'); ?>">Mon potager</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="<?php echo Route::get_uri('ConnexionInscriptionController@index'); ?>">Mon compte</a>

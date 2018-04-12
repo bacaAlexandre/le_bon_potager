@@ -2,11 +2,23 @@
 
 class Controller {
 
+    private $session;
+
+    public function __construct()
+    {
+        $this->session = new Session();
+    }
+
     public function redirect($path, $args = [])
     {
         $uri = Route::get_uri($path, $args);
         header("Location:$uri");
         exit;
+    }
+
+    public function session()
+    {
+        return $this->session;
     }
 
     public function display($view, $args = [])
