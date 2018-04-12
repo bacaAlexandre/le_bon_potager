@@ -107,12 +107,12 @@
                               class="form-control"><?php echo ($this->flash('biography') !== null) ? $this->flash('biography') : ""; ?></textarea>
                 </div>
                 <div class="form-check">
-                    <input type="checkbox" id="address_visible" class="form-check-input">&nbsp;
+                    <input type="checkbox" id="address_visible" class="form-check-input" checked>&nbsp;
                     <label for="address_visible" class="form-check-label">J'autorise l'affichage de mon adresse dans mes
                         annonces.</label>
                 </div>
                 <div class="form-check">
-                    <input type="checkbox" id="tel_visible" class="form-check-input">&nbsp;
+                    <input type="checkbox" id="tel_visible" class="form-check-input" checked>&nbsp;
                     <label for="tel_visible" class="form-check-label">J'autorise l'affichage de mon n° de tél. dans mes
                         annonces.</label>
                 </div>
