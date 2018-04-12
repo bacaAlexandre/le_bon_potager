@@ -65,7 +65,7 @@ class Route
 
     public static function get_uri($path, $args = []) {
         $http = isset($_SERVER['HTTPS']) && strtolower($_SERVER['HTTPS']) !== 'off' ? 'https' : 'http';
-        $host = $_SERVER['SERVER_NAME'];
+        $host = $_SERVER['SERVER_NAME'] . ((isset($_SERVER['SERVER_PORT']) && ($_SERVER['SERVER_PORT'] !== '80')) ? ':' . $_SERVER['SERVER_PORT'] : '');
         $dir = (dirname($_SERVER['SCRIPT_NAME']) !== '\\' ? dirname($_SERVER['SCRIPT_NAME']) : '');
 
         $path = preg_split('/@/', $path);
