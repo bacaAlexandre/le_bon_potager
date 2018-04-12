@@ -1,5 +1,16 @@
 @charset "utf-8";
 
+body {
+  background-image: url("../img/bg.jpg");
+  background-attachment: fixed;
+}
+
+.row {
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 1.5em 0;
+  border-radius: 0.5em;
+}
+
 @media only screen and (max-width: 800px) {
   hr {
     border: none;
@@ -15,5 +26,13 @@
     border-right: 1px dashed rgb(206, 212, 218);
     height: 100vh;
     width: 1px;
+  }
+  h1 {
+    text-align: center;
+    margin: 1.2em 0;
+  }
+  footer {
+    text-align: center;
+    margin: 1.5em 0;
   }
 }

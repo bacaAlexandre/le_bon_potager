@@ -1,4 +1,9 @@
 <?php include(VIEW_PATH.'default/header.php'); ?>
+<br>
+<div class="row">
+  <h1>Inscrivez-vous pour nous rejoindre !</h1>
+</div>
+<br>
 <div class="row">
   <div class="col-md-5">
     <form action="<?php Route::get_uri('ConnexionInscriptionController@connexion') ?>" method="post">
@@ -12,7 +17,7 @@
           <label for="password_con">Votre mot de passe :</label>
           <input type="password" name="password" id="password_con" class="form-control" minlength="8" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d-+_]{8,}$" required>
         </div>
-        <button type="submit" class="btn btn-primary">Se connecter</button>
+        <button type="submit" class="btn btn-success">Se connecter</button>
       </fieldset>
     </form>
   </div>
@@ -38,29 +43,31 @@
           <input type="text" name="pseudo" id="pseudo" class="form-control" minlength="3" maxlength="30" required>
         </div>
         <div class="form-group">
+          <label for="address">Votre adresse * :</label>
+          <textarea rows="3" name="address" id="address" class="form-control" required></textarea>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-4">
+            <label for="postalcode">Votre code postal * :</label>
+            <select name="postalcode" id="postalcode" class="form-control" required>
+              <option value="">Votre choix</option>
+              <option value="1">Choix 1</option>
+            </select>
+          </div>
+          <div class="form-group col-md-8">
+            <label for="city">Votre ville * :</label>
+            <select name="city" id="city" class="form-control" required>
+              <option value="">Votre choix</option>
+              <option value="1">Choix 1</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
           <label for="dep">Votre département * :</label>
           <select name="dep" id="dep" class="form-control" required>
             <option value="">Votre choix</option>
             <option value="1">Choix 1</option>
           </select>
-        </div>
-        <div class="form-group">
-          <label for="city">Votre ville * :</label>
-          <select name="city" id="city" class="form-control" required>
-            <option value="">Votre choix</option>
-            <option value="1">Choix 1</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="postalcode">Votre code postal * :</label>
-          <select name="postalcode" id="postalcode" class="form-control" required>
-            <option value="">Votre choix</option>
-            <option value="1">Choix 1</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="address">Votre adresse * :</label>
-          <textarea rows="3" name="address" id="address" class="form-control" required></textarea>
         </div>
         <div class="form-group">
           <label for="phone">Votre n° de téléphone :</label>
@@ -85,3 +92,4 @@
   </div>
 </div>
 <?php include(VIEW_PATH.'default/footer.php'); ?>
+

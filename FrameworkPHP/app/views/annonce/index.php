@@ -1,22 +1,47 @@
 <?php include(VIEW_PATH . 'default/header.php'); ?>
-
-
-    <h2>Confectionnez votre panier maraîcher</h2>
-
-    <form action="" method="post">
-        <label for="category"> Je recherche : </label>
-        <select name="" id="category">
-
-        </select>
-        <label for="product"> Produit :</label>
-        <select name="" id="product">
-
-        </select>
-        <label for="department"> Département : </label>
-        <select name="" id="department">
-
-        </select>
+<div class="row">
+  <h1>Inscrivez-vous pour nous rejoindre !</h1>
+</div>
+<br>
+<div class="row">
+  <div class="col-md-12">
+    <form action="<?php Route::get_uri('') ?>" method="post">
+      <fieldset>
+        <legend>Confectionnez votre panier maraîcher</legend>
+        <div class="form-row">
+          <div class="form col-md-5 md-5">
+            <select name="product" class="form-control">
+              <option disabled selected>Produit</option>
+              <optgroup label="Fruits">
+                <option value="fruit_1">Fruit 1</option>
+                <option value="fruit_2">Fruit 2</option>
+                <option value="fruit_3">Fruit 3</option>
+                <option value="fruit_4">Fruit 4</option>
+                <option value="fruit_5">Fruit 5</option>
+              </optgroup>
+              <optgroup label="Légumes">
+                <option value="vegetable_1">Légume 1</option>
+                <option value="vegetable_2">Légume 2</option>
+                <option value="vegetable_3">Légume 3</option>
+                <option value="vegetable_4">Légume 4</option>
+                <option value="vegetable_5">Légume 5</option>
+              </optgroup>
+            </select>
+          </div>
+          <div class="form col-md-5 md-5">
+            <select name="dep" class="form-control">
+              <option disabled selected>Département</option>
+              <option value="1">Choix 1</option>
+              <option value="2">Choix 2</option>
+              <option value="3">Choix 3</option>
+            </select>
+          </div>
+          <div class="form col-md-2 md-2">
+            <button type="submit" name="search" class="btn btn-success">Rechercher</button>
+          </div>
+        </div>
+      </fieldset>
     </form>
-
-
+  </div>
+</div>
 <?php include(VIEW_PATH . 'default/footer.php'); ?>

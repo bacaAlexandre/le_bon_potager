@@ -81,9 +81,18 @@ class Model {
         return $this->db->getFirst($sql);
     }
 
-    public function findBy($data)
+    public function findBy($datas)
     {
         //TODO
+        var_dump($datas);
+        $sql = "select * from `$this->table` where 1=1";
+        foreach ($datas as $key =>$data){
+            var_dump($key);
+            var_dump($data);
+            $sql .= " and $key = `$data`";
+        }
+        var_dump($sql);
+        return $this->db->getFirst($sql);
     }
 
     public function count()
