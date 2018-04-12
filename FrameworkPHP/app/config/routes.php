@@ -22,3 +22,10 @@ Route::post('/connexion/login', 'ConnexionInscriptionController@connexion');
 Route::post('/connexion/register', 'ConnexionInscriptionController@inscription');
 
 
+//////// Admin liste Utilisateur ////////
+Route::get('/admin/utilisateur', 'AdminUtilisateurController@index');
+
+//////// Admin liste Produit ////////
+Route::get('/admin/produit', 'AdminProduitController@index');
+
+
