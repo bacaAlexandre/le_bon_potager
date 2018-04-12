@@ -1,9 +1,7 @@
 <?php include(VIEW_PATH.'default/header.php'); ?>
-<br>
 <div class="row">
   <h1>Inscrivez-vous pour nous rejoindre !</h1>
 </div>
-<br>
 <div class="row">
   <div class="col-md-5">
     <form action="<?php Route::get_uri('ConnexionInscriptionController@connexion') ?>" method="post">
