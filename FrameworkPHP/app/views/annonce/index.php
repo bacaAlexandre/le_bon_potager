@@ -1,6 +1,6 @@
 <?php include(VIEW_PATH.'default/nav.php'); ?>
 <div class="row">
-  <h1>Inscrivez-vous pour nous rejoindre !</h1>
+  <h1>Confectionnez votre panier maraîcher... </h1>
 </div>
 <br>
 <div class="row">
