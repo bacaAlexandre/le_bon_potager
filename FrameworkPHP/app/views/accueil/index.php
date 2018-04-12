@@ -4,7 +4,7 @@
 </div>
 <div class="row rounded-bottom main">
   <div class="col-md-12 text-center">
-<img src="asset/img/map.gif" usemap="#Map_59" width="657" height="694" border="0">
+<img src="asset/img/map_trans.gif" usemap="#Map_59" width="657" height="694" border="0">
 <map name="Map_59">
 <area shape="poly" coords="643,2,513,11,524,138,651,124" href="connexion-inscription.php" alt="Déposez une annonce">
 <area shape="poly" coords="280,559,272,568,277,571,273,573,268,574,263,572,260,583,255,583,254,587,272,596,284,603,298,607,316,601,317,599,309,596,302,591,302,587,308,582,305,573,300,567,297,563,291,564" href="annonce/departement/9" alt="09" title="Ariége">
