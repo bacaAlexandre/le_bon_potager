@@ -5,7 +5,7 @@ body {
   background-attachment: fixed;
 }
 
-.container {
+.container, footer {
   background-color: rgba(255, 255, 255, 0.9);
 }
 
@@ -39,10 +39,11 @@ nav {
   }
   h1 {
     text-align: center;
-    margin: 1.2em 0;
+    margin: 1.2em .2em;
+    width: 100vw;
   }
   footer {
     text-align: center;
-    margin: 1.5em 0;
+    margin-top: 1em;
   }
 }
