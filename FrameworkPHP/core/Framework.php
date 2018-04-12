@@ -64,7 +64,8 @@ class Framework
                 $_SERVER['QUERY_STRING'] = '';
                 $_GET = array();
             }
-            return parse_url($uri, PHP_URL_PATH);
+            $uri = parse_url($uri, PHP_URL_PATH);
+            return '/' . str_replace(array('//', '../'), '/', trim($uri, '/'));
         }
         return false;
     }
