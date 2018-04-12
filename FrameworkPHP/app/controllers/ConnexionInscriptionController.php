@@ -113,11 +113,8 @@ class ConnexionInscriptionController extends Controller
                 'address' => $_POST['address'],
                 'postal_code' => $_POST['postal_code'],
                 'city' => $_POST['city'],
-                'department' => $_POST['dep'],
-                'phone' => $_POST['phone'],
-                'biography' => $_POST['biography'],
             ));
-        } else {
+        }else{
             //TODO: requete pour crée l'utilisateur en bdd
         }
     }

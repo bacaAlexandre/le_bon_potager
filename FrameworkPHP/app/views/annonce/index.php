@@ -1,4 +1,4 @@
-<?php include(VIEW_PATH . 'default/header.php'); ?>
+<?php include(VIEW_PATH.'default/nav.php'); ?>
 <div class="row">
   <h1>Inscrivez-vous pour nous rejoindre !</h1>
 </div>

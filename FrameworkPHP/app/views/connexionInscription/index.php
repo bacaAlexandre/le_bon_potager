@@ -1,4 +1,5 @@
-<?php include(VIEW_PATH.'default/header.php'); ?>
+<?php include(VIEW_PATH.'default/nav.php'); ?>
+<?php echo $error_connexion ?>
 <div class="row">
   <h1>Inscrivez-vous pour nous rejoindre !</h1>
 </div>
@@ -15,12 +16,11 @@
               <label for="password_con">Votre mot de passe :</label>
               <input type="password" name="password" id="password_con" class="form-control" minlength="8" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d-+_]{8,}$" required>
           </div>
-          <button type="submit" class="btn btn-sucess">Se connecter</button>
-          <?php echo (isset($error_connexion)? $error_connexion : "") ?>
+          <button type="submit" class="btn btn-success">Se connecter</button>
+          <?php echo isset($error_connexion)? $error_connexion : ""; ?>
       </fieldset>
     </form>
   </div>
-    <hr class="hr_con" />
   <hr class="hr_con" />
   <div class="col-md-6">
     <form action="<?php echo Route::get_uri('ConnexionInscriptionController@inscription') ?>" method="post">
