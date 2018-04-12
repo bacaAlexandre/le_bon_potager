@@ -2,8 +2,6 @@
 
 class ConnexionInscriptionController extends Controller
 {
-    protected $table = 'T_UTILISATEURS';
-
 
     public function index()
     {
@@ -33,7 +31,7 @@ class ConnexionInscriptionController extends Controller
                 'email_connexion' => $email,
             ));
         }else{
-            $req = new Model();
+            $req = new Model('T_UTILISATEURS');
             $test = $req->findBy(array(
                 'utiEmail' => $email,
             ));

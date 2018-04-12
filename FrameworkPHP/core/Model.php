@@ -6,13 +6,14 @@ class Model {
     protected $table;
     protected $fields = array();
 
-    public function __construct()
+    public function __construct($table)
     {
         $this->db = new Database();
-        $this->getFields();
+        $this->table = $table;
+        $this->get_fields();
     }
 
-    private function getFields()
+    private function get_fields()
     {
         $sql = "DESC ". $this->table;
         $row = $this->db->query($sql);
