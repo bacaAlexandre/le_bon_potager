@@ -17,7 +17,7 @@
 <body>
   <div class="container">
     <header>
-      <img src="asset/img/logo_small.png">
+      <img src="asset/img/logo_trans.png">
       <p>Le bon potager pour les bonnes personnes</p>
     </header>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
