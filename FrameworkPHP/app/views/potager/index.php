@@ -7,7 +7,7 @@
   <div class="col-md-12">
     <form action="<?php Route::get_uri('') ?>" method="post">
       <fieldset>
-        <legend>Confectionnez votre panier maraîcher</legend>
+        <legend>Déposez votre annonce</legend>
         <div class="form-row">
           <div class="form col-md-5 md-5">
             <select name="product" class="form-control">
