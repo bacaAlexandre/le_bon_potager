@@ -4,9 +4,8 @@
 </div>
 <div class="row rounded-bottom main">
   <div class="col-md-12 text-center">
-<img src="asset/img/map.gif" usemap="#Map_59" width="657" height="694" border="0">
+<img src="asset/img/map_trans.gif" usemap="#Map_59" width="657" height="694" border="0">
 <map name="Map_59">
-<area shape="poly" coords="643,2,513,11,524,138,651,124" href="connexion-inscription.php" alt="Déposez une annonce">
 <area shape="poly" coords="280,559,272,568,277,571,273,573,268,574,263,572,260,583,255,583,254,587,272,596,284,603,298,607,316,601,317,599,309,596,302,591,302,587,308,582,305,573,300,567,297,563,291,564" href="annonce/departement/9" alt="09" title="Ariége">
 <area shape="poly" coords="500,347,474,359,467,351,461,346,455,344,448,348,443,357,440,371,440,379,447,383,458,387,466,383,470,386,481,399,486,394,488,387,486,368,495,362,495,359,501,353" href="annonce/departement/1" alt="01" title="Ain">
 <area shape="poly" coords="361,110,407,108,403,141,398,150,384,154,384,158,387,166,376,185,364,169,361,168,354,155,362,146" href="annonce/departement/2" alt="02" title="Aisne">
