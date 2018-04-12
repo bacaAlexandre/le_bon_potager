@@ -27,17 +27,18 @@ class ConnexionInscriptionController extends Controller
         }
         if ($error == true) {
             return $this->display('connexionInscription.index', array(
-                'erreur' => $message,
+                'erreur' => "<div class='alert alert-danger' role='alert'>$message</div>",
                 'email_connexion' => $email,
             ));
         }else{
             $req = new Model('T_UTILISATEURS');
             $data = $req->findBy(array(
                 'utiEmail' => $email,
+                'utiMdp' => $password,
             ));
             if($data == false){
                 return $this->display('connexionInscription.index', array(
-                    'erreur' => 'Votre email ou votre mot de passe est incorrect',
+                    'erreur' => "<div class='alert alert-danger' role='alert'>Votre email ou votre mot de passe est incorrect</div>",
                     'email_connexion' => $email,
                 ));
             }else{
