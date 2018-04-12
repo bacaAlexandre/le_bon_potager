@@ -1,5 +1,5 @@
 {
-    "name": "vendor/framework-php",
+    "name": "FrameworkPHP/le-bon-potager",
     "type": "library",
     "authors": [
         {
@@ -24,6 +24,6 @@
         }
     ],
     "require": {
-        "vlucas/phpdotenv": "^2.4"
+    
     }
 }
