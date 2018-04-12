@@ -5,6 +5,10 @@ class ConnexionInscriptionController extends Controller
 
     public function index()
     {
+        if ($this->session()->is_logged()) {
+            return $this->redirect('AccueilController@index');
+        }
+
         $req = new Model('T_DEPARTEMENT');
         $department = $req->findAll();
 
@@ -13,17 +17,16 @@ class ConnexionInscriptionController extends Controller
 
         $req = new Model('T_CODE_POSTAL');
         $postalCode = $req->findAll();
-
         $this->display('connexionInscription.index',array(
             'department' => $department,
             'city' => $city,
             'postalCode' => $postalCode,
         ));
+
     }
 
     public function connexion()
     {
-        var_dump("connexion");
         $req = new Model('T_DEPARTEMENT');
         $department = $req->findAll();
 
@@ -50,10 +53,9 @@ class ConnexionInscriptionController extends Controller
             $message = "format mot de passe invalide";
         }
         if ($error == true) {
-            return $this->display('connexionInscription.index', array(
-                'erreur' => "<div class='alert alert-danger' role='alert'>$message</div>",
-                'email_connexion' => $email,
-            ));
+            $this->flash('error_connexion', "<div class='alert alert-danger' role='alert'>$message</div>");
+            $this->flash('email_connexion', $email);
+            return $this->redirect('ConnexionInscriptionController@index');
         } else {
             $req = new Model('T_UTILISATEURS');
             $data = $req->findBy(array(
@@ -61,14 +63,12 @@ class ConnexionInscriptionController extends Controller
                 'utiMdp' => $password,
             ));
             if ($data == false) {
-                return $this->display('connexionInscription.index', array(
-                    'error_connexion' => "<div class='alert alert-danger' role='alert'>Votre email ou votre mot de passe est incorrect</div>",
-                    'email_connexion' => $email,
-                ));
+                $this->flash('error_connexion', "<div class='alert alert-danger' role='alert'>Votre email ou votre mot de passe est incorrect</div>");
+                $this->flash('email_connexion', $email);
+                return $this->redirect('ConnexionInscriptionController@index');
             }else {
                 $this->session()->login($data->id_utilisateur);
-                return $this->display('accueil.index');
-                //TODO : ajout donné en section
+                return $this->redirect('AccueilController@index');
             }
         }
     }
@@ -106,15 +106,17 @@ class ConnexionInscriptionController extends Controller
         }
 
         if ($error == true) {
-            return $this->display('connexionInscription.index', array(
-                'error_registration' => $message,
-                'email_registration' => $_POST['email'],
-                'pseudo' => $_POST['pseudo'],
-                'address' => $_POST['address'],
-                'postal_code' => $_POST['postal_code'],
-                'city' => $_POST['city'],
-            ));
-        }else{
+            $this->flash('error_registration', $message);
+            $this->flash('email_registration', $_POST['email']);
+            $this->flash('pseudo', $_POST['pseudo']);
+            $this->flash('address', $_POST['address']);
+            $this->flash('postal_code', $_POST['postal_code']);
+            $this->flash('city', $_POST['city']);
+            $this->flash('department', $_POST['dep']);
+            $this->flash('phone', $_POST['phone']);
+            $this->flash('biography', $_POST['biography']);
+            return $this->redirect('ConnexionInscriptionController@index');
+        } else {
             //TODO: requete pour crée l'utilisateur en bdd
         }
     }
