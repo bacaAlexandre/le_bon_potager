@@ -5,10 +5,20 @@ body {
   background-attachment: fixed;
 }
 
-.row {
+.container {
   background-color: rgba(255, 255, 255, 0.9);
+}
+
+.row {
   padding: 1.5em 0;
-  border-radius: 0.5em;
+}
+
+nav {
+  border-radius: 1em 1em;
+}
+
+.main {
+  height:80vh;
 }
 
 @media only screen and (max-width: 800px) {

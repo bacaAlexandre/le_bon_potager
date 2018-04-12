@@ -1,9 +1,9 @@
 <?php include(VIEW_PATH.'default/nav.php'); ?>
-<div class="row">
-  <h1>Confectionnez votre panier maraîcher... </h1>
+<div class="row rounded">
+  <h1>Inscrivez-vous pour nous rejoindre !</h1>
 </div>
 <br>
-<div class="row">
+<div class="row rounded-top">
   <div class="col-md-12">
     <form action="<?php Route::get_uri('') ?>" method="post">
       <fieldset>
@@ -43,5 +43,7 @@
       </fieldset>
     </form>
   </div>
+</div>
+<div class="row rounded-bottom main">
 </div>
 <?php include(VIEW_PATH . 'default/footer.php'); ?>
