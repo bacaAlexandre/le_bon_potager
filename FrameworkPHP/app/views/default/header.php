@@ -38,7 +38,7 @@
             <a class="nav-link" href="#">Mon potager</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Mon compte</a>
+            <a class="nav-link" href="<?php echo Route::get_uri('ConnexionInscriptionController@index'); ?>">Mon compte</a>
           </li>
         </ul>
       </div>
