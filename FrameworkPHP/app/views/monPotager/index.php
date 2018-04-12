@@ -3,7 +3,7 @@
     <h2>Déposez votre annonce</h2>
 
     <form action="" method="post">
-        <label for="category"> Je recherche : </label>
+        <label for="category"> Catégorie :</label>
         <select name="" id="category">
 
         </select>
