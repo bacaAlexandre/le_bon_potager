@@ -12,6 +12,9 @@ Route::post('/contact', 'ContactController@store');
 //////// Annonce ////////
 Route::get('/annonce', 'AnnonceController@index');
 
+/////// Mon Potager /////
+Route::get('/monPotager', 'MonPotagerController@index');
+
 
 //////// ConnexionInscription ////////
 Route::get('/connexion', 'ConnexionInscriptionController@index');
