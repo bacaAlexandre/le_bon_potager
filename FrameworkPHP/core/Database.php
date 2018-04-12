@@ -1,5 +1,7 @@
 <?php
 
+require CONFIG_PATH . "database.php";
+
 class Database
 {
 
@@ -7,12 +9,12 @@ class Database
 
     public function __construct()
     {
-        $host = getenv('DB_HOST') !== false ? getenv('DB_HOST') : 'localhost';
-        $user = getenv('DB_USERNAME') !== false ? getenv('DB_USERNAME') : 'root';
-        $password = getenv('DB_PASSWORD') !== false ? getenv('DB_PASSWORD') : '';
-        $dbname = getenv('DB_NAME') !== false ? getenv('DB_NAME') : '';
-        $port = getenv('DB_PORT') !== false ? getenv('DB_PORT') : '3306';
-        $charset = getenv('DB_CHARSET') !== false ? getenv('DB_CHARSET') : 'utf8';;
+        $host = defined('DB_HOST') ? DB_HOST : 'localhost';
+        $user = defined('DB_USERNAME') ? DB_USERNAME : 'root';
+        $password = defined('DB_PASSWORD') ? DB_PASSWORD : '';
+        $dbname = defined('DB_NAME') ? DB_NAME : '';
+        $port = defined('DB_PORT') ? DB_PORT : '3306';
+        $charset = defined('DB_CHARSET') ? DB_CHARSET : 'utf8';;
 
         $this->pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=$charset;port=$port",$user,$password) or die('Database connection error');
         $this->pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
