@@ -1,5 +1,7 @@
 <?php
 
+require CONFIG_PATH . "routes.php";
+
 class Route
 {
 
