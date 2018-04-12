@@ -6,7 +6,7 @@ class Controller {
 
     public function __construct()
     {
-        $this->session = new Session();
+        //$this->session = new Session();
     }
 
     public function redirect($path, $args = [])

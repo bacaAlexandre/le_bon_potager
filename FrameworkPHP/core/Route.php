@@ -18,8 +18,9 @@ class Route
         $route = preg_replace_callback('/\{([a-z]+)(?:\:([^\}]+))?\}/', function($match) {
             return empty($match[2]) ? "(?P<$match[1]>[a-z]+)" : "(?P<$match[1]>$match[2])";
         }, $route);
+        $route= '/^' . $route . '$/';
         $this->uri = $uri;
-        $this->route = '/^' . $route . '$/';
+        $this->route = $route;
         $this->controller = $path[0];
         $this->action = (empty($path[1])) ? 'index' : $path[1];
         $this->method = $method;
@@ -40,10 +41,14 @@ class Route
         $url = self::parse_url($url);
         foreach (self::$routes as $route) {
             if ((preg_match($route->route, $url, $matches)) && (self::get_method() == $route->method)) {
+                      
                 $controller_name = $route->controller;
+                
                 if (class_exists($controller_name)) {
+                    
                     $controller = new $controller_name();
                     $action = $route->action;
+                    
                     if (is_callable([$controller, $action])) {
                         $args = [];
                         foreach ($matches as $key => $match) {
@@ -51,6 +56,7 @@ class Route
                                 $args[$key] = $match;
                             }
                         }
+                           
                         call_user_func_array(array($controller, $action), $args);
                         return true;
                     }
@@ -67,7 +73,6 @@ class Route
         $http = isset($_SERVER['HTTPS']) && strtolower($_SERVER['HTTPS']) !== 'off' ? 'https' : 'http';
         $host = $_SERVER['SERVER_NAME'] . ((isset($_SERVER['SERVER_PORT']) && ($_SERVER['SERVER_PORT'] !== '80')) ? ':' . $_SERVER['SERVER_PORT'] : '');
         $dir = (dirname($_SERVER['SCRIPT_NAME']) !== '\\' ? dirname($_SERVER['SCRIPT_NAME']) : '');
-
         $path = preg_split('/@/', $path);
         $controller = $path[0];
         $action = (empty($path[1])) ? 'index' : $path[1];
