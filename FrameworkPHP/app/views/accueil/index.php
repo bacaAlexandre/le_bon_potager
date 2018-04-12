@@ -1,6 +1,6 @@
 <?php include(VIEW_PATH.'default/nav.php'); ?>
 <div class="row rounded-top">
-  <h1>Bienvenue sur le bon potager</h1>
+  <h1>Bienvenue sur Le bon potager</h1>
 </div>
 <div class="row rounded-bottom main">
   <div class="col-md-12 text-center">
