@@ -6,8 +6,7 @@
         <legend>Connexion</legend>
         <div class="form-group">
           <label for="email_con">Votre e-mail :</label>
-          <input type="email" name="email" id="email_con" class="form-control" value="<?php echo (isset($email_connexion)? $email_connexion : "") ?>">
-          <input type="email" name="email" id="email_con" class="form-control" required>
+          <input type="email" name="email" id="email_con" class="form-control" value="<?php echo (isset($email_connexion)? $email_connexion : "") ?>" required>
         </div>
         <div class="form-group">
           <label for="password_con">Votre mot de passe :</label>
@@ -56,7 +55,7 @@
           </select>
         </div>
         <div class="form-group">
-          <label for="address">Votre adresse :</label>
+          <label for="address">Votre adresse* :</label>
           <textarea rows="3" name="address" id="address" class="form-control" required></textarea>
         </div>
         <div class="form-group">
@@ -75,11 +74,11 @@
           <textarea rows="5" name="biography" id="biography" class="form-control"></textarea>
         </div>
         <div class="form-check">
-          <input type="checkbox" id="address_visible" class="form-check-input" checked>&nbsp;
+          <input type="checkbox" id="address_visible" class="form-check-input" >&nbsp;
           <label for="address_visible" class="form-check-label">J'autorise l'affichage de mon adresse dans mes annonces.</label>
         </div>
         <div class="form-check">
-          <input type="checkbox" id="tel_visible" class="form-check-input" checked>&nbsp;
+          <input type="checkbox" id="tel_visible" class="form-check-input" >&nbsp;
           <label for="tel_visible" class="form-check-label">J'autorise l'affichage de mon n° de tél. dans mes annonces.</label>
         </div>
         <p>* Champ obligatoire</p>
