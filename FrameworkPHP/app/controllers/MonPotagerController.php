@@ -4,6 +4,6 @@ class MonPotagerController extends Controller
 {
     public function index()
     {
-        $this->display('monPotager.index');
+        $this->display('potager.index');
     }
 }

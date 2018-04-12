@@ -16,7 +16,8 @@ Route::get('/annonce', 'AnnonceController@index');
 Route::get('/annonceResultat', 'AnnonceResultatController@index');
 
 /////// MonPotager /////
-Route::get('/monPotager', 'MonPotagerController@index');
+Route::get('/potager', 'MonPotagerController@index');
+
 
 //////// ConnexionInscription ////////
 Route::get('/connexion', 'ConnexionInscriptionController@index');
