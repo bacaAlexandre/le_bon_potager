@@ -13,6 +13,7 @@
               <input type="password" name="password" id="password_con" class="form-control" minlength="8" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d-+_]{8,}$" required>
           </div>
           <button type="submit" class="btn btn-primary">Se connecter</button>
+          <p>"<?php echo (isset($erreur)? $erreur : "") ?>"</p>
       </fieldset>
     </form>
   </div>

@@ -21,7 +21,7 @@ class ConnexionInscriptionController extends Controller
         } elseif (empty($password)) {
             $error = true;
             $message = "champ password vide";
-        } elseif (preg_match("/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d-+_]{8,}$/", $password)) {
+        } elseif (preg_match("/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d-+_]{8,}$/", $password) == 0) {
             $error = true;
             $message = "format mot de passe invalide";
         }
@@ -32,11 +32,18 @@ class ConnexionInscriptionController extends Controller
             ));
         }else{
             $req = new Model('T_UTILISATEURS');
-            $test = $req->findBy(array(
+            $data = $req->findBy(array(
                 'utiEmail' => $email,
             ));
-            var_dump($test);
-            //TODO : requete select l'utilisateur dans la bdd avec sont email + mdp
+            if($data == false){
+                return $this->display('connexionInscription.index', array(
+                    'erreur' => 'Votre email ou votre mot de passe est incorrect',
+                    'email_connexion' => $email,
+                ));
+            }else{
+                return $this->display('accueil.index');
+                //TODO : ajout donné en section
+            }
         }
     }
 
