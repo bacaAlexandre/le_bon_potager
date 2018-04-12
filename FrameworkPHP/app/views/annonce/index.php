@@ -1,4 +1,4 @@
-<?php include(VIEW_PATH . 'default/header.php'); ?>
+<?php include(VIEW_PATH . 'default/nav.php'); ?>
 
 
     <h2>Confectionnez votre panier maraîcher</h2>

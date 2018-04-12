@@ -17,3 +17,10 @@ Route::get('/annonce', 'AnnonceController@index');
 Route::get('/connexion', 'ConnexionInscriptionController@index');
 Route::post('/connexion', 'ConnexionInscriptionController@connexion');
 Route::post('/connexion', 'ConnexionInscriptionController@inscription');
+
+
+//////// Admin liste Utilisateur ////////
+Route::get('/admin/utilisateur', 'AdminUtilisateurController@index');
+
+//////// Admin liste Produit ////////
+Route::get('/admin/produit', 'AdminProduitController@index');
