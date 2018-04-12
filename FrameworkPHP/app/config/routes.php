@@ -13,7 +13,7 @@ Route::post('/contact', 'ContactController@store');
 Route::get('/annonce', 'AnnonceController@index');
 
 /////// Mon Potager /////
-Route::get('/monPotager', 'MonPotagerController@index');
+Route::get('/potager', 'MonPotagerController@index');
 
 
 //////// ConnexionInscription ////////

@@ -1,6 +1,6 @@
-  </div>
+  <footer>Copyright &copy; <?php echo date("Y"); ?></footer>
 
-<footer>Copyright &copy; <?php echo date("Y"); ?></footer>
+</div>
 
 </body>
 

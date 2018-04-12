@@ -1,4 +1,4 @@
-<?php include(VIEW_PATH.'default/header.php'); ?>
+<?php include(VIEW_PATH . 'default/header.php'); ?>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent"
