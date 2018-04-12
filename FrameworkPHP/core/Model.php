@@ -46,59 +46,61 @@ class Model {
         }
     }
 
-    public function update($data)
+    public function update($conditions, $values)
     {
+        $where = '';
         $fields = '';
-        $where = 0;
-        foreach ($data as $key => $val) {
+        foreach ($conditions as $key => $val) {
             if (in_array($key, $this->fields)) {
-                if ($key == $this->fields['pk']) {
-                    $where = "`$key`=$val";
-                } else {
-                    $fields .= "`$key`='$val'".",";
-                }
+                $where .= "`$key`=$val".",";
             }
         }
+        foreach ($values as $key => $val) {
+            if (in_array($key, $this->fields)) {
+                $fields .= "`$key`=$val".",";
+            }
+        }
+        $where = rtrim($where, ',');
         $fields = rtrim($fields,',');
         $sql = "UPDATE `$this->table` SET $fields WHERE $where";
         return $this->db->execute($sql);
     }
 
-    public function delete($primary_key)
+    public function delete($conditions)
     {
-        if (is_array($primary_key)) {
-            $where = "`{$this->fields['pk']}` in (".implode(',', $primary_key).")";
-        } else {
-            $where = "`{$this->fields['pk']}`=$primary_key";
+        $where = '';
+        foreach ($conditions as $key => $val) {
+            if (in_array($key, $this->fields)) {
+                $where .= "`$key`=$val".",";
+            }
         }
-        $sql = "DELETE FROM `{$this->table}` WHERE $where";
+        $where = rtrim($where, ',');
+        $sql = "DELETE FROM `$this->table` WHERE $where";
         return $this->db->execute($sql);
     }
 
-    public function find($primary_key)
+    public function find($conditions)
     {
-        $sql = "select * from `$this->table` where `$this->fields['pk']` = $primary_key";
-        return $this->db->getFirst($sql);
-    }
-
-    public function findBy($datas)
-    {
-        $sql = "select * from `$this->table` where 1=1";
-        foreach ($datas as $key =>$data){
-            $sql .= " and $key = '$data'";
+        $where = '';
+        foreach ($conditions as $key => $val) {
+            if (in_array($key, $this->fields)) {
+                $where .= "`$key`=$val".",";
+            }
         }
+        $where = rtrim($where, ',');
+        $sql = "SELECT * FROM `$this->table` WHERE $where";
         return $this->db->getFirst($sql);
-    }
-
-    public function count()
-    {
-        $sql = "select count(*) AS total from $this->table";
-        return $this->db->getFirst($sql)->total;
     }
 
     public function findAll()
     {
         $sql = "select * from $this->table";
         return $this->db->query($sql);
+    }
+
+    public function count()
+    {
+        $sql = "select count(*) AS total from $this->table";
+        return $this->db->getFirst($sql)->total;
     }
 }

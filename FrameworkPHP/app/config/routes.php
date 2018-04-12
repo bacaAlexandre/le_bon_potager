@@ -23,6 +23,7 @@ Route::get('/potager', 'MonPotagerController@index');
 Route::get('/connexion', 'ConnexionInscriptionController@index');
 Route::post('/connexion/login', 'ConnexionInscriptionController@connexion');
 Route::post('/connexion/register', 'ConnexionInscriptionController@inscription');
+Route::get('/connexion/register/{token}', 'ConnexionInscriptionController@confirm');
 
 
 //////// Admin liste Utilisateur ////////
