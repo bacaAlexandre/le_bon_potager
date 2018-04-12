@@ -96,7 +96,7 @@ class Model {
         return $this->db->getFirst($sql)->total;
     }
 
-    public function all()
+    public function findAll()
     {
         $sql = "select * from $this->table";
         return $this->db->query($sql);
