@@ -3,23 +3,17 @@
 //////// Accueil  ////////
 Route::get('/', 'AccueilController@index');
 
-
 //////// Contact  ////////
-Route::get('/contact', 'ContactController@index');
-Route::post('/contact', 'ContactController@store');
-
+Route::post('/contact', 'ContactController@index');
 
 //////// Annonce ////////
 Route::get('/annonce', 'AnnonceController@index');
 Route::post('/annonce/departement', 'AnnonceController@recherchePost');
 Route::get('/annonce/departement/{dep:[0-9]+}', 'AnnonceController@rechercheGet');
 
-
-
 /////// MonPotager /////
 Route::get('/potager', 'MonPotagerController@index');
 Route::post('/potager/store', 'MonPotagerController@store');
-
 
 //////// ConnexionInscription ////////
 Route::get('/connexion', 'ConnexionInscriptionController@index');
