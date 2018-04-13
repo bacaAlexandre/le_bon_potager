@@ -4,11 +4,11 @@
 </div>
 <br>
 <div class="row">
-  <div class="col-md-12">
+  <div class="col-md-6">
     <form action="<?php Route::get_uri('') ?>" method="post">
       <fieldset>
         <legend>Déposez votre annonce</legend>
-        <div class="form-row">
+        <div class="form">
           <div class="form col-md-5 md-5">
             <select name="product" class="form-control">
               <option disabled selected>Produit</option>
@@ -28,13 +28,21 @@
               </optgroup>
             </select>
           </div>
-          <div class="form col-md-5 md-5">
-            <select name="dep" class="form-control">
-              <option disabled selected>Département</option>
-              <option value="1">Choix 1</option>
-              <option value="2">Choix 2</option>
-              <option value="3">Choix 3</option>
-            </select>
+          <div class="row">
+            <div class="form-group">
+              <label for="quantity">Quantitée :</label>
+              <input type="text" name="quantity" id="quantity" class="form-control" value="" required>
+            </div>
+            <div class="col-md-2">
+              <div class="form-check">
+                <input type="radio" id="unity_kg" name="unity" value="kg" class="form-check-input" checked>&nbsp;
+                <label for="unity_kg" class="form-check-label">Kg</label>
+              </div>
+              <div class="form-check">
+                <input type="radio" id="unity_p" name="unity" value="p" class="form-check-input">&nbsp;
+                <label for="unity_p" class="form-check-label">Pièce</label>
+              </div>
+            </div>
           </div>
           <div class="form col-md-2 md-2">
             <button type="submit" name="search" class="btn btn-success">Valider</button>
@@ -42,6 +50,12 @@
         </div>
       </fieldset>
     </form>
+  </div>
+  <div class="col-md-6">
+    <div class="form-group">
+      <label for="biography"></label>
+      <textarea rows="5" name="biography" id="biography" class="form-control" placeholder="Saisir votre commentaire"></textarea>
+    </div>
   </div>
 </div>
 <div class="row rounded-bottom main">
