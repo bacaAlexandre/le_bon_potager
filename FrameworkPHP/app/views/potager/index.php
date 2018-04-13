@@ -3,13 +3,12 @@
     <h1>Déposez votre annonce</h1>
 </div>
 <br>
-<div class="row">
-  <div class="col-md-6">
-    <form action="<?php Route::get_uri('') ?>" method="post">
-      <fieldset>
-        <legend>Déposez votre annonce</legend>
-        <div class="form">
-          <div class="form col-md-5 md-5">
+<form action="<?php Route::get_uri('') ?>" method="post">
+  <fieldset>
+    <legend>Déposez votre annonce</legend>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form">
             <select name="product" class="form-control">
               <option disabled selected>Produit</option>
               <optgroup label="Fruits">
@@ -28,36 +27,39 @@
               </optgroup>
             </select>
           </div>
-          <div class="row">
+          <div class="col-md-3">
             <div class="form-group">
               <label for="quantity">Quantitée :</label>
               <input type="text" name="quantity" id="quantity" class="form-control" value="" required>
             </div>
-            <div class="col-md-2">
-              <div class="form-check">
-                <input type="radio" id="unity_kg" name="unity" value="kg" class="form-check-input" checked>&nbsp;
-                <label for="unity_kg" class="form-check-label">Kg</label>
-              </div>
-              <div class="form-check">
-                <input type="radio" id="unity_p" name="unity" value="p" class="form-check-input">&nbsp;
-                <label for="unity_p" class="form-check-label">Pièce</label>
-              </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-check-inline">
+              <input type="radio" id="unity_kg" name="unity" value="kg" class="form-check-input" checked>&nbsp;
+              <label for="unity_kg" class="form-check-label">Kg</label>
+            </div>
+            <div class="form-check-inline">
+              <input type="radio" id="unity_g" name="unity" value="g" class="form-check-input">&nbsp;
+              <label for="unity_g" class="form-check-label">g</label>
+            </div>
+            <div class="form-check-inline">
+              <input type="radio" id="unity_p" name="unity" value="p" class="form-check-input">&nbsp;
+              <label for="unity_p" class="form-check-label">Pièce</label>
             </div>
           </div>
-          <div class="form col-md-2 md-2">
-            <button type="submit" name="search" class="btn btn-success">Valider</button>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="info"></label>
+            <textarea rows="5" name="info" id="info" class="form-control" placeholder="Saisir des informations supplémentaires sur le produit."></textarea>
           </div>
         </div>
-      </fieldset>
-    </form>
-  </div>
-  <div class="col-md-6">
-    <div class="form-group">
-      <label for="biography"></label>
-      <textarea rows="5" name="biography" id="biography" class="form-control" placeholder="Saisir votre commentaire"></textarea>
-    </div>
-  </div>
-</div>
+        <div class="col-md-12">
+          <button type="submit" name="search" class="btn btn-success">Valider</button>
+        </div>
+      </div>
+    </fieldset>
+  </form>
 <div class="row rounded-bottom main">
 </div>
 <?php include(VIEW_PATH . 'default/footer.php'); ?>
