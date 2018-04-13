@@ -11,9 +11,9 @@ Route::post('/contact', 'ContactController@store');
 
 //////// Annonce ////////
 Route::get('/annonce', 'AnnonceController@index');
+Route::get('/annonce/departement/{id:[0-9]+}', 'AnnonceController@recherche');
 
-//////// AnnonceResultat ////////
-Route::get('/annonceResultat', 'AnnonceResultatController@index');
+
 
 /////// MonPotager /////
 Route::get('/potager', 'MonPotagerController@index');

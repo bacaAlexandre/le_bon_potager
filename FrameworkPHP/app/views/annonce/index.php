@@ -4,7 +4,7 @@
     </div>
     <div class="row rounded-top">
         <div class="col-md-12">
-            <form action="<?php Route::get_uri('') ?>" method="post">
+            <form action="<?php echo Route::get_uri('AnnonceController@recherche') ?>" method="post">
                 <fieldset>
                     <legend>Confectionnez votre panier maraîcher</legend>
                     <div class="form-row">

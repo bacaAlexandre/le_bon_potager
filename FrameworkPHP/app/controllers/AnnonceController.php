@@ -20,6 +20,11 @@ class AnnonceController extends Controller
 
     public function recherche()
     {
+        // TODO: recupérer la valeur des selecteurs , et l'envoyer a la page reponse pour construire ma liste
+
+        var_dump($_GET);
+        var_dump($_POST);
+        $this->display('annonce.liste', ['id' => 76]);
 
     }
 }
