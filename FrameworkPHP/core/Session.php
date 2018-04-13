@@ -2,10 +2,12 @@
 
 class Session
 {
+    private $t_utilisateur;
     private $t_login;
 
     public function __construct()
     {
+        $this->t_utilisateur = new UserModel('T_UTILISATEURS');
         $this->t_login = new Model('T_LOGIN');
         session_start();
     }
@@ -23,7 +25,11 @@ class Session
 
     public function get($key)
     {
-        return $_SESSION[$key];
+        if(isset($_SESSION[$key])){
+            return $_SESSION[$key];
+        }
+        return null;
+
     }
 
     public function get_flash()
@@ -56,7 +62,7 @@ class Session
 
     public function is_logged()
     {
-        if(isset($_SESSION['userId'])){
+        if($this->get_user_id() !== null){
             return true;
         }
 
@@ -93,5 +99,14 @@ class Session
     public function get_user_id()
     {
         return $this->get('userId');
+    }
+
+    public function get_role() {
+        $user_id = $this->get_user_id();
+        if($user_id !== null){
+            $row = $this->t_utilisateur->findRole($user_id);
+            return $row->rolNom;
+        }
+        return false;
     }
 }
