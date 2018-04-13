@@ -11,6 +11,10 @@
           <label for="address">Votre adresse :</label>
           <textarea rows="2" name="address" id="address" class="form-control" placeholder="Saisir votre adresse." required></textarea>
         </div>
+        <div class="form-check">
+          <input type="checkbox" id="address_visible" class="form-check-input" checked>&nbsp;
+          <label for="address_visible" class="form-check-label">J'autorise l'affichage de mon adresse dans mes annonces.</label>
+        </div>
         <div class="form-group">
           <label for="postalcode">Votre code postal :</label>
           <input type="number" name="postalcode" id="postalcode" class="form-control" value="<?php echo $postalcode; ?>" minlength="5" maxlength="5" required>
@@ -18,6 +22,10 @@
         <div class="form-group">
           <label for="tel">Votre téléphone :</label>
           <input type="tel" name="tel" id="tel" class="form-control" value="<?php echo $phone; ?>" minlength="10" maxlength="10" required>
+        </div>
+        <div class="form-check">
+          <input type="checkbox" id="tel_visible" class="form-check-input" checked>&nbsp;
+          <label for="tel_visible" class="form-check-label">J'autorise l'affichage de mon n° de tél. dans mes annonces.</label>
         </div>
       </div>
       <div class="col-md-6">
