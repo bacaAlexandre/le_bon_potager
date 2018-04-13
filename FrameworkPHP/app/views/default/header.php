@@ -17,6 +17,6 @@
 <body>
   <div class="container">
     <header>
-      <img src="asset/img/logo_trans.png">
+      <img src=<?php echo PUBLIC_PATH."asset/img/logo_trans.png" ?>>
       <p>Le bon potager pour les bonnes personnes</p>
     </header>

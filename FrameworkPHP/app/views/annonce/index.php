@@ -17,7 +17,7 @@
                                     if ($categorie != $produit->catNom) {
                                         echo "<optgroup label='$produit->catNom'>";
                                     }
-                                    echo "<option value=''>$produit->proNom</option>";
+                                    echo "<option value='$produit->id_produit'>$produit->proNom</option>";
                                 }
                                 ?>
                             </select>
@@ -27,7 +27,7 @@
                                 <option disabled selected>Département</option>
                                 <?php
                                 foreach ($department as $dep) {
-                                    echo "<option value=''>$dep->depLibelle</option>";
+                                    echo "<option value='$dep->id_departement'>$dep->depLibelle</option>";
                                 }
                                 ?>
                             </select>

@@ -11,8 +11,8 @@ Route::post('/contact', 'ContactController@store');
 
 //////// Annonce ////////
 Route::get('/annonce', 'AnnonceController@index');
-Route::get('/annonce/departement/{id:[0-9]+}', 'AnnonceController@recherche');
-
+Route::get('/annonce/departement/{dep:[0-9]+}', 'AnnonceController@recherche');
+Route::post('/annonce/departement', 'AnnonceController@recherche');
 
 
 /////// MonPotager /////
