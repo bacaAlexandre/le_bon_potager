@@ -112,13 +112,13 @@ class ConnexionInscriptionController extends Controller
         if (count($error) === 0) {
             $token = sha1(bin2hex(time()));
             $this->t_utilisateurs->insert([
-                'utiPseudo' => $pseudo,
-                'utiEmail' => $email,
-                'utiMdp' => sha1($password),
-                'utiToken' => $token,
-                'utiAdresse' => $address,
-                'utiRole_id' => '1',
-                'utiCp_id' => $postal_code,
+                'utiPseudo' => "'$pseudo'",
+                'utiEmail' => "'$email'",
+                'utiMdp' => "'sha1($password)'",
+                'utiToken' => "'token'",
+                'utiAdresse' => "'$address'",
+                'utiRole_id' => "1",
+                'utiCp_id' => "'$postal_code'",
             ]);
 
             $message = "<h1>Bienvenue au bon potager !</h1>";

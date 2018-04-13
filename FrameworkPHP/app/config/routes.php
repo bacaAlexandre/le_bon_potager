@@ -17,6 +17,7 @@ Route::post('/annonce/departement', 'AnnonceController@recherche');
 
 /////// MonPotager /////
 Route::get('/potager', 'MonPotagerController@index');
+Route::post('/potager/store', 'MonPotagerController@store');
 
 
 //////// ConnexionInscription ////////
