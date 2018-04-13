@@ -2,14 +2,24 @@
 
 class AnnonceController extends Controller
 {
+    private $t_departement;
+    private $t_produitCategorie;
+    private $liste;
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->t_departement = new Model('T_DEPARTEMENT');
+        $this->t_produitCategorie = new AnnonceModel('T_PRODUITS');
+        $this->liste = new AnnonceModel('T_PRODUITS_UTILISATEURS');
+
+    }
+
     public function index()
     {
+        $department = $this->t_departement->findAll();
+        $produits = $this->t_produitCategorie->findProduitCategorie();
 
-        $req = new Model('T_DEPARTEMENT');
-        $department = $req->findAll();
-
-        $req = new AnnonceModel('T_PRODUITS');
-        $produits = $req->findProduitCategorie();
 
         $this->display('annonce.index', array(
             "produits" => $produits,
@@ -17,9 +27,35 @@ class AnnonceController extends Controller
         ));
     }
 
-
-    public function recherche()
+    public function recherchePost()
     {
+        if (!isset($_POST['dep'])) {
+            //TODO erreur aucun champs selectionner !!!!!!
+
+            $this->flash('error', "Selectionner un département");
+            $this->flash('product', isset($_POST['product']) ? $_POST['product'] : "");
+
+            return $this->redirect('AnnonceController@index');
+        }
+
+
+        $this->recherche($_POST['dep'], isset($_POST['product'])? $_POST['product']: null);
+    }
+
+    public function rechercheGet($dep)
+    {
+
+        $this->recherche($dep, null);
+    }
+
+    private function recherche($dep, $produit)
+    {
+        // TODO: recupérer la valeur des selecteurs , et l'envoyer a la page reponse pour construire ma liste
+
+
+        $produits = $this->liste->findListeProduitDep($produit, $dep);
+
+        $this->display('annonce.liste', array("produits" => $produits));
 
     }
 }

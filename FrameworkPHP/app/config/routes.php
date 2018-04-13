@@ -11,12 +11,14 @@ Route::post('/contact', 'ContactController@store');
 
 //////// Annonce ////////
 Route::get('/annonce', 'AnnonceController@index');
+Route::post('/annonce/departement', 'AnnonceController@recherchePost');
+Route::get('/annonce/departement/{dep:[0-9]+}', 'AnnonceController@rechercheGet');
 
-//////// AnnonceResultat ////////
-Route::get('/annonceResultat', 'AnnonceResultatController@index');
+
 
 /////// MonPotager /////
 Route::get('/potager', 'MonPotagerController@index');
+Route::post('/potager/store', 'MonPotagerController@store');
 
 /////// MonP Compte /////
 Route::get('/compte', 'MonCompteController@index');

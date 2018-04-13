@@ -4,7 +4,7 @@
     </div>
     <div class="row rounded-top">
         <div class="col-md-12">
-            <form action="<?php Route::get_uri('') ?>" method="post">
+            <form action="<?php echo Route::get_uri('AnnonceController@recherchePost') ?>" method="post">
                 <fieldset>
                     <legend>De quoi avez-vous envie ?</legend>
                     <div class="form-row">
@@ -17,7 +17,7 @@
                                     if ($categorie != $produit->catNom) {
                                         echo "<optgroup label='$produit->catNom'>";
                                     }
-                                    echo "<option value=''>$produit->proNom</option>";
+                                    echo "<option value='$produit->id_produit'>$produit->proNom</option>";
                                 }
                                 ?>
                             </select>
@@ -27,7 +27,7 @@
                                 <option disabled selected>Département</option>
                                 <?php
                                 foreach ($department as $dep) {
-                                    echo "<option value=''>$dep->depLibelle</option>";
+                                    echo "<option value='$dep->id_departement'>$dep->depLibelle</option>";
                                 }
                                 ?>
                             </select>
@@ -35,6 +35,11 @@
                         <div class="form col-md-2 md-2">
                             <button type="submit" name="search" class="btn btn-success">Rechercher</button>
                         </div>
+                        <?php if ($this->flash('error') !== null) { ?>
+                            <ul class='alert alert-danger' role='alert'>
+                                   <?php  echo $this->flash('error') ?>
+                            </ul>
+                        <?php } ?>
                     </div>
                 </fieldset>
             </form>

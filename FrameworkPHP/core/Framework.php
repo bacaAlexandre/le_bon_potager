@@ -12,7 +12,7 @@ class Framework
         require CORE_PATH . "Route.php";
         require CORE_PATH . "Session.php";
         spl_autoload_register(array(__CLASS__, 'load'));
-        Route::dispatch(self::get_uri());
+        Route::dispatch(URI);
     }
 
     private static function init()
@@ -27,6 +27,8 @@ class Framework
         define("MODEL_PATH", APP_PATH . "models" . DS);
         define("VIEW_PATH", APP_PATH . "views" . DS);
         define("UPLOAD_PATH", PUBLIC_PATH . "uploads" . DS);
+        define("URI", self::get_uri());
+        define("PUBLIC_URI", isset($_SERVER['HTTPS']) && strtolower($_SERVER['HTTPS']) !== 'off' ? 'https' : 'http' . "://" . $_SERVER['SERVER_NAME'] . ((isset($_SERVER['SERVER_PORT']) && ($_SERVER['SERVER_PORT'] !== '80')) ? ':' . $_SERVER['SERVER_PORT'] : '') . "/" . (dirname($_SERVER['SCRIPT_NAME']) !== '\\' ? dirname($_SERVER['SCRIPT_NAME']) . "/" : '') . "asset/");
         define("TITLE", "Le bon potager");
     }
 
