@@ -27,6 +27,7 @@ class Framework
         define("MODEL_PATH", APP_PATH . "models" . DS);
         define("VIEW_PATH", APP_PATH . "views" . DS);
         define("UPLOAD_PATH", PUBLIC_PATH . "uploads" . DS);
+        define("PUBLIC_URI", isset($_SERVER['HTTPS']) && strtolower($_SERVER['HTTPS']) !== 'off' ? 'https' : 'http' . "://" . $_SERVER['SERVER_NAME'] . ((isset($_SERVER['SERVER_PORT']) && ($_SERVER['SERVER_PORT'] !== '80')) ? ':' . $_SERVER['SERVER_PORT'] : '') . "/asset/");
         define("TITLE", "Le bon potager");
     }
 
