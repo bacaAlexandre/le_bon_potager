@@ -7,23 +7,21 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="<?php echo Route::get_uri('AccueilController@index'); ?>">Accueil
-                    <span class="sr-only">(current)</span>
-                </a>
+            <li class="nav-item <?php echo (URI === '/' ? 'active' : ''); ?>">
+                <a class="nav-link" href="<?php echo Route::get_uri('AccueilController@index'); ?>">Accueil</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item <?php echo (URI === '/annonce' ? 'active' : ''); ?>">
                 <a class="nav-link" href="<?php echo Route::get_uri('AnnonceController@index'); ?>">Nos annonces</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item <?php echo (URI === '/potager' ? 'active' : ''); ?>">
                 <a class="nav-link" href="<?php echo Route::get_uri('MonPotagerController@index'); ?>">Mon potager</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item <?php echo (URI === '/connexion' ? 'active' : ''); ?>">
                 <a class="nav-link" href="<?php echo Route::get_uri('ConnexionInscriptionController@index'); ?>">Mon
                     compte</a>
             </li>
             <li class="nav-item">
-            <a class="nav-link" href="<?php echo Route::get_uri('AdminUtilisateurController@index'); ?>"> Partie admin</a>
+                <a class="nav-link" href="<?php echo Route::get_uri('AdminUtilisateurController@index'); ?>"> Partie admin</a>
             </li>
         </ul>
     </div>
