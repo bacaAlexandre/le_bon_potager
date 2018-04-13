@@ -19,10 +19,6 @@ class Model {
         $row = $this->db->query($sql);
         foreach ($row as $col) {
             $this->fields[] = $col->Field;
-            if ($col->Key == 'PRI') $pk = $col->Field;
-        }
-        if (isset($pk)) {
-            $this->fields['pk'] = $pk;
         }
     }
 
@@ -33,7 +29,7 @@ class Model {
         foreach ($data as $key => $val) {
             if (in_array($key, $this->fields)) {
                 $fields .= "`".$key."`" . ',';
-                $values .= "'".$val."'" . ',';
+                $values .= $val . ',';
             }
         }
         $fields = rtrim($fields,',');
@@ -52,12 +48,12 @@ class Model {
         $fields = '';
         foreach ($conditions as $key => $val) {
             if (in_array($key, $this->fields)) {
-                $where .= "`$key`=$val".",";
+                $where .= "`$key`=$val,";
             }
         }
         foreach ($values as $key => $val) {
             if (in_array($key, $this->fields)) {
-                $fields .= "`$key`=$val".",";
+                $fields .= "`$key`=$val,";
             }
         }
         $where = rtrim($where, ',');
@@ -71,7 +67,7 @@ class Model {
         $where = '';
         foreach ($conditions as $key => $val) {
             if (in_array($key, $this->fields)) {
-                $where .= "`$key`=$val".",";
+                $where .= "`$key`=$val,";
             }
         }
         $where = rtrim($where, ',');
@@ -79,12 +75,25 @@ class Model {
         return $this->db->execute($sql);
     }
 
+    public function select($conditions)
+    {
+        $where = '';
+        foreach ($conditions as $key => $val) {
+            if (in_array($key, $this->fields)) {
+                $where .= "`$key`=$val,";
+            }
+        }
+        $where = rtrim($where, ',');
+        $sql = "SELECT * FROM `$this->table` WHERE $where";
+        return $this->db->query($sql);
+    }
+
     public function find($conditions)
     {
         $where = '';
         foreach ($conditions as $key => $val) {
             if (in_array($key, $this->fields)) {
-                $where .= "`$key`=$val".",";
+                $where .= "`$key`=$val,";
             }
         }
         $where = rtrim($where, ',');

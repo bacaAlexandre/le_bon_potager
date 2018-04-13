@@ -18,6 +18,7 @@ Route::get('/annonce/departement/{dep:[0-9]+}', 'AnnonceController@rechercheGet'
 
 /////// MonPotager /////
 Route::get('/potager', 'MonPotagerController@index');
+Route::post('/potager/store', 'MonPotagerController@store');
 
 
 //////// ConnexionInscription ////////

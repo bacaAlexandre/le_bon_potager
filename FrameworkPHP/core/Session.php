@@ -44,8 +44,14 @@ class Session
         $cookieValue = $selector . ':' . base64_encode($token);
         $hashedToken = hash('sha256', $token);
         $timestamp = time() + (86400 * 14);
+        $datetime = date('Y-m-d H:i:s', $timestamp);
         setcookie('authToken', $cookieValue, $timestamp, NULL, NULL, NULL, true);
-        $this->t_login->insert(['logSelector' => $selector, 'logToken' => $hashedToken, 'logExpires' => date('Y-m-d H:i:s', $timestamp), 'logUtilisateur' => $userId]);
+        $this->t_login->insert(array(
+            'logSelector' => "'$selector'",
+            'logToken' => "'$hashedToken'",
+            'logExpires' => "'$datetime'",
+            'logUtilisateur' => "'$userId'",
+        ));
     }
 
     public function is_logged()
