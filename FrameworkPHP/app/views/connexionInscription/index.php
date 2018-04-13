@@ -34,7 +34,7 @@
             </fieldset>
         </form>
     </div>
-    <hr class="hr_con"/>
+    <hr class="con"/>
     <div class="col-md-6">
         <form action="<?php echo Route::get_uri('ConnexionInscriptionController@inscription') ?>" method="post">
             <fieldset>
@@ -46,63 +46,35 @@
                            required>
                 </div>
                 <div class="form-group">
-                    <label for="password">Votre mot de passe* :</label>
+                    <label for="password">Votre mot de passe * :</label>
                     <input type="password" name="password" id="password" class="form-control" minlength="8"
                            pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d-+_]{8,}$" required>
                 </div>
                 <div class="form-group">
-                    <label for="password_repeat">Confirmer votre mot de passe* :</label>
+                    <label for="password_repeat">Confirmer votre mot de passe * :</label>
                     <input type="password" name="password_repeat" id="password_repeat" class="form-control"
                            minlength="8" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d-+_]{8,}$" required>
                 </div>
                 <div class="form-group">
-                    <label for="pseudo">Votre pseudonyme* :</label>
+                    <label for="pseudo">Votre pseudonyme * :</label>
                     <input type="text" name="pseudo" id="pseudo" class="form-control" minlength="3" maxlength="30"
                            value="<?php echo ($this->flash('pseudo') !== null) ? $this->flash('pseudo') : ""; ?>"
                            required>
                 </div>
                 <div class="form-group">
-                    <label for="address">Votre adresse* :</label>
+                    <label for="address">Votre adresse * :</label>
                     <textarea rows="3" name="address" id="address" class="form-control"
                               required><?php echo ($this->flash('address') !== null) ? $this->flash('address') : ""; ?></textarea>
                 </div>
-                <div class="form-row">
-                    <div class="form-group col-md-4">
-                        <label for="postal_code">Votre code postal * :</label>
-                        <select name="postal_code" id="postal_code" class="form-control" required>
-                            <option disabled <?php echo ($this->flash('postal_code') === null) ? 'selected' : ''; ?>>--</option>
-                            <?php foreach ($postalCode as $val) {
-                                if ($this->flash('postal_code') == $val->id_code_postal) {
-                                    echo "<option value=\"" . $val->id_code_postal . "\" selected>" . $val->cpLibelle . "</option>";
-                                } else {
-                                    echo "<option value=\"" . $val->id_code_postal . "\">" . $val->cpLibelle . "</option>";
-                                }
-                            } ?>
-                        </select>
-                    </div>
-                    <div class="form-group col-md-8">
-                        <label for="city">Votre ville * :</label>
-                        <select name="city" id="city" class="form-control" required>
-                            <option disabled <?php echo ($this->flash('city') === null) ? 'selected' : ''; ?>>--</option>
-                            <?php foreach ($city as $val) {
-                                if ($this->flash('city') == $val->id_ville) {
-                                    echo "<option value=\"" . $val->id_ville . "\" selected>" . $val->vilLibelle . "</option>";
-                                } else {
-                                    echo "<option value=\"" . $val->id_ville . "\">" . $val->vilLibelle . "</option>";
-                                }
-                            } ?>
-                        </select>
-                    </div>
-                </div>
                 <div class="form-group">
-                    <label for="department">Votre département *:</label>
-                    <select name="department" id="department" class="form-control" required>
-                        <option disabled <?php echo ($this->flash('department') === null) ? 'selected' : ''; ?>>--</option>
-                        <?php foreach ($department as $val) {
-                            if ($this->flash('department') == $val->id_departement) {
-                                echo "<option value=\"" . $val->id_departement . "\" selected>" . $val->depLibelle . "</option>";
+                    <label for="postal_code">Votre code postal * :</label>
+                    <select name="postal_code" id="postal_code" class="form-control" required>
+                        <option disabled <?php echo ($this->flash('postal_code') === null) ? 'selected' : ''; ?>>--</option>
+                        <?php foreach ($postalCode as $val) {
+                            if ($this->flash('postal_code') == $val->id_code_postal) {
+                                echo "<option value=\"" . $val->id_code_postal . "\" selected>" . $val->cpLibelle . "</option>";
                             } else {
-                                echo "<option value=\"" . $val->id_departement . "\">" . $val->depLibelle . "</option>";
+                                echo "<option value=\"" . $val->id_code_postal . "\">" . $val->cpLibelle . "</option>";
                             }
                         } ?>
                     </select>

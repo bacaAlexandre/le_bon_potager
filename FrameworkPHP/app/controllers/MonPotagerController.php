@@ -18,7 +18,7 @@ class MonPotagerController extends Controller
     public function index()
     {
         if (!$this->session()->is_logged()) {
-            return $this->redirect('AccueilController@index');
+            return $this->redirect('ConnexionInscriptionController@index');
         }
         $produits = array();
 

@@ -9,8 +9,8 @@
               <input type="text" name="nickname" id="nickname" class="form-control">
             </div>
             <div class="form-group">
-              <label for="email">Votre e-mail :</label>
-              <input type="email" name="email" id="email" class="form-control">
+              <label for="email">Votre e-mail * :</label>
+              <input type="email" name="email" id="email" class="form-control" required>
             </div>
             <div class="form-group">
               <label for="phone">Votre téléphone :</label>
@@ -18,13 +18,13 @@
             </div>
             <div class="form-group">
               <label for="message">Votre message :</label>
-              <textarea rows="5" id="message" class="form-control"></textarea>
+              <textarea rows="5" id="message" class="form-control" required></textarea>
             </div>
             <div class="form-check">
               <input type="checkbox" id="copy" class="form-check-input">
               <label for="copy" class="form-check-label">Je souhaite recevoir une copie de cet email</label>
             </div>
-            <button type="submit" class="btn btn-primary">Envoyer l'email</button>
+            <button type="submit" class="btn btn-success">Envoyer l'email</button>
           </fieldset>
         </form>
       </div>

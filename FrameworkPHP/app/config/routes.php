@@ -3,6 +3,7 @@
 //////// Accueil  ////////
 Route::get('/', 'AccueilController@index');
 
+
 //////// Contact  ////////
 Route::post('/contact', 'ContactController@index');
 
@@ -14,6 +15,9 @@ Route::get('/annonce/departement/{dep:[0-9]+}', 'AnnonceController@rechercheGet'
 /////// MonPotager /////
 Route::get('/potager', 'MonPotagerController@index');
 Route::post('/potager/store', 'MonPotagerController@store');
+
+/////// MonP Compte /////
+Route::get('/compte', 'MonCompteController@index');
 
 //////// ConnexionInscription ////////
 Route::get('/connexion', 'ConnexionInscriptionController@index');

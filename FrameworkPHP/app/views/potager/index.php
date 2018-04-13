@@ -1,7 +1,7 @@
 <?php include(VIEW_PATH.'default/nav.php'); ?>
 
 <div class="row">
-    <h1>Déposez votre annonce</h1>
+  <h1>Déposez votre annonce</h1>
 </div>
 <br>
 <?php
@@ -63,10 +63,28 @@
             <textarea rows="5" name="info" id="info" class="form-control" placeholder="Saisir des informations supplémentaires sur le produit."><?php echo $this->flash('commentaire_creation'); ?></textarea>
           </div>
         </div>
-        <div class="col-md-12">
-          <button type="submit" name="search" class="btn btn-success">Valider</button>
+        <div class="form-check">
+          <input type="radio" id="unity_p" name="unity" value="p" class="form-check-input">&nbsp;
+          <label for="unity_p" class="form-check-label">Pièce</label>
         </div>
       </div>
+<<<<<<< HEAD
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="info">Information :</label>
+        <textarea rows="5" name="info" id="info" class="form-control" placeholder="Saisir des informations supplémentaires sur le produit."></textarea>
+      </div>
+    </div>
+    <div class="col-md-12">
+      <button type="submit" name="search" class="btn btn-success">Valider</button>
+    </div>
+  </div>
+</form>
+<div class="row">
+  <h1>Vos annonces actives</h1>
+  <form action="<?php Route::get_uri('') ?>" method="post">
+=======
       <?php if ($this->flash('error_creation') !== null) { ?>
           <ul class='alert alert-danger' role='alert'>
               <?php foreach ($this->flash('error_creation') as $error) {
@@ -75,7 +93,7 @@
           </ul>
       <?php } ?>
     </fieldset>
+>>>>>>> 92af60d080fc52df48c1f5d5e21fe6aa9c6deefd
   </form>
-<div class="row rounded-bottom main">
 </div>
 <?php include(VIEW_PATH . 'default/footer.php'); ?>
