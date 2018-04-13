@@ -18,6 +18,8 @@ Route::get('/annonceResultat', 'AnnonceResultatController@index');
 /////// MonPotager /////
 Route::get('/potager', 'MonPotagerController@index');
 
+/////// MonP Compte /////
+Route::get('/compte', 'MonCompteController@index');
 
 //////// ConnexionInscription ////////
 Route::get('/connexion', 'ConnexionInscriptionController@index');
