@@ -57,7 +57,9 @@ class Session
         if(isset($_COOKIE['authToken'])){
             $parts = explode(':', $_COOKIE['authToken']);
 
-            $result = $this->t_login->find($parts[0]);
+            $result = $this->t_login->find(array(
+                'logSelector' => "'$parts[0]'",
+            ));
 
             if($result) {
                 if (hash_equals($result->logToken, hash('sha256', base64_decode($parts[1])))) {
@@ -74,7 +76,9 @@ class Session
     public function logout()
     {
         $parts = explode(':', $_COOKIE['authToken']);
-        $this->t_login->delete($parts[0]);
+        $this->t_login->delete(array(
+            'logSelector' => "'$parts[0]'",
+        ));
         setcookie('authToken', '', 1);
         unset($_COOKIE['authToken']);
         unset($_SESSION['userId']);

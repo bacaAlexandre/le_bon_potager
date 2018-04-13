@@ -15,7 +15,18 @@ class Controller {
     {
         $uri = Route::get_uri($path, $args);
         header("Location:$uri");
-        exit;
+        return true;
+    }
+
+    public function input($name) {
+        if (isset($_POST[$name])) {
+            $value = $_POST[$name];
+            $value = trim($value);
+            $value = strip_tags($value);
+            $value = htmlspecialchars($value);
+            return $value;
+        }
+        return false;
     }
 
     public function session()

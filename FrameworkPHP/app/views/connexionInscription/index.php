@@ -3,6 +3,11 @@
     <h1>Inscrivez-vous pour nous rejoindre !</h1>
 </div>
 <div class="row">
+    <?php if ($this->flash('success_registration') !== null) { ?>
+    <div class="col-12 alert alert-success">
+        <p><?php echo $this->flash('success_registration'); ?></p>
+    </div>
+    <?php } ?>
     <div class="col-md-5">
         <form action="<?php echo Route::get_uri('ConnexionInscriptionController@connexion') ?>" method="post">
             <fieldset>
@@ -19,7 +24,13 @@
                            pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d-+_]{8,}$" required>
                 </div>
                 <button type="submit" class="btn btn-success">Se connecter</button>
-                <?php echo ($this->flash('error_connexion') !== null) ? $this->flash('error_connexion') : ""; ?>
+                <?php if ($this->flash('error_connexion') !== null) { ?>
+                    <ul class='alert alert-danger' role='alert'>
+                        <?php foreach ($this->flash('error_connexion') as $error) {
+                            echo "<li>$error</li>";
+                        } ?>
+                    </ul>
+                <?php } ?>
             </fieldset>
         </form>
     </div>
@@ -57,43 +68,43 @@
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-4">
-                        <label for="postalcode">Votre code postal * :</label>
-                        <select name="postalcode" id="postalcode" class="form-control" required>
-                            <option selected disabled>--</option>
-                            <?php
-                            if (isset($postalCode)) {
-                                foreach ($postalCode as $val) {
-                                    echo "<option value=\"" . $val->id_codePostal . "\">" . $val->cpLibelle . "</option>";
+                        <label for="postal_code">Votre code postal * :</label>
+                        <select name="postal_code" id="postal_code" class="form-control" required>
+                            <option disabled <?php echo ($this->flash('postal_code') === null) ? 'selected' : ''; ?>>--</option>
+                            <?php foreach ($postalCode as $val) {
+                                if ($this->flash('postal_code') == $val->id_code_postal) {
+                                    echo "<option value=\"" . $val->id_code_postal . "\" selected>" . $val->cpLibelle . "</option>";
+                                } else {
+                                    echo "<option value=\"" . $val->id_code_postal . "\">" . $val->cpLibelle . "</option>";
                                 }
-                            }
-                            ?>
+                            } ?>
                         </select>
                     </div>
                     <div class="form-group col-md-8">
                         <label for="city">Votre ville * :</label>
                         <select name="city" id="city" class="form-control" required>
-                            <option selected disabled>--</option>
-                            <?php
-                            if (isset($city)) {
-                                foreach ($city as $val) {
+                            <option disabled <?php echo ($this->flash('city') === null) ? 'selected' : ''; ?>>--</option>
+                            <?php foreach ($city as $val) {
+                                if ($this->flash('city') == $val->id_ville) {
+                                    echo "<option value=\"" . $val->id_ville . "\" selected>" . $val->vilLibelle . "</option>";
+                                } else {
                                     echo "<option value=\"" . $val->id_ville . "\">" . $val->vilLibelle . "</option>";
                                 }
-                            }
-                            ?>
+                            } ?>
                         </select>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="dep">Votre département *:</label>
-                    <select name="dep" id="dep" class="form-control" required>
-                        <option selected disabled>--</option>
-                        <?php
-                        if (isset($department)) {
-                            foreach ($department as $val) {
+                    <label for="department">Votre département *:</label>
+                    <select name="department" id="department" class="form-control" required>
+                        <option disabled <?php echo ($this->flash('department') === null) ? 'selected' : ''; ?>>--</option>
+                        <?php foreach ($department as $val) {
+                            if ($this->flash('department') == $val->id_departement) {
+                                echo "<option value=\"" . $val->id_departement . "\" selected>" . $val->depLibelle . "</option>";
+                            } else {
                                 echo "<option value=\"" . $val->id_departement . "\">" . $val->depLibelle . "</option>";
                             }
-                        }
-                        ?>
+                        } ?>
                     </select>
                 </div>
                 <div class="form-group">
@@ -118,7 +129,13 @@
                 </div>
                 <p>* Champs obligatoires</p>
                 <button type="submit" class="btn btn-success">Inscription</button>
-                <?php echo ($this->flash('error_registration') !== null) ? $this->flash('error_registration') : ""; ?>
+                <?php if ($this->flash('error_registration') !== null) { ?>
+                    <ul class='alert alert-danger' role='alert'>
+                        <?php foreach ($this->flash('error_registration') as $error) {
+                            echo "<li>$error</li>";
+                        } ?>
+                    </ul>
+                <?php } ?>
             </fieldset>
         </form>
     </div>

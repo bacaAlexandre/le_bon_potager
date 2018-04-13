@@ -11,7 +11,6 @@ class Framework
         require CORE_PATH . "Model.php";
         require CORE_PATH . "Route.php";
         require CORE_PATH . "Session.php";
-        include CONFIG_PATH . "routes.php";
         spl_autoload_register(array(__CLASS__, 'load'));
         Route::dispatch(self::get_uri());
     }

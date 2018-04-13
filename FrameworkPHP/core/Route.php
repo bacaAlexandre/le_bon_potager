@@ -1,5 +1,7 @@
 <?php
 
+require CONFIG_PATH . "routes.php";
+
 class Route
 {
 
@@ -16,7 +18,7 @@ class Route
         $path = preg_split('/@/', $path);
         $route = preg_replace('/\//', '\\/', $uri);
         $route = preg_replace_callback('/\{([a-z]+)(?:\:([^\}]+))?\}/', function($match) {
-            return empty($match[2]) ? "(?P<$match[1]>[a-z]+)" : "(?P<$match[1]>$match[2])";
+            return empty($match[2]) ? "(?P<$match[1]>[a-zA-Z0-9]+)" : "(?P<$match[1]>$match[2])";
         }, $route);
         $route= '/^' . $route . '$/';
         $this->uri = $uri;
