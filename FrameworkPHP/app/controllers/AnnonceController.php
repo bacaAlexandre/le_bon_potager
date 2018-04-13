@@ -27,18 +27,31 @@ class AnnonceController extends Controller
         ));
     }
 
+    public function recherchePost()
+    {
+        if (!isset($_POST['dep'])) {
+            //TODO erreur aucun champs selectionner !!!!!!
 
-    public function recherche($dep = null)
+            $this->flash('error', "Selectionner un département");
+            $this->flash('product', isset($_POST['product']) ? $_POST['product'] : "");
+
+            return $this->redirect('AnnonceController@index');
+        }
+
+
+        $this->recherche($_POST['dep'], isset($_POST['product'])? $_POST['product']: null);
+    }
+
+    public function rechercheGet($dep)
+    {
+
+        $this->recherche($dep, null);
+    }
+
+    private function recherche($dep, $produit)
     {
         // TODO: recupérer la valeur des selecteurs , et l'envoyer a la page reponse pour construire ma liste
 
-        if ($dep == null) $dep = $_POST['dep'];
-        if (isset($_POST['product'])) $cat = $_POST['product'];
-        $produit = (isset($_POST['product']) ? $_POST['product'] : null);
-
-        if ($dep == null) {
-            //TODO erreur aucun champs selectionner !!!!!!
-        }
 
         $produits = $this->liste->findListeProduitDep($produit, $dep);
 

@@ -6,13 +6,13 @@
 <?php
 
 foreach ($produits as $produit) { ?>
-    <div>
-        <img src="<?php echo PUBLIC_PATH."asset/img/".$produit->proImg ?>" alt="">
+    <from action="" methode="post">
+        <img src="<?php echo PUBLIC_URI."img/".$produit->proImg ?>" alt="">
         <p><?php echo $produit->utipseudo ?></p>
         <p><?php echo $produit->proNom ?></p>
         <p>Quantité: <?php echo $produit->puQuantite . " " . $produit->uniLibelle ?></p>
         <input type="submit" value="Echanger">
-    </div>
+    </from>
     <?php
 }
 

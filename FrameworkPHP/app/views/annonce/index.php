@@ -4,7 +4,7 @@
     </div>
     <div class="row rounded-top">
         <div class="col-md-12">
-            <form action="<?php echo Route::get_uri('AnnonceController@recherche') ?>" method="post">
+            <form action="<?php echo Route::get_uri('AnnonceController@recherchePost') ?>" method="post">
                 <fieldset>
                     <legend>De quoi avez-vous envie ?</legend>
                     <div class="form-row">
@@ -35,6 +35,11 @@
                         <div class="form col-md-2 md-2">
                             <button type="submit" name="search" class="btn btn-success">Rechercher</button>
                         </div>
+                        <?php if ($this->flash('error') !== null) { ?>
+                            <ul class='alert alert-danger' role='alert'>
+                                   <?php  echo $this->flash('error') ?>
+                            </ul>
+                        <?php } ?>
                     </div>
                 </fieldset>
             </form>
