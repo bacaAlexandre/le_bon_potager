@@ -118,7 +118,7 @@ class ConnexionInscriptionController extends Controller
                 'utiCp_id' => "'$postal_code'",
             ]);
 
-            $message = "<h1>Bienvenue au bon potager !</h1>";
+            $message = "<h1>Bienvenue sur Le bon potager !</h1>";
             $message .= "<p>Vous etes maintenant inscrit sur le site.</p>";
             $message .= "<p>Merci de cliquer sur le lien pour valider votre inscription.</p>";
             $message .= "<p><a href='" . Route::get_uri('ConnexionInscriptionController@confirm', ['token' => $token]);
