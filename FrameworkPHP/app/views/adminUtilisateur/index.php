@@ -5,7 +5,7 @@
 <div class="row main">
   <div class="col-md-12 md-12">
     <div class="card">
-      <div class="card-header">ID : <?php $user->utiId; ?></div>
+      <div class="card-header">ID : <?php echo $user->id_utilisateur; ?></div>
       <div class="card-body">
         <div><p class="card-text">Utilisateur : <?php echo $user->utiPseudo; ?></div>
       </div>
