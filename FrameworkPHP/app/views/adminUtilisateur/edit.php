@@ -4,7 +4,7 @@
 </div>
 <?php if ($this->flash('success_change_infos') !== null) { ?>
     <div class="col-12 alert alert-success">
-        <p><?php echo $this->flash('success_success_infos'); ?></p>
+        <p><?php echo $this->flash('success_change_infos'); ?></p>
     </div>
 <?php } ?>
 <?php if ($this->flash('success_change_password') !== null) { ?>
@@ -12,7 +12,7 @@
         <p><?php echo $this->flash('success_change_password'); ?></p>
     </div>
 <?php } ?>
-<form action="<?php echo Route::get_uri('MonCompteController@changeInfos') ?>" method="post">
+<form action="<?php echo Route::get_uri('AdminUtilisateurController@changeInfos', array('id' => $id_utilisateur)) ?>" method="post">
   <fieldset>
     <legend>Informations</legend>
     <div class="row">
@@ -63,10 +63,12 @@
           <textarea rows="5" name="biography" id="biography" class="form-control" placeholder="Faire une description concernant ses produits."><?php echo $description; ?></textarea>
         </div>
       </div>
+
     </div>
   </fieldset>
   <div class="row">
     <div class="col-md-12">
+        <input type="hidden" name="id_utilisateur" value="<?php echo $id_utilisateur ?>">
       <button type="submit" name="change_info" class="btn btn-success">Modifier</button>
     </div>
   </div>
@@ -79,20 +81,21 @@
     <?php } ?>
 </form>
 <hr>
-<form action="<?php echo Route::get_uri('MonCompteController@changePassword') ?>" method="post">
+<form action="<?php echo Route::get_uri('AdminUtilisateurController@changePassword', array('id' => $id_utilisateur)) ?>" method="post">
   <fieldset>
     <legend>Mot de passe</legend>
     <div class="row">
       <div class="col-md-6">
         <div class="form-group">
-          <label for="password_new">Son nouveau mot de passe :</label>
-          <input type="password" name="password_new" id="password_new" class="form-control" minlength="8">
+          <label for="password">Son nouveau mot de passe :</label>
+          <input type="password" name="password" id="password" class="form-control" minlength="8">
         </div>
       </div>
     </div>
   </fieldset>
   <div class="row">
     <div class="col-md-12">
+        <input type="hidden" name="id_utilisateur" value="<?php echo $id_utilisateur ?>">
       <button type="submit" name="change_password" class="btn btn-success">Modifier</button>
     </div>
   </div>

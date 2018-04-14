@@ -31,6 +31,8 @@ Route::get('/connexion/register/{token}', 'ConnexionInscriptionController@confir
 //////// Admin liste Utilisateur ////////
 Route::get('/admin/utilisateur', 'AdminUtilisateurController@index');
 Route::get('/admin/utilisateur/{id:[0-9]+}/edit', 'AdminUtilisateurController@edit');
+Route::post('/admin/utilisateur/{id:[0-9]+}/changeinfos', 'AdminUtilisateurController@changeInfos');
+Route::post('/admin/utilisateur/{id:[0-9]+}/changemdp', 'AdminUtilisateurController@changePassword');
 Route::get('/admin/utilisateur/{id:[0-9]+}/lock', 'AdminUtilisateurController@lock');
 
 //////// Admin liste Annonce ////////

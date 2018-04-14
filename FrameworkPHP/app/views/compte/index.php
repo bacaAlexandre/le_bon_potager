@@ -4,7 +4,7 @@
 </div>
 <?php if ($this->flash('success_change_infos') !== null) { ?>
     <div class="col-12 alert alert-success">
-        <p><?php echo $this->flash('success_success_infos'); ?></p>
+        <p><?php echo $this->flash('success_change_infos'); ?></p>
     </div>
 <?php } ?>
 

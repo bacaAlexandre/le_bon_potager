@@ -64,7 +64,7 @@ class MonCompteController extends Controller
                 'utiDescription' => (empty($biography) ? "NULL" : "'$biography'"),
                 'utiAdresseAffiche' => "$adresse_affiche",
             ));
-            $message = "<p>Vos informations ont bien été mises à jour</p>";
+            $message = "Vos informations ont bien été mises à jour";
             $this->flash('success_change_infos', $message);
             return $this->redirect('MonCompteController@index');
         }
@@ -109,7 +109,7 @@ class MonCompteController extends Controller
             ), array(
                 'utiMdp' => "sha1('$password_new')",
             ));
-            $message = "<p>Votre mot de passe a bien été changé</p>";
+            $message = "Votre mot de passe a bien été changé";
             $this->flash('success_change_password', $message);
             return $this->redirect('MonCompteController@index');
         }

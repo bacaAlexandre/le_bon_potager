@@ -87,7 +87,9 @@ class ConnexionInscriptionController extends Controller
 
         if (empty($email)) {
             $error[] = "Vous devez rentrer un email";
-        } else if ($this->t_utilisateurs->find(array('utiEmail' => "'$email'"))) {
+        } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $error[] = "Vous devez rentrer un email valide";
+        } elseif ($this->t_utilisateurs->find(array('utiEmail' => "'$email'"))) {
             $error[] = "Cette adresse email est déjà utilisée";
         }
         if (empty($password)) {
