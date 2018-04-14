@@ -23,4 +23,4 @@ INSERT INTO `t_unite` (`id_unite`, `uniLibelle`) VALUES ('1', 'Kg'), ('2', 'Piec
 
 INSERT INTO `t_produits` (`id_produit`, `proNom`, `proCategorie_id`, `proImg`) VALUES ('1', 'Tomate', '1','tomate.png'), ('2', 'haricot vert', '2','haricot_vert.jpg');
 
-INSERT INTO `t_produits_utilisateurs` (`id_produit_utilisateur`, `puVendeur_id`, `puProduit_id`, `puCommentaire`, `puQuantite`,  `puUnite_id`) VALUES ('1', '2', '1', NULL, '5','1'), ('2', '2', '2', NULL, '3','1');
+INSERT INTO `t_produits_utilisateurs` (`id_produit_utilisateur`, `puVendeur_id`, `puProduit_id`, `puCommentaire`, `puQuantite`,  `puUnite_id`, `puDesative`) VALUES ('1', '2', '1', NULL, '5','1', '0'), ('2', '2', '2', NULL, '3','1','1');
