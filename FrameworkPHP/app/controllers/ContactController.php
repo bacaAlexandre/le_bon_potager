@@ -15,24 +15,27 @@ class ContactController extends Controller
     {
         $data = $this->data->findAnnonce($id);
 
-        $pseudo = isset($_POST['pseudo'])? $_POST['pseudo']:"";
-        $email = isset($_POST['email'])? $_POST['email']:"";
-        $phone = isset($_POST['phone'])? $_POST['phone']:"";
-        $message = isset($_POST['message'])? $_POST['message']:"";
+        if ($data) {
+            $pseudo = isset($_POST['pseudo'])? $_POST['pseudo']:"";
+            $email = isset($_POST['email'])? $_POST['email']:"";
+            $phone = isset($_POST['phone'])? $_POST['phone']:"";
+            $message = isset($_POST['message'])? $_POST['message']:"";
 
-        if ($this->session()->get_user_id()) {
-            $pseudo = $this->session()->get_pseudo();
-            $email = $this->session()->get_email();
-            $phone = $this->session()->get_tel();
+            if ($this->session()->get_user_id()) {
+                $pseudo = $this->session()->get_pseudo();
+                $email = $this->session()->get_email();
+                $phone = $this->session()->get_tel();
+            }
+
+            return $this->display('contact.index', array(
+                "data" => $data,
+                "pseudo" => $pseudo,
+                "email" => $email,
+                "phone" => $phone,
+                "message" => $message,
+            ));
         }
-
-        return $this->display('contact.index', array(
-            "data" => $data,
-            "pseudo" => $pseudo,
-            "email" => $email,
-            "phone" => $phone,
-            "message" => $message,
-        ));
+        return $this->redirect('AnnonceController@index');
     }
 
     public function contacter()
