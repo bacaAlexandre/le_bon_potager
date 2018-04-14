@@ -2,6 +2,9 @@
 <div class="row">
   <h1>Gestion des utilisateurs</h1>
 </div>
+<?php foreach ($users as $user) {
+  if ($user->id_utilisateur !== $this->session->get_user_id()) {
+?>
 <div class="row main">
   <div class="col-md-12 md-12">
     <div class="card">
@@ -16,4 +19,5 @@
     </div>
   </div>
 </div>
+<?php } } ?>
 <?php include(VIEW_PATH . 'default/footer.php'); ?>
