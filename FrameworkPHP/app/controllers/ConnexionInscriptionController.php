@@ -114,7 +114,7 @@ class ConnexionInscriptionController extends Controller
                 'utiMdp' => "'sha1($password)'",
                 'utiToken' => "'token'",
                 'utiAdresse' => "'$address'",
-                'utiRole_id' => "1",
+                'utiRole_id' => "100",
                 'utiCp_id' => "'$postal_code'",
             ]);
 
