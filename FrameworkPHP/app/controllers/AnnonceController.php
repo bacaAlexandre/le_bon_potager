@@ -38,7 +38,7 @@ class AnnonceController extends Controller
         }
 
 
-        $this->recherche($_POST['dep'], isset($_POST['product'])? $_POST['product']: null);
+        $this->recherche($_POST['dep'], isset($_POST['product']) ? $_POST['product'] : null);
     }
 
     public function rechercheGet($dep)
@@ -49,18 +49,13 @@ class AnnonceController extends Controller
 
     private function recherche($dep, $produit)
     {
-        // TODO: recupérer la valeur des selecteurs , et l'envoyer a la page reponse pour construire ma liste
-
-
         $produits = $this->liste->findListeProduitDep($produit, $dep);
 
-        var_dump($produits);
-        if(count($produits) < 1){
+        if (count($produits) < 1) {
             $this->display('annonce.liste', array("error" => "Aucun resultat trouvé pour cette recherche"));
-        }else{
+        } else {
             $this->display('annonce.liste', array("produits" => $produits));
         }
-
 
 
     }
