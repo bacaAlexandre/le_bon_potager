@@ -7,7 +7,6 @@ if(isset($error)){
    echo "<div class='alert alert-info' role='alert'>$error</div>";
 }elseif(isset($produits)){
     foreach ($produits as $produit) { ?>
-<form action="<?php echo Route::get_uri('ContactController@index') ?>" method="post">
 
 <div class="container rounded">
     <div class="row">
@@ -32,14 +31,11 @@ if(isset($error)){
     <hr>
     <div class="row">
         <div class="col-md-12">
-            <input type="hidden" name="id" value="<?php echo $produit->id_produit ?>">
-            <button type="submit" class="btn btn-success">Echanger</button>
+            <a href="<?php echo Route::get_uri('ContactController@index', array('id' => $produit->id_produit)); ?>"><button class="btn btn-success">Echanger</button></a>
         </div>
     </div>
 </div>
 
-</form>
-<br>
         <?php
     }
 }

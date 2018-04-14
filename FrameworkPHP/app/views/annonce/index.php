@@ -4,12 +4,12 @@
     </div>
     <div class="row rounded-top">
         <div class="col-md-12">
-            <form action="<?php echo Route::get_uri('AnnonceController@recherchePost') ?>" method="post">
+
                 <fieldset>
                     <legend>De quoi avez-vous envie ?</legend>
                     <div class="form-row">
                         <div class="form col-md-5 md-5">
-                            <select name="product" class="form-control">
+                            <select class="form-control produit">
                                 <option disabled selected>Produit</option>
                                 <?php
                                 $categorie = "";
@@ -23,7 +23,7 @@
                             </select>
                         </div>
                         <div class="form col-md-5 md-5">
-                            <select name="dep" class="form-control">
+                            <select class="form-control departement">
                                 <option disabled selected>Département</option>
                                 <?php
                                 foreach ($department as $dep) {
@@ -33,7 +33,7 @@
                             </select>
                         </div>
                         <div class="form col-md-2 md-2">
-                            <button type="submit" name="search" class="btn btn-success">Rechercher</button>
+                            <button class="btn btn-success search">Rechercher</button>
                         </div>
                         <?php if ($this->flash('error') !== null) { ?>
                             <ul class='alert alert-danger' role='alert'>
@@ -42,9 +42,20 @@
                         <?php } ?>
                     </div>
                 </fieldset>
-            </form>
+
         </div>
     </div>
     <div class="row rounded-bottom main">
     </div>
+<script type="text/javascript">
+    $('.search').click(function(e) {
+        var dep = $('.departement').val();
+        var pro = $('.produit').val();
+        if (dep != null) {
+            var recherche = "<?php echo Route::get_uri('AnnonceController@recherche'); ?>";
+            window.location.href = recherche + dep + (pro != null ? '/' + pro : '');
+        }
+    });
+
+</script>
 <?php include(VIEW_PATH . 'default/footer.php'); ?>

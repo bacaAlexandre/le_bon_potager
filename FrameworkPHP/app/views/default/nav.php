@@ -10,7 +10,7 @@
             <li class="nav-item <?php echo (URI === '/' ? 'active' : ''); ?>">
                 <a class="nav-link" href="<?php echo Route::get_uri('AccueilController@index'); ?>">Accueil</a>
             </li>
-            <li class="nav-item <?php echo (URI === '/annonce' ? 'active' : ''); ?>">
+            <li class="nav-item <?php echo (strpos(URI, '/annonce') === 0 ? 'active' : ''); ?>">
                 <a class="nav-link" href="<?php echo Route::get_uri('AnnonceController@index'); ?>">Nos annonces</a>
             </li>
             <li class="nav-item <?php echo (URI === '/potager' ? 'active' : ''); ?>">
