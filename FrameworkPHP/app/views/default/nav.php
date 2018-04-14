@@ -19,29 +19,21 @@
 
             <?php if ($this->session()->is_logged()) { ?>
                 <li class="nav-item <?php echo (URI === '/compte' ? 'active' : ''); ?>">
-                    <a class="nav-link" href="<?php echo Route::get_uri('ConnexionInscriptionController@index'); ?>">Mon
-                        compte</a>
+                    <a class="nav-link" href="<?php echo Route::get_uri('ConnexionInscriptionController@index'); ?>">Mon compte</a>
                 </li>
             <?php } else { ?>
                 <li class="nav-item <?php echo (URI === '/connexion' ? 'active' : ''); ?>">
-                    <a class="nav-link" href="<?php echo Route::get_uri('ConnexionInscriptionController@index'); ?>">Mon
-                        compte</a>
+                    <a class="nav-link" href="<?php echo Route::get_uri('ConnexionInscriptionController@index'); ?>">Mon compte</a>
                 </li>
-           <?php }
-
-
-            ?>
-
-
+           <?php } ?>
             <?php
                 if (($this->session()->is_logged()) && ($this->session()->get_role() === 'Admin')) {
                     ?>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?php echo Route::get_uri('AdminUtilisateurController@index'); ?>"> Partie admin</a>
+                        <a class="nav-link" href="<?php echo Route::get_uri('AdminUtilisateurController@index'); ?>">Panel admin</a>
                     </li>
                 <?php }
             ?>
-
         </ul>
     </div>
 </nav>

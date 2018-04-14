@@ -14,7 +14,7 @@
                 <a class="nav-link" href="<?php echo Route::get_uri('AdminProduitController@index'); ?>">Gestion produits</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="<?php echo Route::get_uri('AccueilController@index'); ?>">Quitter partie admin</a>
+                <a class="nav-link" href="<?php echo Route::get_uri('AccueilController@index'); ?>">Retour accueil</a>
             </li>
         </ul>
     </div>

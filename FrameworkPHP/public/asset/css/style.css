@@ -50,6 +50,11 @@ img.product {
   height: 150px;
 }
 
+img.product_panel {
+  height: 250px;
+  object-fit: cover;
+}
+
 div.spe {
   display: inline-block;
   margin-bottom: .5rem;

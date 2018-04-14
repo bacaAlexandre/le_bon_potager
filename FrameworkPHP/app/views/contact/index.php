@@ -43,9 +43,7 @@
                 </div>
                 <div class="form-group">
                     <label for="message">Votre message *:</label>
-                    <textarea rows="5" name="message" id="message" class="form-control" required>
-                        <?php echo $message ?>
-                    </textarea>
+                    <textarea rows="5" name="message" id="message" class="form-control" required><?php echo $message ?></textarea>
                 </div>
                 <div class="form-group">
                     <label for="quantity">Quantité *:</label>
