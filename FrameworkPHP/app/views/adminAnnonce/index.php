@@ -6,10 +6,10 @@
   <div class="col-md-12 md-12">
     <div class="card">
         <!-- Début : à modifier -->
-      <div class="card-header">Annonce ID : <?php echo $id_annonce; ?></div>
+      <div class="card-header">ID : <?php echo $id_annonce; ?></div>
       <div class="card-body">
-        <div class="inline"><p class="card-text">Produit : <?php echo $name_product; ?></div>
-        <div class="inline"><p class="card-text">Utilisateur : <?php echo $name_utilisateur; ?></div>
+        <div><p class="card-text">Produit : <?php echo $name_product; ?></p></div>
+        <div><p class="card-text">Utilisateur : <?php echo $name_utilisateur; ?></p></div>
         <!-- Fin : à modifier -->
       </div>
       <div class="card-footer text-right">
