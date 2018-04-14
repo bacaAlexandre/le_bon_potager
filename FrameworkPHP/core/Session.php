@@ -109,4 +109,29 @@ class Session
         }
         return false;
     }
+
+    public function get_pseudo() {
+        $user_id = $this->get_user_id();
+        if($user_id !== null){
+            $row = $this->t_utilisateur->findUtilisateur($user_id);
+            return $row->utiPseudo;
+        }
+        return false;
+    }
+    public function get_email() {
+        $user_id = $this->get_user_id();
+        if($user_id !== null){
+            $row = $this->t_utilisateur->findUtilisateur($user_id);
+            return $row->utiEmail;
+        }
+        return false;
+    }
+    public function get_tel() {
+        $user_id = $this->get_user_id();
+        if($user_id !== null){
+            $row = $this->t_utilisateur->findUtilisateur($user_id);
+            return $row->utiTel;
+        }
+        return false;
+    }
 }
