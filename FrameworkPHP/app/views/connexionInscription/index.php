@@ -11,7 +11,7 @@
     <div class="col-md-5">
         <form action="<?php echo Route::get_uri('ConnexionInscriptionController@connexion') ?>" method="post">
             <fieldset>
-                <legend>Connexion</legend>
+                <legend>Déjà inscrit ? Connectez-vous !</legend>
                 <div class="form-group">
                     <label for="email_con">Votre e-mail :</label>
                     <input type="email" name="email" id="email_con" class="form-control"
@@ -38,7 +38,7 @@
     <div class="col-md-6">
         <form action="<?php echo Route::get_uri('ConnexionInscriptionController@inscription') ?>" method="post">
             <fieldset>
-                <legend>Inscription</legend>
+                <legend>Non inscrit ? Créez votre compte gratuitement</legend>
                 <div class="form-group">
                     <label for="email">Votre e-mail* :</label>
                     <input type="email" name="email" id="email" class="form-control"
