@@ -54,7 +54,14 @@ class AnnonceController extends Controller
 
         $produits = $this->liste->findListeProduitDep($produit, $dep);
 
-        $this->display('annonce.liste', array("produits" => $produits));
+        var_dump($produits);
+        if(count($produits) < 1){
+            $this->display('annonce.liste', array("error" => "Aucun resultat trouvé pour cette recherche"));
+        }else{
+            $this->display('annonce.liste', array("produits" => $produits));
+        }
+
+
 
     }
 }
