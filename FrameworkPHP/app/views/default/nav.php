@@ -17,7 +17,7 @@
                 <a class="nav-link" href="<?php echo Route::get_uri('MonPotagerController@index'); ?>">Mon potager</a>
             </li>
             <li class="nav-item <?php echo (URI === '/connexion' ? 'active' : ''); ?>">
-                <a class="nav-link" href="<?php echo Route::get_uri('ConnexionInscriptionController@index'); ?>">Mon
+                <a class="nav-link" href="<?php echo Route::get_uri($this->session()->is_logged()? 'MonCompteController@index' : 'ConnexionInscriptionController@index'); ?>">Mon
                     compte</a>
             </li>
             <?php

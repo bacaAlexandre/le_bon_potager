@@ -17,11 +17,11 @@
         </div>
         <div class="form-group">
           <label for="postalcode">Votre code postal :</label>
-          <input type="number" name="postalcode" id="postalcode" class="form-control" value="<?php echo $postalcode; ?>" minlength="5" maxlength="5" required>
+          <input type="number" name="postalcode" id="postalcode" class="form-control" value="<?php echo "" ?>" minlength="5" maxlength="5" required>
         </div>
         <div class="form-group">
           <label for="tel">Votre téléphone :</label>
-          <input type="tel" name="tel" id="tel" class="form-control" value="<?php echo $phone; ?>" minlength="10" maxlength="10" required>
+          <input type="tel" name="tel" id="tel" class="form-control" value="<?php echo "" ?>" minlength="10" maxlength="10" required>
         </div>
         <div class="form-check">
           <input type="checkbox" id="tel_visible" class="form-check-input" checked>&nbsp;
@@ -31,7 +31,7 @@
       <div class="col-md-6">
         <div class="form-group">
           <label for="pseudo">Votre pseudonyme :</label>
-          <input type="text" name="pseudo" id="pseudo" class="form-control" value="<?php echo $pseudo; ?>">
+          <input type="text" name="pseudo" id="pseudo" class="form-control" value="<?php echo "" ?>">
         </div>
         <div class="form-group">
           <label for="biography">Votre biographie :</label>
@@ -54,17 +54,17 @@
       <div class="col-md-6">
         <div class="form-group">
           <label for="password_old">Votre mot de passe actuel :</label>
-          <input type="password" name="password_old" id="password_old" class="form-control" value="<?php echo $phone; ?>" minlength="10" maxlength="10">
+          <input type="password" name="password_old" id="password_old" class="form-control" value="<?php echo "" ?>" minlength="10" maxlength="10">
         </div>
       </div>
       <div class="col-md-6">
         <div class="form-group">
           <label for="password_new">Votre nouveau mot de passe :</label>
-          <input type="password" name="password_new" id="password_new" class="form-control" value="<?php echo $phone; ?>" minlength="10" maxlength="10">
+          <input type="password" name="password_new" id="password_new" class="form-control" value="<?php echo "" ?>" minlength="10" maxlength="10">
         </div>
         <div class="form-group">
           <label for="password_new">Confirmez votre nouveau mot de passe :</label>
-          <input type="password" name="password_new" id="password_new" class="form-control" value="<?php echo $phone; ?>" minlength="10" maxlength="10">
+          <input type="password" name="password_new_repeat" id="password_new_repeat" class="form-control" value="<?php echo "" ?>" minlength="10" maxlength="10">
         </div>
       </div>
     </div>
