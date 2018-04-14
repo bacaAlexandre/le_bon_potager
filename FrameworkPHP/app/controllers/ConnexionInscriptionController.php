@@ -51,8 +51,10 @@ class ConnexionInscriptionController extends Controller
                 'utiEmail' => "'$email'",
             ));
             if ($data) {
-                if ($data->utiToken !== null) {
-                    $error[] = "Votre devez confirmer votre compte avant de vous connecter";
+                if ($data->utiDesactive) {
+                    $error[] = "Votre compte a été desactivé";
+                } elseif ($data->utiToken !== null) {
+                    $error[] = "Vous devez confirmer votre compte avant de vous connecter";
                 } elseif ($data->utiMdp !== sha1($password)) {
                     $error[] = "Votre email et votre mot de passe ne correspondent pas";
                 } else {
@@ -154,6 +156,7 @@ class ConnexionInscriptionController extends Controller
             $this->t_utilisateurs->update(array(
                 'id_utilisateur' => $data->id_utilisateur,
             ), array(
+                'utiValide' => '1',
                 'utiToken' => 'NULL',
             ));
             $message = "<p>Votre compte a bien été confirmé.</p>";
@@ -163,9 +166,7 @@ class ConnexionInscriptionController extends Controller
     }
 
     public function logout() {
-        if ($this->session()->is_logged()) {
-            $this->session()->logout();
-        }
+        $this->session()->logout();
         return $this->redirect('AccueilController@index');
     }
 }

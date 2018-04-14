@@ -51,7 +51,7 @@ class Session
         $hashedToken = hash('sha256', $token);
         $timestamp = time() + (86400 * 14);
         $datetime = date('Y-m-d H:i:s', $timestamp);
-        setcookie('authToken', $cookieValue, $timestamp, NULL, NULL, NULL, true);
+        setcookie('authToken', $cookieValue, $timestamp, '/', NULL, NULL, true);
         $this->t_login->insert(array(
             'logSelector' => "'$selector'",
             'logToken' => "'$hashedToken'",
@@ -73,27 +73,26 @@ class Session
                 'logSelector' => "'$parts[0]'",
             ));
 
-            if($result) {
-                if (hash_equals($result->logToken, hash('sha256', base64_decode($parts[1])))) {
-                    $_SESSION['userId'] = $result->logUtilisateur_id;
-                    return true;
-                } else {
-                    $this->logOut();
-                }
+            if (($result) && (hash_equals($result->logToken, hash('sha256', base64_decode($parts[1]))))) {
+                $_SESSION['userId'] = $result->logUtilisateur_id;
+                return true;
             }
+            $this->logOut();
         }
         return false;
     }
 
     public function logout()
     {
-        $parts = explode(':', $_COOKIE['authToken']);
-        $this->t_login->delete(array(
-            'logSelector' => "'$parts[0]'",
-        ));
-        setcookie('authToken', '', 1);
-        unset($_COOKIE['authToken']);
         unset($_SESSION['userId']);
+        if (isset($_COOKIE['authToken'])) {
+            $parts = explode(':', $_COOKIE['authToken']);
+            $this->t_login->delete(array(
+                'logSelector' => "'$parts[0]'",
+            ));
+            setcookie('authToken', '', 1, '/');
+            unset($_COOKIE['authToken']);
+        }
     }
 
     public function get_user_id()

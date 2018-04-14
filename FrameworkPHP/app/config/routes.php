@@ -27,7 +27,6 @@ Route::get('/connexion', 'ConnexionInscriptionController@index');
 Route::post('/connexion/login', 'ConnexionInscriptionController@connexion');
 Route::post('/connexion/register', 'ConnexionInscriptionController@inscription');
 Route::get('/connexion/register/{token}', 'ConnexionInscriptionController@confirm');
-Route::get('/connexion/logout', 'ConnexionInscriptionController@logout');
 
 //////// Admin liste Utilisateur ////////
 Route::get('/admin/utilisateur', 'AdminUtilisateurController@index');
@@ -38,6 +37,6 @@ Route::get('/admin/utilisateur/{id:[0-9]+}/lock', 'AdminUtilisateurController@lo
 Route::get('/admin/produit', 'AdminProduitController@index');
 
 //////// Deconnexion ////////
-Route::get('/deconnexion', 'DeconnexionController@index');
+Route::get('/deconnexion', 'ConnexionInscriptionController@logout');
 
 
