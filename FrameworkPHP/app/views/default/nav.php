@@ -20,9 +20,15 @@
                 <a class="nav-link" href="<?php echo Route::get_uri('ConnexionInscriptionController@index'); ?>">Mon
                     compte</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="<?php echo Route::get_uri('AdminUtilisateurController@index'); ?>"> Partie admin</a>
-            </li>
+            <?php
+                if (($this->session()->is_logged()) && ($this->session()->get_role() === 'Admin')) {
+                    ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?php echo Route::get_uri('AdminUtilisateurController@index'); ?>"> Partie admin</a>
+                    </li>
+                <?php }
+            ?>
+
         </ul>
     </div>
 </nav>

@@ -56,7 +56,7 @@ class Session
             'logSelector' => "'$selector'",
             'logToken' => "'$hashedToken'",
             'logExpires' => "'$datetime'",
-            'logUtilisateur' => "'$userId'",
+            'logUtilisateur_id' => "'$userId'",
         ));
     }
 
@@ -75,7 +75,7 @@ class Session
 
             if($result) {
                 if (hash_equals($result->logToken, hash('sha256', base64_decode($parts[1])))) {
-                    $_SESSION['userId'] = $result->logUtilisateur;
+                    $_SESSION['userId'] = $result->logUtilisateur_id;
                     return true;
                 } else {
                     $this->logOut();

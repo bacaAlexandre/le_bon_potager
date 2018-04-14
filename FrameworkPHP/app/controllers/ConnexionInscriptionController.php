@@ -111,8 +111,8 @@ class ConnexionInscriptionController extends Controller
             $this->t_utilisateurs->insert([
                 'utiPseudo' => "'$pseudo'",
                 'utiEmail' => "'$email'",
-                'utiMdp' => "'sha1($password)'",
-                'utiToken' => "'token'",
+                'utiMdp' => "sha1('$password')",
+                'utiToken' => "'$token'",
                 'utiAdresse' => "'$address'",
                 'utiRole_id' => "100",
                 'utiCp_id' => "'$postal_code'",
