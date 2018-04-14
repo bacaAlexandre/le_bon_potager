@@ -5,7 +5,7 @@
 <div class="container rounded">
     <div class="row">
         <div class="col-md-2">
-            <img class="img-fluid" src="<?php echo PUBLIC_URI . "img/" . $data->proImg ?>" width="150px" height="150px" alt="Tomate">
+            <img class="product" src="<?php echo PUBLIC_URI . "img/" . $data->proImg ?>" alt="Tomate">
         </div>
         <div class="col-md-3">
             <div class="col-md-12">

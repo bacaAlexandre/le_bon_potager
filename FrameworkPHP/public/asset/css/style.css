@@ -45,6 +45,11 @@ img#map {
   object-fit: contain;
 }
 
+img.product {
+  width: 150px;
+  height: 150px;
+}
+
 div.spe {
   display: inline-block;
   margin-bottom: .5rem;

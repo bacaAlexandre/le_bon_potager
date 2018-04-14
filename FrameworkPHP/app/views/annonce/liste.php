@@ -12,7 +12,7 @@ if(isset($error)){
 <div class="container rounded">
     <div class="row">
         <div class="col-md-2">
-            <img src="<?php echo PUBLIC_URI."img/".$produit->proImg ?>" alt="" class="rounded-circle" width="150px" height="150px">
+            <img src="<?php echo PUBLIC_URI."img/".$produit->proImg ?>" alt="" class="product">
         </div>
         <div class="col-md-3">
             <div class="col-md-12">
