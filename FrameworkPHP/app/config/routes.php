@@ -6,6 +6,7 @@ Route::get('/', 'AccueilController@index');
 
 //////// Contact  ////////
 Route::post('/contact', 'ContactController@index');
+Route::post('/contact', 'ContactController@contacter');
 
 //////// Annonce ////////
 Route::get('/annonce', 'AnnonceController@index');
