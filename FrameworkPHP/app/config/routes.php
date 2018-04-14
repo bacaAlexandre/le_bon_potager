@@ -32,4 +32,7 @@ Route::get('/admin/utilisateur', 'AdminUtilisateurController@index');
 //////// Admin liste Produit ////////
 Route::get('/admin/produit', 'AdminProduitController@index');
 
+//////// Deconnexion ////////
+Route::get('/deconnexion', 'DeconnexionController@index');
+
 

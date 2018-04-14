@@ -9,4 +9,11 @@ class UserModel extends Model {
         return $this->db->getFirst($sql);
     }
 
+    public function findPseudo($user_id)
+    {
+        $sql = "SELECT * FROM $this->table 
+                WHERE id_utilisateur=$user_id";
+        return $this->db->getFirst($sql);
+    }
+
 }
