@@ -3,6 +3,10 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 @import url('https://fonts.googleapis.com/css?family=Helvetica');
 
+*, ::after, ::before {
+  box-sizing: border-box;
+}
+
 html {
   font-family: 'Helvetica', sans-serif;
 }
@@ -39,6 +43,11 @@ nav {
 
 img#map {
   object-fit: contain;
+}
+
+div.spe {
+  display: inline-block;
+  margin-bottom: .5rem;
 }
 
 h1 {
