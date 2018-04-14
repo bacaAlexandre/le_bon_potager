@@ -19,6 +19,8 @@ Route::post('/potager/store', 'MonPotagerController@store');
 
 /////// MonP Compte /////
 Route::get('/compte', 'MonCompteController@index');
+Route::post('/compte/changeinfos', 'MonCompteController@changeInfos');
+Route::post('/compte/changemdp', 'MonCompteController@changePassword');
 
 //////// ConnexionInscription ////////
 Route::get('/connexion', 'ConnexionInscriptionController@index');
