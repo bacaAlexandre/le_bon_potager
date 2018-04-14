@@ -5,13 +5,13 @@ Route::get('/', 'AccueilController@index');
 
 
 //////// Contact  ////////
-Route::post('/contact', 'ContactController@index');
-Route::post('/contact', 'ContactController@contacter');
+Route::get('/contact/{id:[0-9]+}', 'ContactController@index');
+Route::post('/contact/envoyer', 'ContactController@contacter');
 
 //////// Annonce ////////
 Route::get('/annonce', 'AnnonceController@index');
-Route::post('/annonce/departement', 'AnnonceController@recherchePost');
-Route::get('/annonce/departement/{dep:[0-9]+}', 'AnnonceController@rechercheGet');
+Route::get('/annonce/{dep:[0-9]+}', 'AnnonceController@recherche');
+Route::get('/annonce/{dep:[0-9]+}/{pro:[0-9]+}', 'AnnonceController@recherche');
 
 /////// MonPotager /////
 Route::get('/potager', 'MonPotagerController@index');

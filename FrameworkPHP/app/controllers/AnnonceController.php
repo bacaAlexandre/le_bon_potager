@@ -27,27 +27,7 @@ class AnnonceController extends Controller
         ));
     }
 
-    public function recherchePost()
-    {
-        if (!isset($_POST['dep'])) {
-
-            $this->flash('error', "Selectionner un département");
-            $this->flash('product', isset($_POST['product']) ? $_POST['product'] : "");
-
-            return $this->redirect('AnnonceController@index');
-        }
-
-
-        $this->recherche($_POST['dep'], isset($_POST['product']) ? $_POST['product'] : null);
-    }
-
-    public function rechercheGet($dep)
-    {
-
-        $this->recherche($dep, null);
-    }
-
-    private function recherche($dep, $produit)
+    public function recherche($dep, $produit = null)
     {
         $produits = $this->liste->findListeProduitDep($produit, $dep);
 
@@ -56,7 +36,5 @@ class AnnonceController extends Controller
         } else {
             $this->display('annonce.liste', array("produits" => $produits));
         }
-
-
     }
 }

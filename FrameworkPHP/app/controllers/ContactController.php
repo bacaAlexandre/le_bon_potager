@@ -11,10 +11,9 @@ class ContactController extends Controller
 
     }
 
-    public function index()
+    public function index($id)
     {
-        var_dump($_POST);
-        $data = $this->data->findAnnonce($_POST['id']);
+        $data = $this->data->findAnnonce($id);
 
         $pseudo = isset($_POST['pseudo'])? $_POST['pseudo']:"";
         $email = isset($_POST['email'])? $_POST['email']:"";
@@ -39,6 +38,7 @@ class ContactController extends Controller
     public function contacter()
     {
         $error = array();
+        $id = $this->input('id');
         $pseudo = $this->input('pseudo');
         $email = $this->input('email');
         $phone = $this->input('phone');
@@ -61,8 +61,7 @@ class ContactController extends Controller
         $this->flash('pseudo', $pseudo);
         $this->flash('phone', $phone);
         $this->flash('message', $message);
-        var_dump('truc');
 
-        return $this->redirect('ContactController@index');
+        return $this->redirect('ContactController@index', array('id' => $id));
     }
 }
