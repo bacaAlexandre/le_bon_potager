@@ -158,9 +158,20 @@ class AdminUtilisateurController extends Controller
         }
         $user = $this->t_utilisateurs->find(array('id_utilisateur' => $id));
         if (($user !== null) && ($this->session()->get_user_id() !== $id)) {
-            $this->t_utilisateurs->update(array('id_utilisateur' => $id), array(
-                'utiDesactive' => 'NOT `utiDesactive`',
-            ));
+            if ($user->utiDesactive) {
+                $this->t_utilisateurs->update(array('id_utilisateur' => $id), array(
+                    'utiDesactive' => '0',
+                    'utiDateDesactive' => 'NULL',
+                ));
+            } else {
+                $datetime = date('Y-m-d H:i:s');
+                $this->t_utilisateurs->update(array('id_utilisateur' => $id), array(
+                    'utiDesactive' => '1',
+                    'utiDateDesactive' => "'$datetime'",
+                ));
+            }
+
+
         }
         return $this->redirect('AdminUtilisateurController@index');
     }

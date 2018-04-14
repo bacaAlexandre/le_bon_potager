@@ -15,7 +15,7 @@ if(isset($error)){
         </div>
         <div class="col-md-3">
             <div class="col-md-12">
-                Vendeur : <?php echo $produit->utipseudo ?>
+                Vendeur : <?php echo $produit->utiPseudo ?>
             </div>    
             <div class="col-md-12">
                 Produit : <?php echo $produit->proNom ?>

@@ -10,7 +10,7 @@ class AnnonceController extends Controller
     {
         parent::__construct();
         $this->t_departement = new Model('T_DEPARTEMENT');
-        $this->t_produitCategorie = new AnnonceModel('T_PRODUITS');
+        $this->t_produitCategorie = new ProduitModel('T_PRODUITS');
         $this->liste = new AnnonceModel('T_PRODUITS_UTILISATEURS');
 
     }
@@ -29,7 +29,7 @@ class AnnonceController extends Controller
 
     public function recherche($dep, $produit = null)
     {
-        $produits = $this->liste->findListeProduitDep($produit, $dep);
+        $produits = $this->liste->findAllByDep($dep, $produit);
 
         if (count($produits) < 1) {
             $this->display('annonce.liste', array("error" => "Aucun resultat trouvé pour cette recherche"));
