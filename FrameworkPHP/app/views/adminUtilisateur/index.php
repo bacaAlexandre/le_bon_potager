@@ -5,20 +5,13 @@
 <div class="row main">
   <div class="col-md-12 md-12">
     <div class="card">
-      <div class="card-header">ID : <?php $id_user = "1"; echo $id_user; ?></div>
+      <div class="card-header">ID : <?php $user->utiId; ?></div>
       <div class="card-body">
-        <div><p class="card-text">Utilisateur : Panda Roux</div>
+        <div><p class="card-text">Utilisateur : <?php echo $user->utiPseudo; ?></div>
       </div>
       <div class="card-footer text-right">
-        <form action="" method="post" class="">
-          <a href="/admin/utilisateur/1/edit"><button type="button" class="btn btn-warning"><i class="fas fa-wrench"></i></button></a>
-          <button type="submit" value="lock" class="btn btn-danger">
-            <!-- Si l'utilisateur n'est pas verrouiller afficher -->
-            <i class="fa fa-lock"></i>
-            <!-- Si l'utilisateur est verrouiller afficher -->
-            <i class="fa fa-unlock"></i>
-          </button>
-        </form>
+        <a href="<?php echo Route::get_uri('AdminUtilisateurController@edit', array('id' => $user->id_utilisateur))?>"><button type="button" class="btn btn-warning"><i class="fas fa-wrench"></i></button></a>
+        <a href="<?php echo Route::get_uri('AdminUtilisateurController@lock', array('id' => $user->id_utilisateur))?>"><button type="submit" value="lock" class="btn btn-danger"><i class="fa <?php echo ($user->utiDesactive ? 'fa-unlock' : 'fa-lock')?>"></i></button></a>
       </div>
     </div>
   </div>
