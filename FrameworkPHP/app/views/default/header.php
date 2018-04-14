@@ -30,10 +30,8 @@
     <header>
         <img src="<?php echo PUBLIC_URI; ?>img/logo_trans.png">
         <p>Le bon potager pour les bonnes personnes</p>
-
         <?php if ($this->session()->get_user_id()) { ?>
-            <p>Bonjour, <?php echo $this->session()->get_pseudo() ?></p>
-            <a href="<?php echo Route::get_uri('DeconnexionController@index')?>" class="btn btn-primary">Déconnexion</a>
+            <p>Bonjour <?php echo $this->session()->get_pseudo() ?></p>
+            <a href="<?php echo Route::get_uri('DeconnexionController@index')?>" class="btn btn-success">Déconnexion</a>
         <?php } ?>
-
     </header>
