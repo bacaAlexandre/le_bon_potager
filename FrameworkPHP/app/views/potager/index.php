@@ -3,15 +3,13 @@
 <div class="row">
   <h1>Déposez votre annonce</h1>
 </div>
-<?php
-    if ($this->flash('success_creation') !== null) {
-        echo "<div class=\"row\">";
-        echo "<div class=\"col-md-12 alert alert-success\">";
-        echo "<p>".$this->flash('success_creation')."</p>";
-        echo "</div>";
-        echo "</div>";
-    }
-?>
+<?php if ($this->flash('success_creation') !== null) { ?>
+    <div class="row">
+        <div class="col-md-12">
+            <p><?php echo $this->flash('success_creation') ?></p>
+        </div>
+    </div>
+<?php } ?>
 <form action="<?php echo Route::get_uri('MonPotagerController@store') ?>" method="post">
   <fieldset>
     <legend>Déposez votre annonce</legend>
@@ -63,18 +61,16 @@
             <button type="submit" name="search" class="btn btn-success">Valider</button>
         </div>
       </div>
+      <?php if ($this->flash('error_creation') !== null) { ?>
+          <ul class='alert alert-danger' role='alert'>
+              <?php foreach ($this->flash('error_creation') as $error) {
+                  echo "<li>$error</li>";
+              } ?>
+          </ul>
+      <?php } ?>
   </fieldset>
 </form>
 <div class="row">
   <h1>Vos annonces actives</h1>
 </div>
-  <form action="<?php Route::get_uri('') ?>" method="post">
-    <?php if ($this->flash('error_creation') !== null) { ?>
-        <ul class='alert alert-danger' role='alert'>
-            <?php foreach ($this->flash('error_creation') as $error) {
-                echo "<li>$error</li>";
-            } ?>
-        </ul>
-    <?php } ?>
-  </form>
 <?php include(VIEW_PATH . 'default/footer.php'); ?>
