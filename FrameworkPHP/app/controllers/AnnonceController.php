@@ -30,7 +30,6 @@ class AnnonceController extends Controller
     public function recherchePost()
     {
         if (!isset($_POST['dep'])) {
-            //TODO erreur aucun champs selectionner !!!!!!
 
             $this->flash('error', "Selectionner un département");
             $this->flash('product', isset($_POST['product']) ? $_POST['product'] : "");
