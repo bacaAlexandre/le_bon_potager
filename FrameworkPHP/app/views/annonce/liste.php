@@ -14,6 +14,7 @@ if(isset($error)){
             <p><?php echo $produit->proNom ?></p>
             <p><?php echo $produit->puCommentaire ?></p>
             <p>Quantité: <?php echo $produit->puQuantite . " " . $produit->uniLibelle ?></p>
+            <input type="hidden" name="id" value="<?php echo $produit->id_produit ?>">
             <button type="submit" class="btn btn-primary">Echanger</button>
         </form>
         <?php
