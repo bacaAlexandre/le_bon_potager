@@ -55,6 +55,10 @@
           <input type="text" name="pseudo" id="pseudo" class="form-control" value="<?php echo $pseudo ?>">
         </div>
         <div class="form-group">
+          <label for="email">Son email actuel :</label>
+          <input type="text" name="email" id="email" class="form-control" value="<?php echo $email ?>">
+        </div>
+        <div class="form-group">
           <label for="biography">Sa biographie :</label>
           <textarea rows="5" name="biography" id="biography" class="form-control" placeholder="Faire une description concernant ses produits."><?php echo $description; ?></textarea>
         </div>
@@ -77,41 +81,12 @@
 <hr>
 <form action="<?php echo Route::get_uri('MonCompteController@changePassword') ?>" method="post">
   <fieldset>
-    <legend>Email</legend>
-    <div class="row">
-      <div class="col-md-6">
-        <div class="form-group">
-          <label for="email">Son email actuel :</label>
-          <input type="text" name="email" id="email" class="form-control">
-        </div>
-      </div>
-    </div>
-  </fieldset>
-  <div class="row">
-    <div class="col-md-12">
-      <button type="submit" name="change_password" class="btn btn-success">Modifier</button>
-    </div>
-  </div>
-</form>
-<hr>
-<form action="<?php echo Route::get_uri('MonCompteController@changePassword') ?>" method="post">
-  <fieldset>
     <legend>Mot de passe</legend>
     <div class="row">
       <div class="col-md-6">
         <div class="form-group">
-          <label for="password_old">Son mot de passe actuel :</label>
-          <input type="password" name="password_old" id="password_old" class="form-control" minlength="8">
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="form-group">
           <label for="password_new">Son nouveau mot de passe :</label>
           <input type="password" name="password_new" id="password_new" class="form-control" minlength="8">
-        </div>
-        <div class="form-group">
-          <label for="password_new">Confirmez son nouveau mot de passe :</label>
-          <input type="password" name="password_new_repeat" id="password_new_repeat" class="form-control" minlength="8">
         </div>
       </div>
     </div>
