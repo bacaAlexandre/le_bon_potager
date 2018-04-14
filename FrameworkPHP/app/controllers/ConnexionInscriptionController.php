@@ -79,9 +79,8 @@ class ConnexionInscriptionController extends Controller
         $address = $this->input('address');
         $phone = $this->input('phone');
         $biography = $this->input('biography');
-        $department = $this->input('department');
         $postal_code = $this->input('postal_code');
-        $city = $this->input('city');
+
 
         if (empty($email)) {
             $error[] = "Vous devez rentrer un email";
@@ -105,9 +104,7 @@ class ConnexionInscriptionController extends Controller
         if (empty($postal_code)) {
             $error[] = "Vous devez entrer un code postal";
         }
-        if (empty($city)) {
-            $error[] = "Vous devez entrer une ville";
-        }
+
 
         if (count($error) === 0) {
             $token = sha1(bin2hex(time()));
@@ -121,7 +118,7 @@ class ConnexionInscriptionController extends Controller
                 'utiCp_id' => "'$postal_code'",
             ]);
 
-            $message = "<h1>Bienvenue au bon potager !</h1>";
+            $message = "<h1>Bienvenue sur Le bon potager !</h1>";
             $message .= "<p>Vous etes maintenant inscrit sur le site.</p>";
             $message .= "<p>Merci de cliquer sur le lien pour valider votre inscription.</p>";
             $message .= "<p><a href='" . Route::get_uri('ConnexionInscriptionController@confirm', ['token' => $token]);
@@ -139,9 +136,7 @@ class ConnexionInscriptionController extends Controller
         $this->flash('pseudo', $pseudo);
         $this->flash('address', $address);
         $this->flash('postal_code', $postal_code);
-        $this->flash('city', $city);
         $this->flash('phone', $phone);
-        $this->flash('department', $department);
         $this->flash('biography', $biography);
         return $this->redirect('ConnexionInscriptionController@index');
     }
