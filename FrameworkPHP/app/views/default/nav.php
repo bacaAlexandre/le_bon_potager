@@ -16,10 +16,23 @@
             <li class="nav-item <?php echo (URI === '/potager' ? 'active' : ''); ?>">
                 <a class="nav-link" href="<?php echo Route::get_uri('MonPotagerController@index'); ?>">Mon potager</a>
             </li>
-            <li class="nav-item <?php echo (URI === '/connexion' ? 'active' : ''); ?>">
-                <a class="nav-link" href="<?php echo Route::get_uri($this->session()->is_logged()? 'MonCompteController@index' : 'ConnexionInscriptionController@index'); ?>">Mon
-                    compte</a>
-            </li>
+
+            <?php if ($this->session()->is_logged()) { ?>
+                <li class="nav-item <?php echo (URI === '/compte' ? 'active' : ''); ?>">
+                    <a class="nav-link" href="<?php echo Route::get_uri('ConnexionInscriptionController@index'); ?>">Mon
+                        compte</a>
+                </li>
+            <?php } else { ?>
+                <li class="nav-item <?php echo (URI === '/connexion' ? 'active' : ''); ?>">
+                    <a class="nav-link" href="<?php echo Route::get_uri('ConnexionInscriptionController@index'); ?>">Mon
+                        compte</a>
+                </li>
+           <?php }
+
+
+            ?>
+
+
             <?php
                 if (($this->session()->is_logged()) && ($this->session()->get_role() === 'Admin')) {
                     ?>
