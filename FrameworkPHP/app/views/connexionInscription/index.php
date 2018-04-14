@@ -90,12 +90,12 @@
                               class="form-control"><?php echo ($this->flash('biography') !== null) ? $this->flash('biography') : ""; ?></textarea>
                 </div>
                 <div class="form-check">
-                    <input type="checkbox" id="address_visible" class="form-check-input" checked>&nbsp;
+                    <input type="checkbox" name="adresse_affiche" id="address_visible" class="form-check-input" <?php echo (($this->flash('adresse_affiche') === null) || ($this->flash('adresse_affiche') === '1')) ? 'checked' : ''; ?>>&nbsp;
                     <label for="address_visible" class="form-check-label">J'autorise l'affichage de mon adresse dans mes
                         annonces.</label>
                 </div>
                 <div class="form-check">
-                    <input type="checkbox" id="tel_visible" class="form-check-input" checked>&nbsp;
+                    <input type="checkbox" name="tel_affiche" id="tel_visible" class="form-check-input" <?php echo (($this->flash('tel_affiche') === null) || ($this->flash('tel_affiche') === '1')) ? 'checked' : ''; ?>>
                     <label for="tel_visible" class="form-check-label">J'autorise l'affichage de mon n° de tél. dans mes
                         annonces.</label>
                 </div>
