@@ -20,7 +20,7 @@ class ConnexionInscriptionController extends Controller
     public function index()
     {
         if ($this->session()->is_logged()) {
-            return $this->redirect('AccueilController@index');
+            return $this->redirect('MonCompteController@index');
         }
         $department = $this->t_departement->findAll();
         $city = $this->t_ville->findAll();
@@ -80,7 +80,8 @@ class ConnexionInscriptionController extends Controller
         $phone = $this->input('phone');
         $biography = $this->input('biography');
         $postal_code = $this->input('postal_code');
-
+        $tel_affiche = $this->input('tel_affiche') === 'on' ? '1' : '0';
+        $adresse_affiche = $this->input('adresse_affiche') === 'on' ? '1' : '0';
 
         if (empty($email)) {
             $error[] = "Vous devez rentrer un email";
@@ -116,6 +117,8 @@ class ConnexionInscriptionController extends Controller
                 'utiAdresse' => "'$address'",
                 'utiRole_id' => "100",
                 'utiCp_id' => "'$postal_code'",
+                'utilTelAffiche' => "$tel_affiche",
+                'utiAdresseAffiche' => "$adresse_affiche",
             ]);
 
             $message = "<h1>Bienvenue sur Le bon potager !</h1>";
@@ -138,6 +141,8 @@ class ConnexionInscriptionController extends Controller
         $this->flash('postal_code', $postal_code);
         $this->flash('phone', $phone);
         $this->flash('biography', $biography);
+        $this->flash('tel_affiche', $tel_affiche);
+        $this->flash('adresse_affiche', $adresse_affiche);
         return $this->redirect('ConnexionInscriptionController@index');
     }
 

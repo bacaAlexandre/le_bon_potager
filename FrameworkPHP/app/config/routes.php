@@ -6,6 +6,7 @@ Route::get('/', 'AccueilController@index');
 
 //////// Contact  ////////
 Route::post('/contact', 'ContactController@index');
+Route::post('/contact', 'ContactController@contacter');
 
 //////// Annonce ////////
 Route::get('/annonce', 'AnnonceController@index');
@@ -18,6 +19,8 @@ Route::post('/potager/store', 'MonPotagerController@store');
 
 /////// MonP Compte /////
 Route::get('/compte', 'MonCompteController@index');
+Route::post('/compte/changeinfos', 'MonCompteController@changeInfos');
+Route::post('/compte/changemdp', 'MonCompteController@changePassword');
 
 //////// ConnexionInscription ////////
 Route::get('/connexion', 'ConnexionInscriptionController@index');

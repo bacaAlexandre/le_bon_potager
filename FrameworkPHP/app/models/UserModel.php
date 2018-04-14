@@ -16,4 +16,10 @@ class UserModel extends Model {
         return $this->db->getFirst($sql);
     }
 
+    public function findCodePostal($user_id) {
+        $sql = "SELECT * FROM $this->table 
+                INNER JOIN T_CODE_POSTAL ON utiCp_id = id_code_postal WHERE id_utilisateur=$user_id";
+        return $this->db->getFirst($sql);
+    }
+
 }

@@ -101,6 +101,15 @@ class Session
         return $this->get('userId');
     }
 
+    public function get_user() {
+        $user_id = $this->get_user_id();
+        if($user_id !== null){
+            $row = $this->t_utilisateur->findUtilisateur($user_id);
+            return $row;
+        }
+        return false;
+    }
+
     public function get_role() {
         $user_id = $this->get_user_id();
         if($user_id !== null){
@@ -131,6 +140,14 @@ class Session
         if($user_id !== null){
             $row = $this->t_utilisateur->findUtilisateur($user_id);
             return $row->utiTel;
+        }
+        return false;
+    }
+    public function get_code_postal() {
+        $user_id = $this->get_user_id();
+        if($user_id !== null){
+            $row = $this->t_utilisateur->findCodePostal($user_id);
+            return $row->cpLibelle;
         }
         return false;
     }
