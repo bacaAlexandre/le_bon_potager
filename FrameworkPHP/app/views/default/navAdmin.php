@@ -10,6 +10,9 @@
             <li class="nav-item <?php echo (URI === '/admin/utilisateur' ? 'active' : ''); ?>">
                 <a class="nav-link" href="<?php echo Route::get_uri('AdminUtilisateurController@index'); ?>">Gestion utilisateurs</a>
             </li>
+            <li class="nav-item <?php echo (URI === '/admin/annonce' ? 'active' : ''); ?>">
+                <a class="nav-link" href="<?php echo Route::get_uri('AdminAnnonceController@index'); ?>">Gestion annonces</a>
+            </li>
             <li class="nav-item <?php echo (URI === '/admin/produit' ? 'active' : ''); ?>">
                 <a class="nav-link" href="<?php echo Route::get_uri('AdminProduitController@index'); ?>">Gestion produits</a>
             </li>
