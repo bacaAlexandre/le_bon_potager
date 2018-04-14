@@ -31,6 +31,7 @@ Route::get('/connexion/logout', 'ConnexionInscriptionController@logout');
 
 //////// Admin liste Utilisateur ////////
 Route::get('/admin/utilisateur', 'AdminUtilisateurController@index');
+Route::get('/admin/utilisateur/{id:[0-9]+}/edit', 'AdminUtilisateurController@edit');
 
 //////// Admin liste Produit ////////
 Route::get('/admin/produit', 'AdminProduitController@index');

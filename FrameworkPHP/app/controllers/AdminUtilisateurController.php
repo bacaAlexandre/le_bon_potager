@@ -9,4 +9,10 @@ class AdminUtilisateurController extends Controller
         }
         $this->display('adminUtilisateur.index');
     }
+
+    public function edit($id)
+    {
+        var_dump($id);
+        $this->display('adminUtilisateur.edit');
+    }
 }
