@@ -37,6 +37,7 @@ Route::get('/admin/utilisateur/{id:[0-9]+}/lock', 'AdminUtilisateurController@lo
 
 //////// Admin liste Annonce ////////
 Route::get('/admin/annonce', 'AdminAnnonceController@index');
+Route::get('/admin/annonce/{id:[0-9]+}/lock', 'AdminAnnonceController@lock');
 
 //////// Admin liste Produit ////////
 Route::get('/admin/produit', 'AdminProduitController@index');
