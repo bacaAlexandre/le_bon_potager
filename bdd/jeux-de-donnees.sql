@@ -14,7 +14,7 @@ INSERT INTO `T_ROLES` (`id_role`, `rolNom`) VALUES
 INSERT INTO `T_UTILISATEURS` (`id_utilisateur`, `utiPseudo`, `utiEmail`, `utiMdp`, `utiAdresse`, `utiRole_id`, `utiCp_id`) VALUES
 (1, 'admin', 'cesi@viacesi.fr', '933370d0a9ea06922ca41c093bb27fcdd7104cf1', '17 rue des moches', 1, 1);
 
-INSERT INTO `T_UTILISATEURS` (`id_utilisateur`, `utiPseudo`, `utiEmail`, `utiMdp`, `utiValide`, `utiToken`, `utilTelAffiche`, `utiTel`, `utiDesactive`, `utiDateDesactive`, `utiDescription`, `utiAdresse`, `utiRole_id`, `utiCp_id`, `utiAdresseAffiche`) VALUES
+INSERT INTO `T_UTILISATEURS` (`id_utilisateur`, `utiPseudo`, `utiEmail`, `utiMdp`, `utiValide`, `utiToken`, `utiTelAffiche`, `utiTel`, `utiDesactive`, `utiDateDesactive`, `utiDescription`, `utiAdresse`, `utiRole_id`, `utiCp_id`, `utiAdresseAffiche`) VALUES
 ('2', 'Brise Massue', 'briseMassue@mail.com', '933370d0a9ea06922ca41c093bb27fcdd7104cf1', '0', NULL, '0', NULL, '0', NULL, NULL, 'vdvdvd', '100', '1', '0');
 
 INSERT INTO `T_CATEGORIE` (`id_categorie`, `catNom`) VALUES
