@@ -1,4 +1,4 @@
-<?php include(VIEW_PATH . 'default/nav.php');?>
+<?php include(VIEW_PATH . 'default/nav.php'); ?>
 <div class="">
     <h1>Vous allez être mis en relation avec le vendeur</h1>
 </div>
@@ -29,25 +29,31 @@
             <fieldset>
                 <legend>Contacter l'annonceur</legend>
                 <div class="form-group">
-                    <label for="nickname">Votre pseudo :</label>
-                    <input type="text" name="pseudo" id="pseudo" class="form-control" value="<?php echo $pseudo ?>">
+                    <label for="nickname">Votre pseudonyme :</label>
+                    <input type="text" name="pseudo" id="pseudo" class="form-control"
+                           value="<?php echo ($this->flash('pseudo') !== null) ? $this->flash('pseudo') : $pseudo; ?>">
                 </div>
                 <div class="form-group">
                     <label for="email">Votre e-mail * :</label>
-                    <input type="email" name="email" id="email" class="form-control" value="<?php echo $email ?>"
+                    <input type="email" name="email" id="email" class="form-control"
+                           value="<?php echo ($this->flash('email') !== null) ? $this->flash('email') : $email; ?>"
                            required>
                 </div>
                 <div class="form-group">
                     <label for="phone">Votre téléphone :</label>
-                    <input type="tel" name="phone" id="phone" class="form-control" value="<?php echo $phone ?>">
+                    <input type="tel" name="phone" id="phone" class="form-control"
+                           value="<?php echo ($this->flash('phone') !== null) ? $this->flash('phone') : $phone; ?>">
                 </div>
                 <div class="form-group">
                     <label for="message">Votre message *:</label>
-                    <textarea rows="5" name="message" id="message" class="form-control" required><?php echo $message ?></textarea>
+                    <textarea rows="5" name="message" id="message" class="form-control"
+                              required><?php echo ($this->flash('message') !== null) ? $this->flash('message') : ""; ?></textarea>
                 </div>
                 <div class="form-group">
                     <label for="quantity">Quantité *:</label>
-                    <input type="number" id="quantity" name="qté" id="qté"><span><?php echo $data->uniLibelle ?></span>
+                    <input type="number" id="quantity" name="qté" id="qté"
+                           value="<?php echo ($this->flash('qté') !== null) ? $this->flash('qté') : ""; ?>"
+                           required><span><?php echo $data->uniLibelle ?></span>
                 </div>
                 <div class="form-check">
                     <input type="checkbox" id="copy" class="form-check-input">
@@ -69,25 +75,29 @@
     <div class="col-md-6 md-6">
         <h4>Informations de l'annonceur</h4>
         <div class="form-group">
+            <div class="spe">Pseudonyme :</div>
+            <div class="form-control"><?php echo $data->utiPseudo ?></div>
+        </div>
+        <div class="form-group">
             <div class="spe">Biographie :</div>
             <div class="form-control"><?php echo $data->utiDescription ?></div>
         </div>
-        <div class="form-group">
-            <div class="spe">Adresse :</div>
-            <div class="form-control">
-                <?php if ($data->utiAdresseAffiche == 1) { ?>
+        <?php if ($data->utiAdresseAffiche == 1) { ?>
+            <div class="form-group">
+                <div class="spe">Adresse :</div>
+                <div class="form-control">
                     <?php echo $data->utiAdresse ?>
-                <?php } ?>
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <div class="spe">Téléphone :</div>
-            <div class="form-control">
-                <?php if ($data->utilTelAffiche == 1) { ?>
+        <?php } ?>
+        <?php if ($data->utilTelAffiche == 1) { ?>
+            <div class="form-group">
+                <div class="spe">Téléphone :</div>
+                <div class="form-control">
                     <?php echo $data->utiTel ?>
-                <?php } ?>
+                </div>
             </div>
-        </div>
+        <?php } ?>
     </div>
 </div>
 <?php include(VIEW_PATH . 'default/footer.php'); ?>

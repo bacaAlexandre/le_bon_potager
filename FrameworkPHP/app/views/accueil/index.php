@@ -2,6 +2,11 @@
 <div class="row rounded-top">
   <h1>Bienvenue sur Le bon potager</h1>
 </div>
+<?php if ($this->flash('success_annonce') !== null) { ?>
+    <div class="col-12 alert alert-success">
+        <p><?php echo $this->flash('success_annonce'); ?></p>
+    </div>
+<?php } ?>
 <div class="row rounded-bottom main acceuil">
   <div class="col-md-12 text-center">
     <img src="asset/img/map_trans.gif" usemap="#map-france" width="657" height="694" border="0" id="map">
