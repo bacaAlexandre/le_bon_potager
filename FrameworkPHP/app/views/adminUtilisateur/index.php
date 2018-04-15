@@ -5,7 +5,7 @@
 <?php foreach ($users as $user) {
   if ($user->id_utilisateur !== $this->session->get_user_id()) {
 ?>
-<div class="row main">
+<div class="row">
   <div class="col-md-12 md-12">
     <div class="card">
       <div class="card-header">ID : <?php echo $user->id_utilisateur; ?></div>
