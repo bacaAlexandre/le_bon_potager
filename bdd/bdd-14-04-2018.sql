@@ -81,7 +81,7 @@ CREATE TABLE IF NOT EXISTS `le_bon_potager`.`T_UTILISATEURS` (
   `utiMdp` VARCHAR(254) NOT NULL,
   `utiValide` TINYINT(1) NOT NULL DEFAULT 0,
   `utiToken` VARCHAR(254) NULL,
-  `utilTelAffiche` TINYINT(1) NULL DEFAULT 0,
+  `utiTelAffiche` TINYINT(1) NULL DEFAULT 0,
   `utiTel` VARCHAR(12) NULL,
   `utiDesactive` TINYINT(1) NOT NULL DEFAULT 0,
   `utiDateDesactive` DATETIME NULL,

@@ -37,7 +37,7 @@ class AdminUtilisateurController extends Controller
                 'adresse_affiche' => $user->utiAdresseAffiche,
                 'code_postal' => $user->utiCp_id,
                 'phone' => $user->utiTel,
-                'tel_affiche' => $user->utilTelAffiche,
+                'tel_affiche' => $user->utiTelAffiche,
                 'pseudo' => $user->utiPseudo,
                 'description' => $user->utiDescription,
                 'email' => $user->utiEmail,
@@ -94,7 +94,7 @@ class AdminUtilisateurController extends Controller
                     'utiTel' => (empty($tel) ? "NULL" : "'$tel'"),
                     'utiDescription' => (empty($description) ? "NULL" : "'$description'"),
                     'utiCp_id' => "'$code_postal'",
-                    'utilTelAffiche' => "$tel_affiche",
+                    'utiTelAffiche' => "$tel_affiche",
                     'utiAdresseAffiche' => "$adresse_affiche",
                 ));
                 $message = "Les informations de l'utilisateur ont bien été changées";

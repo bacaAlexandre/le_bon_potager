@@ -90,7 +90,7 @@
                 </div>
             </div>
         <?php } ?>
-        <?php if ($data->utilTelAffiche == 1) { ?>
+        <?php if ($data->utiTelAffiche == 1) { ?>
             <div class="form-group">
                 <div class="spe">Téléphone :</div>
                 <div class="form-control">

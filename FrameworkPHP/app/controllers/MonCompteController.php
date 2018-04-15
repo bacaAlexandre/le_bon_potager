@@ -26,7 +26,7 @@ class MonCompteController extends Controller
             'phone' => $user->utiTel,
             'description' => $user->utiDescription,
             'code_postal' => $user->utiCp_id,
-            'tel_affiche' => $user->utilTelAffiche,
+            'tel_affiche' => $user->utiTelAffiche,
             'adresse_affiche' => $user->utiAdresseAffiche,
         ));
     }
@@ -59,7 +59,7 @@ class MonCompteController extends Controller
                 'utiPseudo' => "'$pseudo'",
                 'utiAdresse' => "'$address'",
                 'utiCp_id' => "'$postal_code'",
-                'utilTelAffiche' => "$tel_affiche",
+                'utiTelAffiche' => "$tel_affiche",
                 'utiTel' => (empty($phone) ? "NULL" : "'$phone'"),
                 'utiDescription' => (empty($biography) ? "NULL" : "'$biography'"),
                 'utiAdresseAffiche' => "$adresse_affiche",
