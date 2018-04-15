@@ -14,7 +14,7 @@
           </div>
           <div class="card-footer text-right">
             <a href=""><button type="button" class="btn btn-warning"><i class="fas fa-wrench"></i></button></a>
-            <a href=""><button type="submit" value="lock" class="btn btn-danger"><i class="fa <?php echo ($annonce->puDesactive ? 'fa-unlock' : 'fa-lock')?>"></i></button></a>
+            <a href="<?php echo Route::get_uri('AdminAnnonceController@lock', array('id' => $annonce->id_produit_utilisateur)); ?>"><button class="btn btn-danger"><i class="fa <?php echo ($annonce->puDesactive ? 'fa-unlock' : 'fa-lock')?>"></i></button></a>
           </div>
         </div>
       </div>
