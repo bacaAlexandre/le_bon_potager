@@ -1,0 +1,110 @@
+@charset "utf-8";
+
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+@import url('https://fonts.googleapis.com/css?family=Helvetica');
+
+*, ::after, ::before {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: 'Helvetica', sans-serif;
+}
+
+body {
+  background-image: url("../img/bg.jpg");
+  background-attachment: fixed;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Roboto', sans-serif;
+}
+
+h1 {
+  border-top: 1px dashed rgb(206, 212, 218);
+  border-bottom: 1px dashed rgb(206, 212, 218);
+}
+
+.container, footer {
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+.row {
+  padding: 1.5em 0;
+}
+
+nav {
+  border-radius: 1em 1em;
+}
+
+.main {
+  height:80vh;
+}
+
+img#map {
+  object-fit: contain;
+}
+
+img.product {
+  width: 150px;
+  height: 150px;
+}
+
+img.product_panel {
+  height: 250px;
+  object-fit: cover;
+}
+
+div.spe {
+  display: inline-block;
+  margin-bottom: .5rem;
+}
+
+h1 {
+  text-align: center;
+  margin: .1em .1em;
+  padding: 1em 0;
+  width: 100%
+}
+
+div.acceuil {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  height: 940px;
+  width: 100%;
+  height: 100%;
+}
+
+hr {
+  border: none;
+  border-top: 1px dashed rgb(206, 212, 218);
+  width: 100%;
+  height: 1px;
+}
+
+@media only screen and (max-width: 800px) {
+  hr.con {
+    border: none;
+    border-top: 1px dashed rgb(206, 212, 218);
+    width: 100vw;
+    height: 1px;
+  }
+}
+
+@media only screen and (min-width: 800px) {
+  hr.con {
+    border: none;
+    border-right: 1px dashed rgb(206, 212, 218);
+    height: 100vh;
+    width: 1px;
+  }
+  header {
+    text-align: center;
+  }
+  footer {
+    text-align: center;
+    margin-top: 1em;
+  }
+}
