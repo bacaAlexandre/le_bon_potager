@@ -24,3 +24,12 @@
 * Christophe COUERBE - <christophe.couerbe@viacesi.fr>
 * Charles GILLET - <charles.gillet@viacesi.fr>
 * Nicolas KAMPHAUS - <nicolas.kamphaus@viacesi.fr>
+
+### Config serveur web
+> 127.0.0.1 lebonpotager.fr
+
+* windows
+> C:\windows\system32\drivers\etc\hosts
+
+* Linux
+> /etc/hosts
