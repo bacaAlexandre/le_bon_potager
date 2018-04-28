@@ -7,18 +7,18 @@ class MonPotagerController extends Controller
     private $t_unite;
     private $t_produits_utilisateurs;
 
-    public function __construct()
+    public function init()
     {
-        parent::__construct();
         $this->t_produits = new Model('T_PRODUITS');
         $this->t_categorie = new Model('T_CATEGORIE');
         $this->t_unite = new Model('T_UNITE');
         $this->t_produits_utilisateurs = new Model('T_PRODUITS_UTILISATEURS');
     }
+
     public function index()
     {
         if (!$this->session()->is_logged()) {
-            return $this->redirect('ConnexionInscriptionController@index');
+            return $this->redirect($this->view('/connexion'));
         }
         $produits = array();
 
@@ -66,13 +66,13 @@ class MonPotagerController extends Controller
 
             $message = "Votre produit a bien été ajouté";
             $this->flash('success_creation', $message);
-            return $this->redirect('MonPotagerController@index');
+            return $this->redirect($this->view('/potager'));
         }
         $this->flash('error_creation', $error);
         $this->flash('produit_creation', $produit);
         $this->flash('commentaire_creation', $commentaire);
         $this->flash('quantite_creation', $quantite);
         $this->flash('unite_creation', $unite);
-        return $this->redirect('MonPotagerController@index');
+        return $this->redirect($this->view('/potager'));
     }
 }

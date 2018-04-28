@@ -12,7 +12,7 @@
         <p><?php echo $this->flash('success_change_password'); ?></p>
     </div>
 <?php } ?>
-<form action="<?php echo Route::get_uri('AdminUtilisateurController@changeInfos', array('id' => $id_utilisateur)) ?>" method="post">
+<form action="<?php echo $this->view('/admin/utilisateur/' . $id_utilisateur . '/changeinfos') ?>" method="post">
   <fieldset>
     <legend>Informations</legend>
     <div class="row">
@@ -81,7 +81,7 @@
     <?php } ?>
 </form>
 <hr>
-<form action="<?php echo Route::get_uri('AdminUtilisateurController@changePassword', array('id' => $id_utilisateur)) ?>" method="post">
+<form action="<?php echo $this->view('/admin/utilisateur/' . $id_utilisateur . '/changemdp') ?>" method="post">
   <fieldset>
     <legend>Mot de passe</legend>
     <div class="row">

@@ -5,9 +5,7 @@ class MonCompteController extends Controller
     private $t_utilisateurs;
     private $t_code_postal;
 
-    public function __construct()
-    {
-        parent::__construct();
+    public function init() {
         $this->t_utilisateurs = new Model('T_UTILISATEURS');
         $this->t_code_postal = new Model('T_CODE_POSTAL');
     }
@@ -15,7 +13,7 @@ class MonCompteController extends Controller
     public function index()
     {
         if (!$this->session()->is_logged()) {
-            return $this->redirect('ConnexionInscriptionController@index');
+            return $this->redirect($this->view('/connexion'));
         }
         $user = $this->session()->get_user();
 
@@ -66,7 +64,7 @@ class MonCompteController extends Controller
             ));
             $message = "Vos informations ont bien été mises à jour";
             $this->flash('success_change_infos', $message);
-            return $this->redirect('MonCompteController@index');
+            return $this->redirect($this->view('/compte'));
         }
         $this->flash('error_change_infos', $error);
         $this->flash('pseudo', $pseudo);
@@ -76,7 +74,7 @@ class MonCompteController extends Controller
         $this->flash('biography', $biography);
         $this->flash('tel_affiche', $tel_affiche);
         $this->flash('adresse_affiche', $adresse_affiche);
-        return $this->redirect('MonCompteController@index');
+        return $this->redirect($this->view('/compte'));
     }
 
     public function changePassword() {
@@ -111,9 +109,9 @@ class MonCompteController extends Controller
             ));
             $message = "Votre mot de passe a bien été changé";
             $this->flash('success_change_password', $message);
-            return $this->redirect('MonCompteController@index');
+            return $this->redirect($this->view('/compte'));
         }
         $this->flash('error_change_password', $error);
-        return $this->redirect('MonCompteController@index');
+        return $this->redirect($this->view('/compte'));
     }
 }

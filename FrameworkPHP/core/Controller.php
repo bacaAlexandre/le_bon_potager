@@ -4,18 +4,27 @@ class Controller {
 
     private $session;
     private $flash;
+    private $route;
 
-    public function __construct()
+    public function __construct($route)
     {
         $this->session = new Session();
         $this->flash = $this->session->get_flash();
+        $this->route = $route;
     }
 
-    public function redirect($path, $args = [])
-    {
-        $uri = Route::get_uri($path, $args);
-        header("Location:$uri");
+    public function redirect($url) {
+        header("Location:$url");
         return true;
+    }
+
+    public function is_group($group)
+    {
+        return $this->route->get_group() === $group;
+    }
+
+    public function view($route) {
+        return PUBLIC_URL . trim($route, '/');
     }
 
     public function input($name) {

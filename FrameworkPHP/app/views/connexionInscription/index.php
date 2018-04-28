@@ -9,7 +9,7 @@
     </div>
     <?php } ?>
     <div class="col-md-5">
-        <form action="<?php echo Route::get_uri('ConnexionInscriptionController@connexion') ?>" method="post">
+        <form action="<?php echo $this->view('/connexion/login') ?>" method="post">
             <fieldset>
                 <legend>Déjà inscrit ? Connectez-vous !</legend>
                 <div class="form-group">
@@ -36,7 +36,7 @@
     </div>
     <hr class="con"/>
     <div class="col-md-6">
-        <form action="<?php echo Route::get_uri('ConnexionInscriptionController@inscription') ?>" method="post">
+        <form action="<?php echo $this->view('/connexion/register') ?>" method="post">
             <fieldset>
                 <legend>Non inscrit ? Créez votre compte gratuitement</legend>
                 <div class="form-group">

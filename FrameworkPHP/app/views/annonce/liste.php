@@ -11,7 +11,7 @@ if(isset($error)){
 <div class="container rounded">
     <div class="row">
         <div class="col-md-2">
-            <img src="<?php echo PUBLIC_URI."img/".$produit->proImg ?>" alt="" class="product">
+            <img class="product" src="<?php echo ASSET_URL . 'img/' . $produit->proImg ?>" alt="">
         </div>
         <div class="col-md-3">
             <div class="col-md-12">
@@ -31,7 +31,7 @@ if(isset($error)){
     <hr>
     <div class="row">
         <div class="col-md-12">
-            <a href="<?php echo Route::get_uri('ContactController@index', array('id' => $produit->id_produit)); ?>"><button class="btn btn-success">Echanger</button></a>
+            <a href="<?php echo $this->view('/contact/' . $produit->id_produit); ?>"><button class="btn btn-success">Echanger</button></a>
         </div>
     </div>
 </div>
