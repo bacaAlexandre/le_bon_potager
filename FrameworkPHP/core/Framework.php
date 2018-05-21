@@ -8,12 +8,28 @@ class Framework
         self::init();
         require CORE_PATH . "Controller.php";
         require CORE_PATH . "Database.php";
+        require CORE_PATH . "Errors.php";
         require CORE_PATH . "Model.php";
         require CORE_PATH . "Route.php";
         require CORE_PATH . "Session.php";
+
+        require CONFIG_PATH . 'config.php';
+        require CONFIG_PATH . 'routes.php';
+
         spl_autoload_register(array(__CLASS__, 'load'));
+        error_reporting(E_ALL);
+        set_error_handler('Errors::errorHandler');
+        set_exception_handler('Errors::exceptionHandler');
+
         $url = $_SERVER['QUERY_STRING'];
-        Route::dispatch($url);
+        if (!Route::dispatch($url)) {
+            $url = PUBLIC_PATH . ltrim($url, '/');
+            if (file_exists($url)) {
+                header("Location:$url");
+            } else {
+                require VIEW_PATH . "error/404.php";
+            }
+        }
     }
 
     private static function init()
@@ -22,6 +38,7 @@ class Framework
         define("ROOT", dirname(getcwd()) . DS);
         define("APP_PATH", ROOT . 'app' . DS);
         define("CORE_PATH", ROOT . "core" . DS);
+        define("LOG_PATH", ROOT . 'logs' . DS);
         define("PUBLIC_PATH", ROOT . "public" . DS);
         define("CONFIG_PATH", APP_PATH . 'config' . DS);
         define("CONTROLLER_PATH", APP_PATH . "controllers" . DS);
@@ -30,7 +47,6 @@ class Framework
         define("UPLOAD_PATH", PUBLIC_PATH . "uploads" . DS);
         define("PUBLIC_URL", self::get_public_url());
         define("ASSET_URL", PUBLIC_URL . "asset/");
-        define("TITLE", "Le bon potager");
     }
 
     private static function load($classname)

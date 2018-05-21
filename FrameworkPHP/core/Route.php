@@ -1,7 +1,5 @@
 <?php
 
-require CONFIG_PATH . "routes.php";
-
 class Route
 {
 
@@ -47,6 +45,7 @@ class Route
     {
         $url = self::parse_url($url);
         $method = isset($_SERVER['REQUEST_METHOD']) ? $_SERVER['REQUEST_METHOD'] : 'GET';
+
         foreach (self::$routes as $route) {
             if ((preg_match($route->route, $url, $matches)) && ($method == $route->method)) {
                 $controller_name = $route->controller;
@@ -69,7 +68,7 @@ class Route
                 }
             }
         }
-        require VIEW_PATH . "error/404.php";
+        return false;
     }
 
     private static function parse_url($url) {
