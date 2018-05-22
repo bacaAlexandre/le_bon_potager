@@ -22,7 +22,10 @@ class Framework
         set_exception_handler('ErrorHandler::handleException');
 
         $url = $_SERVER['QUERY_STRING'];
-        Route::dispatch($url);
+        if (!Route::dispatch($url)) {
+            $exception = new Exception("404 File Not Found", 404);
+            ErrorHandler::handleException($exception);
+        }
     }
 
     private static function init()
