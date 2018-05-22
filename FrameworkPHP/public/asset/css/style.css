@@ -119,4 +119,10 @@ hr {
     text-align: center;
     margin-top: 1em;
   }
+  .tweet
+  {
+    width: 28%;
+    height: 150px;
+    overflow: auto;
+  }
 }

@@ -8,7 +8,6 @@
 
 class ProduitModel extends Model
 {
-
     public function findProduitCategorie()
     {
         $sql = "SELECT * FROM $this->table 
