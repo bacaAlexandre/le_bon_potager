@@ -28,7 +28,7 @@
 <body>
 <div class="container">
     <header>
-        <img src="<?php echo PUBLIC_URI; ?>img/logo_trans.png">
+        <img src="<?php echo PUBLIC_URI; ?>img/Logo_Garden_Party.png">
         <p>Le bon potager pour les bonnes personnes</p>
         <?php if ($this->session()->get_user_id()) { ?>
             <p>Bonjour <?php echo $this->session()->get_pseudo() ?></p>
