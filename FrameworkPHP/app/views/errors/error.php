@@ -24,8 +24,14 @@
     <title><?php echo TITLE; ?></title>
 </head>
 <body>
-    <?php echo $title; ?>
+    <h1>Fatal Error</h1>
 
-    <?php echo $message; ?>
+    <?php if (DEBUG) { ?>
+        <p>Uncaught exception: '<?php echo get_class($exception); ?>'</p>
+        <p>Message: '<?php echo $exception->getMessage(); ?>'</p>
+        <p>Stack trace:<pre><?php echo $exception->getTraceAsString() ?></pre></p>
+        <p>Thrown in '<?php echo $exception->getFile() ?>' on line <?php echo $exception->getLine() ?></p>
+
+    <?php } ?>
 </body>
 </html>

@@ -8,7 +8,7 @@ class Framework
         self::init();
         require CORE_PATH . "Controller.php";
         require CORE_PATH . "Database.php";
-        require CORE_PATH . "Errors.php";
+        require CORE_PATH . "ErrorHandler.php";
         require CORE_PATH . "Model.php";
         require CORE_PATH . "Route.php";
         require CORE_PATH . "Session.php";
@@ -18,18 +18,11 @@ class Framework
 
         spl_autoload_register(array(__CLASS__, 'load'));
         error_reporting(E_ALL);
-        set_error_handler('Errors::errorHandler');
-        set_exception_handler('Errors::exceptionHandler');
+        set_error_handler('ErrorHandler::handleError');
+        set_exception_handler('ErrorHandler::handleException');
 
         $url = $_SERVER['QUERY_STRING'];
-        if (!Route::dispatch($url)) {
-            $url = PUBLIC_PATH . ltrim($url, '/');
-            if (file_exists($url)) {
-                header("Location:$url");
-            } else {
-                require VIEW_PATH . "error/404.php";
-            }
-        }
+        Route::dispatch($url);
     }
 
     private static function init()

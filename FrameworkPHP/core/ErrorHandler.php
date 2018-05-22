@@ -1,15 +1,15 @@
 <?php
 
-class Errors
+class ErrorHandler
 {
-    public static function errorHandler($level, $message, $file, $line)
+    public static function handleError($level, $message, $file, $line)
     {
         if (error_reporting() !== 0) {
             throw new \ErrorException($message, 0, $level, $file, $line);
         }
     }
 
-    public static function exceptionHandler($exception)
+    public static function handleException($exception)
     {
         if (!is_dir(LOG_PATH)) {
             mkdir(LOG_PATH, $recursive = true);
@@ -17,38 +17,21 @@ class Errors
         $log = LOG_PATH . date('Y-m-d') . '.txt';
         ini_set('error_log', $log);
 
-        $stacktrace = "Uncaught exception: '" . get_class($exception) . "'";
-        $stacktrace .= " with message '" . $exception->getMessage() . "'";
-        $stacktrace .= "\nStack trace: " . $exception->getTraceAsString();
-        $stacktrace .= "\nThrown in '" . $exception->getFile() . "' on line " . $exception->getLine();
+        $message = "Uncaught exception: '" . get_class($exception) . "'";
+        $message .= " with message '" . $exception->getMessage() . "'";
+        $message .= "\nStack trace: " . $exception->getTraceAsString();
+        $message .= "\nThrown in '" . $exception->getFile() . "' on line " . $exception->getLine();
 
-        error_log($stacktrace);
+        error_log($message);
 
-        $message = false;
-        if (DEBUG) {
-            $message = "<p>Uncaught exception: '" . get_class($exception) . "'</p>";
-            $message .= "<p>Message: '" . $exception->getMessage() . "'</p>";
-            $message .= "<p>Stack trace:<pre>" . $exception->getTraceAsString() . "</pre></p>";
-            $message .= "<p>Thrown in '" . $exception->getFile() . "' on line " . $exception->getLine() . "</p>";
-        }
-        $code = $exception->getCode();
-        return self::display('error.' . (file_exists(VIEW_PATH . "error/$code.php") ? $code : 'errors'), array(
-            'title' => "<h1>An error occurred</h1>",
-            'message' =>  $message,
-        ));
-    }
-
-    private static function display($view, $args = [])
-    {
         ob_clean();
+        $code = $exception->getCode();
+        $view = 'errors.' . (file_exists(VIEW_PATH . "errors/$code.php") ? $code : 'error');
         $view_path = preg_replace('/\./', DS, $view);
-        if (file_exists(VIEW_PATH . "$view_path.php")) {
-            foreach ($args as $key => $value) {
-                $$key = $value;
-            }
-            require VIEW_PATH . "$view_path.php";
-            return true;
-        }
-        return false;
+        $$exception = $exception;
+        require VIEW_PATH . "$view_path.php";
+        $content = ob_get_contents();
+        ob_end_clean();
+        echo $content;
     }
 }
