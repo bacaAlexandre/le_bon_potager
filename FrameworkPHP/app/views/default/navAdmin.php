@@ -7,17 +7,17 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item <?php echo (URI === '/admin/utilisateur' ? 'active' : ''); ?>">
-                <a class="nav-link" href="<?php echo Route::get_uri('AdminUtilisateurController@index'); ?>">Gestion utilisateurs</a>
+            <li class="nav-item <?php echo ($this->is_group('AdminUtilisateur') ? 'active' : ''); ?>">
+                <a class="nav-link" href="<?php echo $this->view('/admin/utilisateur'); ?>">Gestion utilisateurs</a>
             </li>
-            <li class="nav-item <?php echo (URI === '/admin/annonce' ? 'active' : ''); ?>">
-                <a class="nav-link" href="<?php echo Route::get_uri('AdminAnnonceController@index'); ?>">Gestion annonces</a>
+            <li class="nav-item <?php echo ($this->is_group('AdminAnnonce') ? 'active' : ''); ?>">
+                <a class="nav-link" href="<?php echo $this->view('/admin/annonce'); ?>">Gestion annonces</a>
             </li>
-            <li class="nav-item <?php echo (URI === '/admin/produit' ? 'active' : ''); ?>">
-                <a class="nav-link" href="<?php echo Route::get_uri('AdminProduitController@index'); ?>">Gestion produits</a>
+            <li class="nav-item <?php echo ($this->is_group('AdminProduit') ? 'active' : ''); ?>">
+                <a class="nav-link" href="<?php echo $this->view('/admin/produit'); ?>">Gestion produits</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="<?php echo Route::get_uri('AccueilController@index'); ?>">Retour accueil</a>
+                <a class="nav-link" href="<?php echo $this->view('/'); ?>">Retour accueil</a>
             </li>
         </ul>
     </div>

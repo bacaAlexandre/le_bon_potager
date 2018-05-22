@@ -4,18 +4,27 @@ class Controller {
 
     private $session;
     private $flash;
+    private $route;
 
-    public function __construct()
+    public function __construct($route)
     {
         $this->session = new Session();
         $this->flash = $this->session->get_flash();
+        $this->route = $route;
     }
 
-    public function redirect($path, $args = [])
-    {
-        $uri = Route::get_uri($path, $args);
-        header("Location:$uri");
+    public function redirect($url) {
+        header("Location:$url");
         return true;
+    }
+
+    public function is_group($group)
+    {
+        return $this->route->get_group() === $group;
+    }
+
+    public function view($route) {
+        return PUBLIC_URL . trim($route, '/');
     }
 
     public function input($name) {
@@ -47,13 +56,13 @@ class Controller {
     public function display($view, $args = [])
     {
         $view_path = preg_replace('/\./', DS, $view);
-        if (file_exists(VIEW_PATH . "$view_path.php")) {
-            foreach ($args as $key => $value) {
-                $$key = $value;
-            }
-            require VIEW_PATH . "$view_path.php";
-            return true;
+        foreach ($args as $key => $value) {
+            $$key = $value;
         }
-        return false;
+        ob_start();
+        require VIEW_PATH . "$view_path.php";
+        $content = ob_get_contents();
+        ob_end_clean();
+        echo $content;
     }
 }

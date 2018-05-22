@@ -5,7 +5,7 @@
 <div class="container rounded">
     <div class="row">
         <div class="col-md-2">
-            <img class="product" src="<?php echo PUBLIC_URI . "img/" . $data->proImg ?>" alt="Tomate">
+            <img class="product" src="<?php echo ASSET_URL . 'img/' . $data->proImg ?>" alt="Tomate">
         </div>
         <div class="col-md-3">
             <div class="col-md-12">
@@ -25,7 +25,7 @@
 </div>
 <div class="row">
     <div class="col-md-6 md-6">
-        <form action="<?php echo Route::get_uri('ContactController@contacter') ?>" method="post">
+        <form action="<?php echo $this->view('/contact/envoyer') ?>" method="post">
             <fieldset>
                 <legend>Contacter l'annonceur</legend>
                 <div class="form-group">
@@ -50,10 +50,19 @@
                               required><?php echo ($this->flash('message') !== null) ? $this->flash('message') : ""; ?></textarea>
                 </div>
                 <div class="form-group">
-                    <label for="quantity">Quantité *:</label>
-                    <input type="number" id="quantity" name="qté" id="qté"
-                           value="<?php echo ($this->flash('qté') !== null) ? $this->flash('qté') : ""; ?>"
-                           required><span><?php echo $data->uniLibelle ?></span>
+                    <label for="quantity" class="col-3 col-form-label">Quantité *:</label>
+                    <div class="input-group">
+                        <input type="text" id="quantity" name="quantity" class="form-control"
+                               value="<?php echo ($this->flash('quantity') !== null) ? $this->flash('quantity') : ""; ?>"
+                               required>
+                        <div class="input-group-append">
+                            <span class="input-group-text"><?php echo $data->uniLibelle; ?></span>
+                        </div>
+
+
+                    </div>
+
+
                 </div>
                 <div class="form-check">
                     <input type="checkbox" id="copy" class="form-check-input">
@@ -78,11 +87,13 @@
             <div class="spe">Pseudonyme :</div>
             <div class="form-control"><?php echo $data->utiPseudo ?></div>
         </div>
+        <?php if ($data->utiDescription) { ?>
         <div class="form-group">
             <div class="spe">Biographie :</div>
             <div class="form-control"><?php echo $data->utiDescription ?></div>
         </div>
-        <?php if ($data->utiAdresseAffiche == 1) { ?>
+        <?php } ?>
+        <?php if (($data->utiAdresseAffiche) && ($data->utiAdresse)) { ?>
             <div class="form-group">
                 <div class="spe">Adresse :</div>
                 <div class="form-control">
@@ -90,7 +101,7 @@
                 </div>
             </div>
         <?php } ?>
-        <?php if ($data->utiTelAffiche == 1) { ?>
+        <?php if (($data->utiTelAffiche) && ($data->utiTel)) { ?>
             <div class="form-group">
                 <div class="spe">Téléphone :</div>
                 <div class="form-control">
