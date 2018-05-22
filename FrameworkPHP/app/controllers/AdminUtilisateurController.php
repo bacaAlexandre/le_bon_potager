@@ -22,15 +22,16 @@ class AdminUtilisateurController extends Controller
         ));
     }
 
-    public function edit($id)
+    public function edit()
     {
-        if ((!$this->session()->is_logged()) || ($this->session()->get_role() !== 'Admin')) {
-            return $this->redirect($this->view('/'));
-        }
+//        if ((!$this->session()->is_logged()) || ($this->session()->get_role() !== 'Admin')) {
+//            return $this->redirect($this->view('/'));
+//        }
+        $id = 0;
         $user = $this->t_utilisateurs->find(array('id_utilisateur' => $id));
-        if (($user !== null) && ($this->session()->get_user_id() !== $id)) {
-            return $this->display('adminUtilisateur.edit', array(
-                'postal_code' => $this->t_code_postal->findAll(),
+
+        $reponse = [
+            'postal_code' => $this->t_code_postal->findAll(),
                 'id_utilisateur' => $user->id_utilisateur,
                 'adresse' => $user->utiAdresse,
                 'adresse_affiche' => $user->utiAdresseAffiche,
@@ -40,12 +41,28 @@ class AdminUtilisateurController extends Controller
                 'pseudo' => $user->utiPseudo,
                 'description' => $user->utiDescription,
                 'email' => $user->utiEmail,
-            ));
-        }
-        return $this->redirect($this->view('/admin/utilisateur'));
+        ];
+
+        return json_encode($reponse);
+//        if (($user !== null) && ($this->session()->get_user_id() !== $id)) {
+//            return $this->display('adminUtilisateur.edit', array(
+//                'postal_code' => $this->t_code_postal->findAll(),
+//                'id_utilisateur' => $user->id_utilisateur,
+//                'adresse' => $user->utiAdresse,
+//                'adresse_affiche' => $user->utiAdresseAffiche,
+//                'code_postal' => $user->utiCp_id,
+//                'phone' => $user->utiTel,
+//                'tel_affiche' => $user->utiTelAffiche,
+//                'pseudo' => $user->utiPseudo,
+//                'description' => $user->utiDescription,
+//                'email' => $user->utiEmail,
+//            ));
+//        }
+//        return $this->redirect($this->view('/admin/utilisateur'));
     }
 
-    public function changeInfos() {
+    public function changeInfos()
+    {
         $id_utilisateur = $this->input('id_utilisateur');
         if ((!$this->session()->is_logged()) || ($this->session()->get_role() !== 'Admin')) {
             return $this->redirect($this->view('/'));
@@ -114,7 +131,8 @@ class AdminUtilisateurController extends Controller
         return $this->redirect($this->view('/admin/utilisateur'));
     }
 
-    public function changePassword() {
+    public function changePassword()
+    {
         $id_utilisateur = $this->input('id_utilisateur');
         if ((!$this->session()->is_logged()) || ($this->session()->get_role() !== 'Admin')) {
             return $this->redirect($this->view('/'));
@@ -151,7 +169,8 @@ class AdminUtilisateurController extends Controller
         return $this->redirect($this->view('/admin/utilisateur'));
     }
 
-    public function lock($id) {
+    public function lock($id)
+    {
         if ((!$this->session()->is_logged()) || ($this->session()->get_role() !== 'Admin')) {
             return $this->redirect($this->view('/'));
         }
