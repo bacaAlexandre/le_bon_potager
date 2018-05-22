@@ -5,9 +5,8 @@ class AdminUtilisateurController extends Controller
     private $t_utilisateurs;
     private $t_code_postal;
 
-    public function __construct()
+    public function init()
     {
-        parent::__construct();
         $this->t_utilisateurs = new Model('T_UTILISATEURS');
         $this->t_code_postal = new Model('T_CODE_POSTAL');
     }
@@ -15,7 +14,7 @@ class AdminUtilisateurController extends Controller
     public function index()
     {
         if ((!$this->session()->is_logged()) || ($this->session()->get_role() !== 'Admin')) {
-            return $this->redirect('AccueilController@index');
+            return $this->redirect($this->view('/'));
         }
         $users = $this->t_utilisateurs->findAll();
         $this->display('adminUtilisateur.index', array(
@@ -26,7 +25,7 @@ class AdminUtilisateurController extends Controller
     public function edit($id)
     {
         if ((!$this->session()->is_logged()) || ($this->session()->get_role() !== 'Admin')) {
-            return $this->redirect('AccueilController@index');
+            return $this->redirect($this->view('/'));
         }
         $user = $this->t_utilisateurs->find(array('id_utilisateur' => $id));
         if (($user !== null) && ($this->session()->get_user_id() !== $id)) {
@@ -43,13 +42,13 @@ class AdminUtilisateurController extends Controller
                 'email' => $user->utiEmail,
             ));
         }
-        return $this->redirect('AdminUtilisateurController@index');
+        return $this->redirect($this->view('/admin/utilisateur'));
     }
 
     public function changeInfos() {
         $id_utilisateur = $this->input('id_utilisateur');
         if ((!$this->session()->is_logged()) || ($this->session()->get_role() !== 'Admin')) {
-            return $this->redirect('AccueilController@index');
+            return $this->redirect($this->view('/'));
         }
         $user = $this->t_utilisateurs->find(array('id_utilisateur' => $id_utilisateur));
         if (($user !== null) && ($this->session()->get_user_id() !== $id_utilisateur)) {
@@ -99,7 +98,7 @@ class AdminUtilisateurController extends Controller
                 ));
                 $message = "Les informations de l'utilisateur ont bien été changées";
                 $this->flash('success_change_infos', $message);
-                return $this->redirect('AdminUtilisateurController@edit', array('id' => $id_utilisateur));
+                return $this->redirect($this->view('/admin/utilisateur/' . $id_utilisateur . '/edit'));
             }
             $this->flash('error_change_infos', $error);
             $this->flash('email', $email);
@@ -110,15 +109,15 @@ class AdminUtilisateurController extends Controller
             $this->flash('biography', $description);
             $this->flash('tel_affiche', $tel_affiche);
             $this->flash('adresse_affiche', $adresse_affiche);
-            return $this->redirect('AdminUtilisateurController@edit', array('id' => $id_utilisateur));
+            return $this->redirect($this->view('/admin/utilisateur/' . $id_utilisateur . '/edit'));
         }
-        return $this->redirect('AdminUtilisateurController@index');
+        return $this->redirect($this->view('/admin/utilisateur'));
     }
 
     public function changePassword() {
         $id_utilisateur = $this->input('id_utilisateur');
         if ((!$this->session()->is_logged()) || ($this->session()->get_role() !== 'Admin')) {
-            return $this->redirect('AccueilController@index');
+            return $this->redirect($this->view('/'));
         }
         $user = $this->t_utilisateurs->find(array('id_utilisateur' => $id_utilisateur));
         if (($user !== null) && ($this->session()->get_user_id() !== $id_utilisateur)) {
@@ -143,18 +142,18 @@ class AdminUtilisateurController extends Controller
 
                 $message = "Le mot de passe de l'utilisateur a bien été changé";
                 $this->flash('success_change_password', $message);
-                return $this->redirect('AdminUtilisateurController@edit', array('id' => $id_utilisateur));
+                return $this->redirect($this->view('/admin/utilisateur/' . $id_utilisateur . '/edit'));
             }
             $this->flash('error_change_password', $error);
-            return $this->redirect('AdminUtilisateurController@edit', array('id' => $id_utilisateur));
+            return $this->redirect($this->view('/admin/utilisateur/' . $id_utilisateur . '/edit'));
 
         }
-        return $this->redirect('AdminUtilisateurController@index');
+        return $this->redirect($this->view('/admin/utilisateur'));
     }
 
     public function lock($id) {
         if ((!$this->session()->is_logged()) || ($this->session()->get_role() !== 'Admin')) {
-            return $this->redirect('AccueilController@index');
+            return $this->redirect($this->view('/'));
         }
         $user = $this->t_utilisateurs->find(array('id_utilisateur' => $id));
         if (($user !== null) && ($this->session()->get_user_id() !== $id)) {
@@ -173,6 +172,6 @@ class AdminUtilisateurController extends Controller
 
 
         }
-        return $this->redirect('AdminUtilisateurController@index');
+        return $this->redirect($this->view('/admin/utilisateur'));
     }
 }

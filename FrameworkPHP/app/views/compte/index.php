@@ -13,7 +13,7 @@
         <p><?php echo $this->flash('success_change_password'); ?></p>
     </div>
 <?php } ?>
-<form action="<?php echo Route::get_uri('MonCompteController@changeInfos') ?>" method="post">
+<form action="<?php echo $this->view('/compte/changeinfos') ?>" method="post">
   <fieldset>
     <legend>Informations</legend>
     <div class="row">
@@ -74,7 +74,7 @@
     <?php } ?>
 </form>
 <hr>
-<form action="<?php echo Route::get_uri('MonCompteController@changePassword') ?>" method="post">
+<form action="<?php echo $this->view('/compte/changemdp') ?>" method="post">
   <fieldset>
     <legend>Mot de passe</legend>
     <div class="row">

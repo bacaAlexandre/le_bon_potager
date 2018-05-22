@@ -8,7 +8,7 @@
         <p><?php echo $this->flash('success_creation'); ?></p>
     </div>
 <?php } ?>
-<form action="<?php echo Route::get_uri('MonPotagerController@store') ?>" method="post">
+<form action="<?php echo $this->view('/potager/store') ?>" method="post">
   <fieldset>
     <legend>Déposez votre annonce</legend>
       <div class="row">

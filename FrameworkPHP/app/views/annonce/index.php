@@ -12,13 +12,13 @@
                             <select class="form-control produit">
                                 <option disabled selected>Produit</option>
                                 <?php
-                                $categorie = "";
-                                foreach ($produits as $produit) {
-                                    if ($categorie != $produit->catNom) {
-                                        echo "<optgroup label='$produit->catNom'>";
+                                    foreach ($produits as $categorie => $produits) {
+                                        echo "<optgroup label='$categorie'>";
+                                        foreach ($produits as $produit) {
+                                            echo "<option value='$produit->id_produit'>$produit->proNom</option>";
+                                        }
+                                        echo "</optgroup>";
                                     }
-                                    echo "<option value='$produit->id_produit'>$produit->proNom</option>";
-                                }
                                 ?>
                             </select>
                         </div>
@@ -48,12 +48,11 @@
     <div class="row rounded-bottom main">
     </div>
 <script type="text/javascript">
-    $('.search').click(function(e) {
-        var dep = $('.departement').val();
-        var pro = $('.produit').val();
+    $('.search').click(function() {
+        let dep = $('.departement').val();
+        let pro = $('.produit').val();
         if (dep != null) {
-            var recherche = "<?php echo Route::get_uri('AnnonceController@recherche'); ?>";
-            window.location.href = recherche + dep + (pro != null ? '/' + pro : '');
+            window.location.href = '<?php echo $this->view("/annonce"); ?>' + '/' + dep + (pro != null ? '/' + pro : '');
         }
     });
 

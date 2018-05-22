@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,18 +23,15 @@
     <script type="text/javascript" src="<?php echo ASSET_URL; ?>js/master.js"></script>
     <title><?php echo TITLE; ?></title>
 </head>
-
 <body>
-<div class="container">
-    <header>
-<<<<<<< HEAD
-        <img src="<?php echo PUBLIC_URI; ?>img/Logo_Garden_Party.png">
-=======
-        <img src="<?php echo ASSET_URL . 'img/logo_trans.png' ?>">
->>>>>>> 7dc4911b08c9abd98486a073eb9264c195c2a7d4
-        <p>Le bon potager pour les bonnes personnes</p>
-        <?php if ($this->session()->get_user_id()) { ?>
-            <p>Bonjour <?php echo $this->session()->get_pseudo() ?></p>
-            <a href="<?php echo $this->view("/deconnexion"); ?>" class="btn btn-success">Déconnexion</a>
-        <?php } ?>
-    </header>
+    <h1>Fatal Error</h1>
+
+    <?php if (DEBUG) { ?>
+        <p>Uncaught exception: '<?php echo get_class($exception); ?>'</p>
+        <p>Message: '<?php echo $exception->getMessage(); ?>'</p>
+        <p>Stack trace:<pre><?php echo $exception->getTraceAsString() ?></pre></p>
+        <p>Thrown in '<?php echo $exception->getFile() ?>' on line <?php echo $exception->getLine() ?></p>
+
+    <?php } ?>
+</body>
+</html>

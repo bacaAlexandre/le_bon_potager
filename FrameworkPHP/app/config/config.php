@@ -1,5 +1,8 @@
 <?php
 
+define('DEBUG', true);
+define("TITLE", "Le bon potager");
+
 define('DB_HOST', 'localhost');
 define('DB_NAME', 'le_bon_potager');
 define('DB_USERNAME', 'root');
