@@ -2,7 +2,7 @@ $(function () {
 
     $("#btn_edit_user").click(function () {
         $.ajax({
-            url: "/admin/utilisateur/edit",
+            url: PUBLIC_URL + "?admin/utilisateur/edit",
             method: "POST",
             data: {
                 id: $(this).val(),
@@ -12,15 +12,15 @@ $(function () {
 
                 $("#address").html(data.adresse);
 
-                if(data.adresse_affiche == 1){
-                    $("#adresse_visible").attr('checked','checked');
+                if (data.adresse_affiche == 1) {
+                    $("#adresse_visible").attr('checked', 'checked');
                 }
 
                 $("#postal_code").html(data.code_postal);
                 $("#tel").html(data.phone);
 
-                if(data.tel_affiche == 1){
-                    $("#tel_visible").attr('checked','checked');
+                if (data.tel_affiche == 1) {
+                    $("#tel_visible").attr('checked', 'checked');
                 }
 
                 $("#pseudo").html(data.pseudo);
