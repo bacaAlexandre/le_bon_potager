@@ -58,7 +58,7 @@ class Framework
     private static function get_public_url() {
         $http = isset($_SERVER['HTTPS']) && strtolower($_SERVER['HTTPS']) !== 'off' ? 'https' : 'http';
         $address = $_SERVER['SERVER_NAME'] . ((isset($_SERVER['SERVER_PORT']) && ($_SERVER['SERVER_PORT'] !== '80')) ? ':' . $_SERVER['SERVER_PORT'] : '');
-        $dir =  (dirname($_SERVER['SCRIPT_NAME']) !== '\\' ? dirname($_SERVER['SCRIPT_NAME']) . "/" : '');
+        $dir =  (dirname($_SERVER['SCRIPT_NAME']) !== '\\' ? trim(dirname($_SERVER['SCRIPT_NAME']), '/') . "/" : '');
         return $http . '://' .$address . '/' . $dir;
     }
 }
