@@ -1,1 +1,0 @@
-const PATH_NAME = window.location.pathname;
