@@ -8,9 +8,7 @@ class ConnexionInscriptionController extends Controller
     private $t_code_postal;
     private $t_utilisateurs;
 
-    public function __construct()
-    {
-        parent::__construct();
+    public function init() {
         $this->t_departement = new Model('T_DEPARTEMENT');
         $this->t_code_postal = new Model('T_CODE_POSTAL');
         $this->t_ville = new Model('T_VILLE');
@@ -20,7 +18,7 @@ class ConnexionInscriptionController extends Controller
     public function index()
     {
         if ($this->session()->is_logged()) {
-            return $this->redirect('MonCompteController@index');
+            return $this->redirect($this->view('/compte'));
         }
         $department = $this->t_departement->findAll();
         $city = $this->t_ville->findAll();
@@ -59,7 +57,7 @@ class ConnexionInscriptionController extends Controller
                     $error[] = "Votre email et votre mot de passe ne correspondent pas";
                 } else {
                     $this->session()->login($data->id_utilisateur);
-                    return $this->redirect('AccueilController@index');
+                    return $this->redirect($this->view('/'));
                 }
             } else {
                 $error[] = "Ce compte n'existe pas";
@@ -67,7 +65,7 @@ class ConnexionInscriptionController extends Controller
         }
         $this->flash('error_connexion', $error);
         $this->flash('email_connexion', $email);
-        return $this->redirect('ConnexionInscriptionController@index');
+        return $this->redirect($this->view('/connexion'));
 
     }
 
@@ -128,7 +126,7 @@ class ConnexionInscriptionController extends Controller
             $message = "<h1>Bienvenue sur Le bon potager !</h1>";
             $message .= "<p>Vous etes maintenant inscrit sur le site.</p>";
             $message .= "<p>Merci de cliquer sur le lien pour valider votre inscription.</p>";
-            $message .= "<p><a href='" . Route::get_uri('ConnexionInscriptionController@confirm', ['token' => $token]);
+            $message .= "<p><a href='" . $this->view('/connexion/register/' . $token);
             $message .= "' target='_blank'>Valider mon inscription</a>";
 
             ini_set("smtp_port", "1025");
@@ -136,7 +134,7 @@ class ConnexionInscriptionController extends Controller
 
             $message = "<p>Vous vous êtes bien enregistré. Un email de confirmation à été envoyé à $email</p>";
             $this->flash('success_registration', $message);
-            return $this->redirect('ConnexionInscriptionController@index');
+            return $this->redirect($this->view('/connexion'));
         }
         $this->flash('error_registration', $error);
         $this->flash('email_registration', $email);
@@ -147,7 +145,7 @@ class ConnexionInscriptionController extends Controller
         $this->flash('biography', $biography);
         $this->flash('tel_affiche', $tel_affiche);
         $this->flash('adresse_affiche', $adresse_affiche);
-        return $this->redirect('ConnexionInscriptionController@index');
+        return $this->redirect($this->view('/connexion'));
     }
 
     public function confirm($token) {
@@ -164,11 +162,11 @@ class ConnexionInscriptionController extends Controller
             $message = "<p>Votre compte a bien été confirmé.</p>";
             $this->flash('success_registration', $message);
         }
-        return $this->redirect('ConnexionInscriptionController@index');
+        return $this->redirect($this->view('/connexion'));
     }
 
     public function logout() {
         $this->session()->logout();
-        return $this->redirect('AccueilController@index');
+        return $this->redirect($this->view('/'));
     }
 }

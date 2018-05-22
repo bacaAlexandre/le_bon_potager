@@ -4,16 +4,15 @@ class AdminAnnonceController extends Controller
 {
     private $t_produits_utilisateurs;
 
-    public function __construct()
+    public function init()
     {
-        parent::__construct();
         $this->t_produits_utilisateurs = new AnnonceModel('T_PRODUITS_UTILISATEURS');
     }
 
     public function index()
     {
         if ((!$this->session()->is_logged()) || ($this->session()->get_role() !== 'Admin')) {
-            return $this->redirect('AccueilController@index');
+            return $this->redirect($this->view('/'));
         }
         $this->display('adminAnnonce.index', array(
             'annonces' => $this->t_produits_utilisateurs->findAll(),
@@ -22,7 +21,7 @@ class AdminAnnonceController extends Controller
 
     public function lock($id) {
         if ((!$this->session()->is_logged()) || ($this->session()->get_role() !== 'Admin')) {
-            return $this->redirect('AccueilController@index');
+            return $this->redirect($this->view('/'));
         }
         $produit_utilisateur = $this->t_produits_utilisateurs->find(array('id_produit_utilisateur' => $id));
         if ($produit_utilisateur !== null) {
@@ -43,6 +42,6 @@ class AdminAnnonceController extends Controller
                 ));
             }
         }
-        return $this->redirect('AdminAnnonceController@index');
+        return $this->redirect($this->view('/admin/annonce'));
     }
 }

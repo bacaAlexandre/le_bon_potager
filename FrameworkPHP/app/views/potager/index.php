@@ -4,13 +4,11 @@
   <h1>Déposez votre annonce</h1>
 </div>
 <?php if ($this->flash('success_creation') !== null) { ?>
-    <div class="row">
-        <div class="col-md-12">
-            <p><?php echo $this->flash('success_creation') ?></p>
-        </div>
+    <div class="col-12 alert alert-success">
+        <p><?php echo $this->flash('success_creation'); ?></p>
     </div>
 <?php } ?>
-<form action="<?php echo Route::get_uri('MonPotagerController@store') ?>" method="post">
+<form action="<?php echo $this->view('/potager/store') ?>" method="post">
   <fieldset>
     <legend>Déposez votre annonce</legend>
       <div class="row">

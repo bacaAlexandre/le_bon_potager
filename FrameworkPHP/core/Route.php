@@ -1,56 +1,57 @@
 <?php
 
-require CONFIG_PATH . "routes.php";
-
 class Route
 {
 
     private static $routes = [];
 
-    private $uri;
     private $route;
     private $controller;
     private $action;
     private $method;
+    private $group;
 
-    public function __construct($uri, $path, $method = 'GET')
+    private function __construct($route, $path, $group, $method = 'GET')
     {
         $path = preg_split('/@/', $path);
-        $route = preg_replace('/\//', '\\/', $uri);
+        $route = preg_replace('/\//', '\\/', $route);
         $route = preg_replace_callback('/\{([a-z]+)(?:\:([^\}]+))?\}/', function($match) {
             return empty($match[2]) ? "(?P<$match[1]>[a-zA-Z0-9]+)" : "(?P<$match[1]>$match[2])";
         }, $route);
         $route= '/^' . $route . '$/';
-        $this->uri = $uri;
         $this->route = $route;
         $this->controller = $path[0];
         $this->action = (empty($path[1])) ? 'index' : $path[1];
         $this->method = $method;
+        $this->group = $group;
     }
 
-    public static function get($route, $path)
+    public function get_group()
     {
-        self::$routes[] = new Route($route, $path, 'GET');
+        return $this->group;
     }
 
-    public static function post($route, $path)
+    public static function get($route, $path, $group = null)
     {
-        self::$routes[] = new Route($route, $path, 'POST');
+        self::$routes[] = new Route($route, $path, $group,'GET');
+    }
+
+    public static function post($route, $path, $group = null)
+    {
+        self::$routes[] = new Route($route, $path, $group, 'POST');
     }
 
     public static function dispatch($url)
     {
         $url = self::parse_url($url);
+        $method = isset($_SERVER['REQUEST_METHOD']) ? $_SERVER['REQUEST_METHOD'] : 'GET';
+
         foreach (self::$routes as $route) {
-            if ((preg_match($route->route, $url, $matches)) && (self::get_method() == $route->method)) {
-                      
+            if ((preg_match($route->route, $url, $matches)) && ($method == $route->method)) {
                 $controller_name = $route->controller;
-                
                 if (class_exists($controller_name)) {
-                    
-                    $controller = new $controller_name();
+                    $controller = new $controller_name($route);
                     $action = $route->action;
-                    
                     if (is_callable([$controller, $action])) {
                         $args = [];
                         foreach ($matches as $key => $match) {
@@ -58,50 +59,23 @@ class Route
                                 $args[$key] = $match;
                             }
                         }
-                           
+                        if (is_callable(array($controller, 'init'))) {
+                            call_user_func(array($controller, 'init'));
+                        }
                         call_user_func_array(array($controller, $action), $args);
                         return true;
                     }
                 }
             }
         }
-        /**
-         * Erreur 404
-         */
-        require VIEW_PATH . "error/404.php";
-    }
-
-    public static function get_uri($path, $args = []) {
-        $http = isset($_SERVER['HTTPS']) && strtolower($_SERVER['HTTPS']) !== 'off' ? 'https' : 'http';
-        $host = $_SERVER['SERVER_NAME'] . ((isset($_SERVER['SERVER_PORT']) && ($_SERVER['SERVER_PORT'] !== '80')) ? ':' . $_SERVER['SERVER_PORT'] : '');
-        $dir = (dirname($_SERVER['SCRIPT_NAME']) !== '\\' ? dirname($_SERVER['SCRIPT_NAME']) : '');
-        $path = preg_split('/@/', $path);
-        $controller = $path[0];
-        $action = (empty($path[1])) ? 'index' : $path[1];
-        foreach (self::$routes as $route) {
-            if (($controller == $route->controller) && ($action == $route->action)) {
-                $uri = $route->uri;
-                $uri = preg_replace_callback('/\{([a-z]+)(?:\:([^\}]+))?\}/', function($match) use ($args) {
-                    if (array_key_exists($match[1], $args)) {
-                        return $args[$match[1]];
-                    }
-                    return false;
-                }, $uri);
-                return  $http . '://' . $host . $dir . $uri;
-            }
-        }
         return false;
     }
 
-    private static function get_method()
-    {
-        return isset($_SERVER['REQUEST_METHOD']) ? $_SERVER['REQUEST_METHOD'] : 'GET';
-    }
-
-    private static function parse_url($url)
-    {
-        $split = explode('&', $url, 2);
-        $url = (strpos($split[0], '=') === false) ? $split[0] : $url;
-        return $url;
+    private static function parse_url($url) {
+        if ($url != '') {
+            $split = explode('&', $url, 2);
+            $url = (strpos($split[0], '=') === false) ? $split[0] : '';
+        }
+        return '/' . rtrim($url, '/');
     }
 }

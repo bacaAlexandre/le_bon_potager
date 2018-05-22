@@ -1,7 +1,5 @@
 <?php
 
-require CONFIG_PATH . "database.php";
-
 class Database
 {
 
