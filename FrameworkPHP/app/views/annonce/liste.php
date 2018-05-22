@@ -31,11 +31,7 @@ if(isset($error)){
     <hr>
     <div class="row">
         <div class="col-md-12">
-<<<<<<< HEAD
-            <a href="<?php echo Route::get_uri('ContactController@index', array('id' => $produit->id_produit)); ?>"><button class="btn btn-success">Sélectionner</button></a>
-=======
-            <a href="<?php echo $this->view('/contact/' . $produit->id_produit); ?>"><button class="btn btn-success">Echanger</button></a>
->>>>>>> 7dc4911b08c9abd98486a073eb9264c195c2a7d4
+            <a href="<?php echo $this->view('/contact/' . $produit->id_produit); ?>"><button class="btn btn-success">Sélectionner</button></a>
         </div>
     </div>
 </div>
