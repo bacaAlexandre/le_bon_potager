@@ -1,6 +1,6 @@
 <?php include(VIEW_PATH.'default/nav.php'); ?>
 <div class="row rounded-top">
-  <h1>Bienvenue sur Le bon potager</h1>
+  <h1>Bienvenue sur Garden Party ! </h1>
 </div>
 <?php if ($this->flash('success_annonce') !== null) { ?>
     <div class="col-12 alert alert-success">

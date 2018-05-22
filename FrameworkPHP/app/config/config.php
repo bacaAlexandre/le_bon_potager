@@ -1,7 +1,7 @@
 <?php
 
 define('DEBUG', true);
-define("TITLE", "Le bon potager");
+define("TITLE", "Garden Party");
 
 define('DB_HOST', 'localhost');
 define('DB_NAME', 'le_bon_potager');
