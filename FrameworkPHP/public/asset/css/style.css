@@ -83,6 +83,19 @@ hr {
   height: 1px;
 }
 
+
+/*******************Partie Admin***********************/
+
+/****utilisateur****/
+
+
+#modal_admin_user{
+  max-width: 60%;
+  min-width: 600px;
+}
+
+
+
 @media only screen and (max-width: 800px) {
   hr.con {
     border: none;
