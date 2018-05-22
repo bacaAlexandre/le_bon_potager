@@ -27,14 +27,15 @@ class AdminUtilisateurController extends Controller
         $id = $_POST['id'];
         $user = $this->t_utilisateurs->find(array('id_utilisateur' => $id));
 
-        $codePostal = $this->t_code_postal->find(array('id_code_postal' => $user->utiCp_id));
+        $codePostal = $this->t_code_postal->findAll();
 
         $reponse = [
             'postal_code' => $this->t_code_postal->findAll(),
                 'id_utilisateur' => $user->id_utilisateur,
                 'adresse' => $user->utiAdresse,
                 'adresse_affiche' => $user->utiAdresseAffiche,
-                'code_postal' => $codePostal->id_code_postal,
+                'user_code_postal' => $user->utiCp_id,
+                'code_postal' => $codePostal,
                 'phone' => $user->utiTel,
                 'tel_affiche' => $user->utiTelAffiche,
                 'pseudo' => $user->utiPseudo,

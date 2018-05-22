@@ -59,7 +59,7 @@
                                         <div class="form-group">
                                             <label for="postal_code">Son code postal :</label>
                                             <select name="postal_code" id="postal_code" class="form-control" required>
-                                                <option disabled>--</option>
+
                                             </select>
                                         </div>
                                         <div class="form-group">
