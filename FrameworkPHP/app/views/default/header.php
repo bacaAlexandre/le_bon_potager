@@ -30,7 +30,6 @@
     <script type="text/javascript" src="<?php echo ASSET_URL; ?>lib/jquery-ui/js/jquery-ui.js"></script>
     <script type="text/javascript" src="<?php echo ASSET_URL; ?>js/master.js"></script>
     <script type="text/javascript" src="<?php echo ASSET_URL; ?>js/admin/adminUtilisateur.js"></script>
-    <script type="text/javascript" src="<?php echo ASSET_URL; ?>js/admin/adminStatistique.js"></script>
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.45.0/mapbox-gl.js'></script>
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.45.0/mapbox-gl.css' rel='stylesheet' />
     <title><?php echo TITLE; ?></title>
