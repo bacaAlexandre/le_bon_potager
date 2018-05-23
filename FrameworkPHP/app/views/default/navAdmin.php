@@ -17,8 +17,12 @@
                 <a class="nav-link" href="<?php echo $this->view('/admin/produit'); ?>">Gestion produits</a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" href="<?php echo $this->view('/admin/statistique'); ?>">Statistique annonces</a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="<?php echo $this->view('/'); ?>">Retour accueil</a>
             </li>
+
         </ul>
     </div>
 </nav>

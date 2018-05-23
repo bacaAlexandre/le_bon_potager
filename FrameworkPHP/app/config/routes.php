@@ -41,6 +41,11 @@ Route::get('/admin/annonce/{id:[0-9]+}/lock', 'AdminAnnonceController@lock', 'Ad
 //////// Admin liste Produit ////////
 Route::get('/admin/produit', 'AdminProduitController@index', 'AdminProduit');
 
+//////// Admin Statistique ////////
+Route::get('/admin/statistique', 'AdminStatistiqueController@index', 'AdminStatistique');
+Route::post('/admin/statistique/data', 'AdminStatistiqueController@data', 'AdminStatistique');
+
+
 //////// Deconnexion ////////
 Route::get('/deconnexion', 'ConnexionInscriptionController@logout', 'Connexion');
 
