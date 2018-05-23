@@ -1,4 +1,4 @@
-# Le bon potager
+# Garden Party
 ![Site web 'Garden Party'](FrameworkPHP/public/asset/img/Logo_Garden_Party.png "Site web 'Garden Party'")
 
 ### Serveurs Web
