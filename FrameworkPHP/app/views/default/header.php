@@ -7,11 +7,12 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
           integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
           crossorigin="anonymous">
-    <link rel="stylesheet" href="<?php echo ASSET_URL; ?>css/style.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css"
           integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg"
           crossorigin="anonymous">
     <link rel="icon" type="image/x-icon" href="<?php echo ASSET_URL; ?>favicon.ico"/>
+    <link rel="stylesheet" href="<?php echo ASSET_URL; ?>lib/jquery-ui/css/jquery-ui.css">
+    <link rel="stylesheet" href="<?php echo ASSET_URL; ?>css/style.css">
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"
             integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
             crossorigin="anonymous"></script>
@@ -22,6 +23,7 @@
             integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
             crossorigin="anonymous"></script>
     <script type="text/javascript">const PUBLIC_URL = '<?php echo PUBLIC_URL?>';</script>
+    <script type="text/javascript" src="<?php echo ASSET_URL; ?>lib/jquery-ui/js/jquery-ui.js"></script>
     <script type="text/javascript" src="<?php echo ASSET_URL; ?>js/master.js"></script>
     <script type="text/javascript" src="<?php echo ASSET_URL; ?>js/admin/adminUtilisateur.js"></script>
     <title><?php echo TITLE; ?></title>
