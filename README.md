@@ -1,5 +1,5 @@
 # Le bon potager
-![Site web 'Le bon potager'](FrameworkPHP/public/asset/img/logo_trans.png "Site web 'Le bon potager'")
+![Site web 'Garden Party'](FrameworkPHP/public/asset/img/logo_trans.png "Site web 'Garden Party'")
 
 ### Serveurs Web
 * [apache](https://httpd.apache.org/ "Official website")
@@ -22,11 +22,10 @@
 * Alexandre BACA - <alexandre.baca@viacesi.fr>
 * Lucien BROUILLAUD - <lucien.brouillaud@viacesi.fr>
 * Christophe COUERBE - <christophe.couerbe@viacesi.fr>
-* Charles GILLET - <charles.gillet@viacesi.fr>
 * Nicolas KAMPHAUS - <nicolas.kamphaus@viacesi.fr>
 
 ### Config serveur web
-> 127.0.0.1 lebonpotager.fr
+> 127.0.0.1 gardenparty.fr
 
 * windows
 > C:\windows\system32\drivers\etc\hosts
