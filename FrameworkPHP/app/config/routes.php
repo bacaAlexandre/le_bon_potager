@@ -43,6 +43,7 @@ Route::get('/admin/produit', 'AdminProduitController@index', 'AdminProduit');
 
 //////// Admin Statistique ////////
 Route::get('/admin/statistique', 'AdminStatistiqueController@index', 'AdminStatistique');
+Route::post('/admin/statistique/data', 'AdminStatistiqueController@data', 'AdminStatistique');
 
 
 //////// Deconnexion ////////
