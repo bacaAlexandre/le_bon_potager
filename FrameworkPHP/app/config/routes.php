@@ -23,10 +23,10 @@ Route::post('/compte/changeinfos', 'MonCompteController@changeInfos', 'Compte');
 Route::post('/compte/changemdp', 'MonCompteController@changePassword', 'Compte');
 
 //////// ConnexionInscription ////////
-Route::get('/connexion', 'ConnexionInscriptionController@index', 'Connexion');
+//Route::get('/connexion', 'ConnexionInscriptionController@index', 'Connexion');
 Route::post('/connexion/login', 'ConnexionInscriptionController@connexion', 'Connexion');
-Route::post('/connexion/register', 'ConnexionInscriptionController@inscription', 'Connexion');
-Route::get('/connexion/register/{token}', 'ConnexionInscriptionController@confirm', 'Connexion');
+//Route::post('/connexion/register', 'ConnexionInscriptionController@inscription', 'Connexion');
+//Route::get('/connexion/register/{token}', 'ConnexionInscriptionController@confirm', 'Connexion');
 
 //////// Admin liste Utilisateur ////////
 Route::get('/admin/utilisateur', 'AdminUtilisateurController@index', 'AdminUtilisateur');
