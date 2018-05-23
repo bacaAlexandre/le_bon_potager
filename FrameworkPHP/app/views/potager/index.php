@@ -55,10 +55,10 @@
               <textarea rows="5" name="info" id="info" class="form-control" placeholder="Saisir des informations supplémentaires sur le produit."></textarea>
           </div>
         </div>
+      </div>
         <div class="col-md-12">
             <button type="submit" name="search" class="btn btn-success">Valider</button>
         </div>
-      </div>
       <?php if ($this->flash('error_creation') !== null) { ?>
           <ul class='alert alert-danger' role='alert'>
               <?php foreach ($this->flash('error_creation') as $error) {
