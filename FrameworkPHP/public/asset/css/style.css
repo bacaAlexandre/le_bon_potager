@@ -83,7 +83,9 @@ hr {
   height: 1px;
 }
 
-
+.modal-header{
+  cursor: move;
+}
 /*******************Partie Admin***********************/
 
 /****utilisateur****/
