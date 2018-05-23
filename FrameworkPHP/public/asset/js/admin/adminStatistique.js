@@ -7,7 +7,6 @@ $(function () {
         success: function (json) {
             let data = JSON.parse(json);
 
-            console.log(data);
             let labels = [];
             let value = [];
             let backgroundColor = [];
@@ -20,14 +19,9 @@ $(function () {
                 let nb2 = Math.floor((Math.random() * 255) + 0);
                 let nb3 = Math.floor((Math.random() * 255) + 0);
 
-                backgroundColor[i] = ['rgba(' + nb1 + ',' + nb2 + ',' + nb3 + ',0.2)'];
-                borderColor[i] = ['rgba(' + nb1 + ',' + nb2 + ',' + nb3 + ',1)'];
+                backgroundColor[i] = 'rgba(' + nb1 + ',' + nb2 + ',' + nb3 + ',0.2)';
+                borderColor[i] = 'rgba(' + nb1 + ',' + nb2 + ',' + nb3 + ',1)';
             }
-
-
-            console.log(labels);
-            console.log(backgroundColor);
-            console.log(borderColor);
 
 
             var ctx = document.getElementById("myChart").getContext('2d');
