@@ -100,6 +100,23 @@
                     <?php echo $data->utiAdresse ?>
                 </div>
             </div>
+            <div class="form-group">
+                <div class="spe">Carte :</div>
+                <div class="form-control">
+                    <div id="map" class="map"></div>
+                    <script>
+                        mapboxgl.accessToken = 'pk.eyJ1IjoiNWU5MDA2ODUiLCJhIjoiY2poaHBpZW85MDF4dTM2bzAwbDE0azl1ayJ9.LzXW1H7iBY_b-J0T87gWkQ';
+                        var map = new mapboxgl.Map({
+                            container: 'map',
+                            style: 'mapbox://styles/mapbox/streets-v9',
+                            center: [<?php echo $data->utiLatitude ?>, <?php echo $data->utiLongitude ?>],
+                            zoom: 15 // starting zoom
+                        });
+                        var marker = new mapboxgl.Marker()
+                            .setLngLat([<?php echo $data->utiLatitude ?>, <?php echo $data->utiLongitude ?>])
+                            .addTo(map);
+                    </script>
+            </div>
         <?php } ?>
         <?php if (($data->utiTelAffiche) && ($data->utiTel)) { ?>
             <div class="form-group">
