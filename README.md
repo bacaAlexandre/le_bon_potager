@@ -1,5 +1,5 @@
 # Le bon potager
-![Site web 'Garden Party'](FrameworkPHP/public/asset/img/logo_trans.png "Site web 'Garden Party'")
+![Site web 'Garden Party'](FrameworkPHP/public/asset/img/Logo_Garden_Party.png "Site web 'Garden Party'")
 
 ### Serveurs Web
 * [apache](https://httpd.apache.org/ "Official website")
