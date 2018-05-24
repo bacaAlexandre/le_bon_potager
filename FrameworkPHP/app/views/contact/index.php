@@ -97,6 +97,35 @@
         <?php } ?>
     </div>
     <div class="col-md-12 md-12">
+        <?php if ($longitude == 0 && $latitude == 0) { ?>
+        <div class="form-group">
+            <div class="spe">Carte :</div>
+            <div class="form-control">
+                <div id="map" class="map"></div>
+                <script>
+                    mapboxgl.accessToken = 'pk.eyJ1IjoiNWU5MDA2ODUiLCJhIjoiY2poaHBpZW85MDF4dTM2bzAwbDE0azl1ayJ9.LzXW1H7iBY_b-J0T87gWkQ';
+                    let map = new mapboxgl.Map({
+                        container: 'map', // container id
+                        style: 'mapbox://styles/mapbox/streets-v10', // stylesheet location
+                        center: [<?php echo $longitude ?>, <?php echo $latitude ?>] // starting position [lng, lat]
+                        //minZoom: 10,
+                        //zoom: 12 // starting zoom
+                    });
+
+                    let marker = new mapboxgl.Marker()
+                        .setLngLat([<?php echo $data->utiLongitude ?>, <?php echo $data->utiLatitude ?>])
+                        .addTo(map);
+
+                    map.on('load', function () {
+                        map.addControl(new MapboxLanguage({
+                            languageField: 'fr',
+                            defaultLanguage: 'fr'
+                        }));
+                        map.setLayoutProperty('country-label-lg', 'text-field', ['get', 'name_fr']);
+                    });
+                </script>
+        </div>
+        <?php } ?>
         <?php if ($longitude > 0 && $latitude > 0) { ?>
         <div class="form-group">
             <div class="spe">Carte :</div>
