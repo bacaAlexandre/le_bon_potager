@@ -37,7 +37,7 @@ $(function() {
                     window.location.href = get_url();
                 }
             }
-        }).then(function() {
+        }).done(function() {
             $(password).val('');
         });
     });
