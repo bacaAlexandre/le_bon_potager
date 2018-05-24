@@ -90,6 +90,8 @@ class ConnexionInscriptionController extends Controller
         $biographie = $this->input('biographie');
         $adresse_visible = $this->input('adresse_visible');
         $tel_visible = $this->input('tel_visible');
+        $latitude = $this->input('latitude');
+        $longitude = $this->input('longitude');
 
         if (empty($email)) {
             $error['input'] = 'inscription_email';
@@ -153,8 +155,8 @@ class ConnexionInscriptionController extends Controller
                 'utiCp_id' => "$code_postal",
                 'utiTelAffiche' => "$tel_visible",
                 'utiAdresseAffiche' => "$adresse_visible",
-                'utiLatitude' => "0",
-                'utiLongitude' => "0"
+                'utiLatitude' => "'$latitude'",
+                'utiLongitude' => "'$longitude'"
             ]);
 
             $message = "<h1>Bienvenue à vous sur Garden Party !</h1>";
@@ -167,6 +169,8 @@ class ConnexionInscriptionController extends Controller
                 ini_set("smtp_port", "1025");
                 mail($email, 'Confirmation compte', $message);
             } catch (Exception $e) { }
+
+            $this->flash('success_registration', "Vous vous êtes bien enregistré. Un email de confirmation à été envoyé à $email.");
         }
         echo json_encode($array);
     }
@@ -182,10 +186,9 @@ class ConnexionInscriptionController extends Controller
                 'utiValide' => '1',
                 'utiToken' => 'NULL',
             ));
-            $message = "<p>Votre compte a bien été confirmé.</p>";
-            $this->flash('success_registration', $message);
+            $this->flash('success_registration', "Votre inscription a bien été confirmé !");
         }
-        return $this->redirect($this->view('/connexion'));
+        return $this->redirect($this->view('/') . '#connexion');
     }
 
     public function logout() {

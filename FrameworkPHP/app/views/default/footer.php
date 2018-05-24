@@ -17,6 +17,12 @@
 
                   <div class="modal-body">
                       <fieldset>
+                          <?php if ($this->flash('success_registration') !== null) { ?>
+                              <div class="col-12 alert alert-success">
+                                  <p><?php echo $this->flash('success_registration'); ?></p>
+                              </div>
+                          <?php } ?>
+
                           <div class="form-group">
                               <label for="connexion_email">Votre e-mail :</label>
                               <input type="email" name="email" placeholder="Ex: garden.party@orange.fr" id="connexion_email" class="form-control">
@@ -75,7 +81,7 @@
                                   <?php
                                   $t_code_postal = new Model('T_CODE_POSTAL');
                                   foreach ($t_code_postal->findAll() as $val) {
-                                      echo "<option value=\"" . $val->id_code_postal . "\">" . $val->cpLibelle . "</option>";
+                                      echo "<option value=\"" . $val->id_code_postal . "\" data-code-postal=\"" . $val->cpLibelle . "\">" . $val->cpLibelle . "</option>";
                                   } ?>
                               </select>
                           </div>
