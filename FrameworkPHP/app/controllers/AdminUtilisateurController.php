@@ -31,59 +31,81 @@ class AdminUtilisateurController extends Controller
 
         $reponse = [
             'postal_code' => $this->t_code_postal->findAll(),
-                'id_utilisateur' => $user->id_utilisateur,
-                'adresse' => $user->utiAdresse,
-                'adresse_affiche' => $user->utiAdresseAffiche,
-                'user_code_postal' => $user->utiCp_id,
-                'code_postal' => $codePostal,
-                'phone' => $user->utiTel,
-                'tel_affiche' => $user->utiTelAffiche,
-                'pseudo' => $user->utiPseudo,
-                'description' => $user->utiDescription,
-                'email' => $user->utiEmail,
+            'id_utilisateur' => $user->id_utilisateur,
+            'adresse' => $user->utiAdresse,
+            'adresse_affiche' => $user->utiAdresseAffiche,
+            'user_code_postal' => $user->utiCp_id,
+            'code_postal' => $codePostal,
+            'phone' => $user->utiTel,
+            'tel_affiche' => $user->utiTelAffiche,
+            'pseudo' => $user->utiPseudo,
+            'description' => $user->utiDescription,
+            'email' => $user->utiEmail,
         ];
 
-         echo json_encode($reponse);
+        echo json_encode($reponse);
     }
 
     public function changeInfos()
     {
-        $id_utilisateur = $this->input('id_utilisateur');
+        $id_utilisateur = $_POST['id'];
+        $error = array();
+        $reponse = array();
         if ((!$this->session()->is_logged()) || ($this->session()->get_role() !== 'Admin')) {
             return $this->redirect($this->view('/'));
         }
         $user = $this->t_utilisateurs->find(array('id_utilisateur' => $id_utilisateur));
-        if (($user !== null) && ($this->session()->get_user_id() !== $id_utilisateur)) {
 
-            $adresse = $this->input('address');
-            $adresse_affiche = $this->input('adresse_affiche') === 'on' ? '1' : '0';
-            $code_postal = $this->input('postal_code');
-            $tel = $this->input('tel');
-            $tel_affiche = $this->input('tel_affiche') === 'on' ? '1' : '0';
-            $pseudo = $this->input('pseudo');
-            $email = $this->input('email');
-            $description = $this->input('biography');
+        if (($user !== null) && ($this->session()->get_user_id() !== $id_utilisateur)) {
+            $adresse = $_POST['address'];
+            $adresse_affiche = ($_POST['address_visible']) == "true" ? 1 : 0;
+            $code_postal = $_POST['postal_code'];
+            $tel = $_POST['tel'];
+            $tel_affiche = ($_POST['tel_visible']) == "true" ? 1 : 0;
+            $pseudo = $_POST['pseudo'];
+            $email = $_POST['email'];
+            $description = $_POST['biography'];
+            $password = $_POST['password'];
 
             if (empty($email)) {
-                $error[] = "Vous devez rentrer un email";
+                $data["input"] = "email";
+                $data["message"] = "Vous devez rentrer un email";
+                $error[] = $data;
             } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                $error[] = "Vous devez rentrer un email valide";
+                $data["input"] = "email";
+                $data["message"] = "Vous devez rentrer un email valide";
+                $error[] = $data;
             } else {
                 $other = $this->t_utilisateurs->find(array('utiEmail' => "'$email'"));
                 if (($other) && ($other->id_utilisateur != $id_utilisateur)) {
-                    $error[] = "Cette adresse email est déjà utilisée";
+                    $data["input"] = "email";
+                    $data["message"] = "Cette adresse email est déjà utilisée";
+                    $error[] = $data;
                 }
             }
             if (empty($pseudo)) {
-                $error[] = "Vous devez entrer un pseudo";
+                $data["input"] = "pseudo";
+                $data["message"] = "Vous devez entrer un pseudo";
+                $error[] = $data;
             }
             if (empty($adresse)) {
-                $error[] = "Vous devez entrer une adresse";
+                $data["input"] = "adress";
+                $data["message"] = "Vous devez entrer une adresse";
+                $error[] = $data;
+
             }
             if (empty($code_postal)) {
-                $error[] = "Vous devez entrer un code postal";
+                $data["input"] = "postal_code";
+                $data["message"] = "Vous devez entrer un code postal";
+                $error[] = $data;
             }
-
+            if (!empty($password)) {
+                if (!preg_match("/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d-+_]{8,}$/", $password)) {
+                    $data["input"] = "password";
+                    $data["message"] = "Le mot de passe doit contenir au minimum 8 caractères, une miniscule, une majuscule et un chiffre.";
+                    $error[] = $data;
+                }
+            }
 
             if (count($error) === 0) {
                 $this->t_utilisateurs->update(array(
@@ -98,60 +120,27 @@ class AdminUtilisateurController extends Controller
                     'utiTelAffiche' => "$tel_affiche",
                     'utiAdresseAffiche' => "$adresse_affiche",
                 ));
-                $message = "Les informations de l'utilisateur ont bien été changées";
-                $this->flash('success_change_infos', $message);
-                return $this->redirect($this->view('/admin/utilisateur/' . $id_utilisateur . '/edit'));
+                if (!empty($password)) {
+                    $this->t_utilisateurs->update(array(
+                        'id_utilisateur' => $id_utilisateur,
+                    ), array(
+                        'utiMdp' => "sha1('$password')",
+                    ));
+
+
+                    $message = "<p>Votre mot de passe a ete change par un administrateur.</p>";
+                    $message .= "<p>Votre nouveau mot de passe: <span style='color:blue'>$password</span></p>";
+
+                    ini_set("smtp_port", "1025");
+                    mail($user->utiEmail, 'Changement de mot passe', $message);
+                }
+                $reponse['message'] = "OK";
+            } else {
+                $reponse['message'] = "KO";
+                $reponse['error'] = $error;
             }
-            $this->flash('error_change_infos', $error);
-            $this->flash('email', $email);
-            $this->flash('pseudo', $pseudo);
-            $this->flash('address', $adresse);
-            $this->flash('postal_code', $code_postal);
-            $this->flash('phone', $tel);
-            $this->flash('biography', $description);
-            $this->flash('tel_affiche', $tel_affiche);
-            $this->flash('adresse_affiche', $adresse_affiche);
-            return $this->redirect($this->view('/admin/utilisateur/' . $id_utilisateur . '/edit'));
         }
-        return $this->redirect($this->view('/admin/utilisateur'));
-    }
-
-    public function changePassword()
-    {
-        $id_utilisateur = $this->input('id_utilisateur');
-        if ((!$this->session()->is_logged()) || ($this->session()->get_role() !== 'Admin')) {
-            return $this->redirect($this->view('/'));
-        }
-        $user = $this->t_utilisateurs->find(array('id_utilisateur' => $id_utilisateur));
-        if (($user !== null) && ($this->session()->get_user_id() !== $id_utilisateur)) {
-            $error = array();
-            $password = $this->input('password');
-            if (empty($password)) {
-                $error[] = "Vous devez entrer un nouveau mot de passe";
-            } elseif (!preg_match("/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d-+_]{8,}$/", $password)) {
-                $error[] = "Le mot de passe doit contenir au minimum 8 caractères, une miniscule, une majuscule et un chiffre.";
-            }
-            if (count($error) === 0) {
-                $this->t_utilisateurs->update(array(
-                    'id_utilisateur' => $id_utilisateur,
-                ), array(
-                    'utiMdp' => "sha1('$password')",
-                ));
-                $message = "<p>Votre mot de passe a ete change par un administrateur.</p>";
-                $message .= "<p>Votre nouveau mot de passe: <span style='color:blue'>$password</span></p>";
-
-                ini_set("smtp_port", "1025");
-                mail($user->utiEmail, 'Changement de mot passe', $message);
-
-                $message = "Le mot de passe de l'utilisateur a bien été changé";
-                $this->flash('success_change_password', $message);
-                return $this->redirect($this->view('/admin/utilisateur/' . $id_utilisateur . '/edit'));
-            }
-            $this->flash('error_change_password', $error);
-            return $this->redirect($this->view('/admin/utilisateur/' . $id_utilisateur . '/edit'));
-
-        }
-        return $this->redirect($this->view('/admin/utilisateur'));
+        echo json_encode($reponse);
     }
 
     public function lock($id)

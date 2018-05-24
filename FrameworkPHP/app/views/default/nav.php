@@ -21,11 +21,7 @@
                 <li class="nav-item <?php echo ($this->is_group('Compte') ? 'active' : ''); ?>">
                     <a class="nav-link" href="<?php echo $this->view('/compte'); ?>">Mon compte</a>
                 </li>
-            <?php } else { ?>
-                <li class="nav-item <?php echo ($this->is_group('Connexion') ? 'active' : ''); ?>">
-                    <a class="nav-link" href="<?php echo $this->view('/connexion'); ?>">Mon compte</a>
-                </li>
-           <?php } ?>
+            <?php } ?>
             <?php
                 if (($this->session()->is_logged()) && ($this->session()->get_role() === 'Admin')) {
                     ?>

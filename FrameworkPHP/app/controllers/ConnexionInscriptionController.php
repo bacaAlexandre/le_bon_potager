@@ -33,40 +33,45 @@ class ConnexionInscriptionController extends Controller
 
     public function connexion()
     {
-        $error = array();
+        $array = array();
         $email = $this->input('email');
         $password = $this->input('password');
 
         if (empty($email)) {
-            $error[] = "Vous devez rentrer votre email";
-        }
-        if (empty($password)) {
-            $error[] = "Vous devez rentrer votre mot de passe";
+            $error['input'] = 'email_con';
+            $error['message'] = "Veuillez renseignez votre email de connexion.";
+            $array[] = $error;
         }
 
-        if (count($error) === 0) {
+        if (empty($password)) {
+            $error['input'] = 'password_con';
+            $error['message'] = "Veuillez rentrer le mot de passe correspondant à votre email.";
+            $array[] = $error;
+        }
+
+        if (empty($array)) {
             $data = $this->t_utilisateurs->find(array(
                 'utiEmail' => "'$email'",
             ));
             if ($data) {
                 if ($data->utiDesactive) {
-                    $error[] = "Votre compte a été desactivé";
+                    $array[] = "Votre compte a été desactivé, veuillez contacter un administrateur.";
                 } elseif ($data->utiToken !== null) {
-                    $error[] = "Vous devez confirmer votre compte avant de vous connecter";
+                    $array[] = "Vous devez confirmer votre inscription avant de pouvoir vous connecter.";
                 } elseif ($data->utiMdp !== sha1($password)) {
-                    $error[] = "Votre email et votre mot de passe ne correspondent pas";
+                    $error['input'] = 'password_con';
+                    $error['message'] = "Le mot de passe ne correspond pas à votre adresse email.";
+                    $array[] = $error;
                 } else {
                     $this->session()->login($data->id_utilisateur);
-                    return $this->redirect($this->view('/'));
                 }
             } else {
-                $error[] = "Ce compte n'existe pas";
+                $error['input'] = 'email_con';
+                $error['message'] = "Cette adresse email ne s'est pas encore inscrite.";
+                $array[] = $error;
             }
         }
-        $this->flash('error_connexion', $error);
-        $this->flash('email_connexion', $email);
-        return $this->redirect($this->view('/connexion'));
-
+        echo json_encode($array);
     }
 
     public function inscription()

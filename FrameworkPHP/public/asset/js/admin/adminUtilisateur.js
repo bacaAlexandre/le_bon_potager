@@ -25,22 +25,62 @@ $(function () {
                     } else {
                         $("#postal_code").append("<option value=" + data.code_postal[i]['id_code_postal'] + ">" + data.code_postal[i]['cpLibelle'] + "</option>");
                     }
-
                 }
-
-                $("#tel").html(data.phone);
+                $("#tel").val(data.phone);
 
                 if (data.tel_affiche == 1) {
                     $("#tel_visible").attr('checked', 'checked');
                 }
 
-                $("#pseudo").html(data.pseudo);
-                $("#email").html(data.email);
+                $("#pseudo").val(data.pseudo);
+                $("#pseudo").data("id_utilisateur", data.id_utilisateur);
+                $("#email").val(data.email);
                 $("#biography").html(data.description);
+
+                $('.block_error_modal').empty();
+                $(".form-control").removeClass("is-invalid");
 
             }
         })
     });
+
+    $("#modal_admin_user_valide").click(function () {
+        $.ajax({
+            url: PUBLIC_URL + "?admin/utilisateur/changeinfos",
+            method: "POST",
+            data: {
+                id: $("#pseudo").data('id_utilisateur'),
+                password: $("#password").val(),
+                address: $("#address").val(),
+                address_visible: $("#address_visible").is(':checked'),
+                postal_code: $("#postal_code").val(),
+                tel: $("#tel").val(),
+                tel_visible: $("#tel_visible").is(':checked'),
+                pseudo: $("#pseudo").val(),
+                email: $("#email").val(),
+                biography: $("#biography").html(),
+            },
+            success: function (json) {
+                let data = JSON.parse(json);
+                $('.block_error_modal').empty();
+                $(".form-control").removeClass("is-invalid");
+                $("#password").val("");
+
+                if (data.message == "KO") {
+                    $('.block_error_modal').removeClass("invisible");
+                    for (i = 0; i < data.error.length; i++) {
+                        $("#" + data.error[i].input).addClass("is-invalid");
+                        $(".block_error_modal").append("<ul class='alert alert-danger' role='alert'>" + data.error[i].message + "</ul>");
+                    }
+                } else {
+                    $('.close').trigger('click');
+                    location.reload();
+                }
+
+            }
+        })
+    });
+
 });
 
 

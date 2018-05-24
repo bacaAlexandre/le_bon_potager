@@ -15,7 +15,8 @@
                     <div class="card-footer text-right">
                         <!--                        <a href="-->
                         <?php //echo $this->view('admin/utilisateur/' . $user->id_utilisateur . '/edit') ?><!--">-->
-                        <button type="button" class="btn btn-warning" id="btn_edit_user" data-toggle="modal" data-target="#modal_edit" value=<?php echo $user->id_utilisateur; ?>><i
+                        <button type="button" class="btn btn-warning" id="btn_edit_user" data-toggle="modal"
+                                data-target="#modal_edit" value=<?php echo $user->id_utilisateur; ?>><i
                                     class="fas fa-wrench"></i></button>
                         <!--                        </a>-->
                         <a href="<?php echo $this->view('admin/utilisateur/' . $user->id_utilisateur . '/lock') ?>">
@@ -42,7 +43,8 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="password">Son nouveau mot de passe :</label>
-                                            <input type="password" name="password" id="password" class="form-control"
+                                            <input type="password" name="password" id="password"
+                                                   class="form-control "
                                                    minlength="8">
                                         </div>
                                         <div class="form-group">
@@ -58,9 +60,8 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="postal_code">Son code postal :</label>
-                                            <select name="postal_code" id="postal_code" class="form-control" required>
-
-                                            </select>
+                                            <select name="postal_code" id="postal_code" class="form-control"
+                                                    required></select>
                                         </div>
                                         <div class="form-group">
                                             <label for="tel">Son téléphone :</label>
@@ -91,12 +92,15 @@
                                     </div>
                                 </div>
                             </fieldset>
-                            <ul class='alert alert-danger invisible' role='alert'></ul>
+                            <div class="block_error_modal invisible">
+
+                            </div>
+
                         </form>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-dismiss="modal">Annuler</button>
-                        <button type="button" class="btn btn-success" data-dismiss="modal">Valider</button>
+                        <button type="button" class="btn btn-success" id="modal_admin_user_valide">Valider</button>
                     </div>
                 </div>
             </div>
