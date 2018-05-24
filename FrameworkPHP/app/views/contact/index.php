@@ -107,9 +107,9 @@
                     let map = new mapboxgl.Map({
                         container: 'map', // container id
                         style: 'mapbox://styles/mapbox/streets-v10', // stylesheet location
-                        center: [<?php echo $longitude ?>, <?php echo $latitude ?>] // starting position [lng, lat]
+                        center: [<?php echo $data->utiLongitude ?>, <?php echo $data->utiLatitude ?>], // starting position [lng, lat]
                         //minZoom: 10,
-                        //zoom: 12 // starting zoom
+                        zoom: 13 // starting zoom
                     });
 
                     let marker = new mapboxgl.Marker()
