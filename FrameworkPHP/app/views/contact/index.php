@@ -122,20 +122,10 @@
                             maximumAge: 0
                         };
 
-                        function success(pos) {
-                            let crd = pos.coords;
-
-                            console.log('Votre position actuelle est :');
-                            console.log(`Latitude : ${crd.latitude}`);
-                            console.log(`Longitude: ${crd.longitude}`);
-                            console.log(`Plus ou moins ${crd.accuracy} mètres.`);
-
+                        function base_map() {
                             let map = new mapboxgl.Map({
                                 container: 'map', // container id
-                                style: 'mapbox://styles/mapbox/streets-v10', // stylesheet location
-                                center: [<?php echo $longitude ?>, <?php echo $latitude ?>] // starting position [lng, lat]
-                                //minZoom: 10,
-                                //zoom: 12 // starting zoom
+                                style: 'mapbox://styles/mapbox/streets-v10' // stylesheet location
                             });
 
                             let directions = new MapboxDirections({
@@ -148,7 +138,8 @@
                             });
 
                             map.on('load', function () {
-                                directions.setOrigin([crd.longitude, crd.latitude]);
+                                let data = JSON.parse(localStorage.getItem("coords"));
+                                directions.setOrigin([data.longitude, data.latitude]);
                                 directions.setDestination([<?php echo $data->utiLongitude ?>, <?php echo $data->utiLatitude ?>]);
                                 map.addControl(directions, 'top-left');
                                 map.addControl(new MapboxLanguage({
@@ -157,33 +148,55 @@
                                 }));
                                 map.setLayoutProperty('country-label-lg', 'text-field', ['get', 'name_fr']);
                             });
+                        }
+
+                        function success(pos) {
+                            let crd = pos.coords;
+
+                            if (typeof(Storage) !== "undefined") {
+                                var object = {latitude: `${crd.latitude}`, longitude: `${crd.longitude}`, timestamp: `${pos.timestamp}`}
+                                localStorage.setItem("coords", JSON.stringify(object));
+                                //localStorage.setItem("latitude", `${crd.latitude}`);
+                                //localStorage.setItem("longitude", `${crd.longitude}`);
+                                //localStorage.setItem("timestamp", `${pos.timestamp}`);
+                            }
+
+                            base_map()
                         };
 
                         function error(err) {
-                            console.warn(`ERROR(${err.code}): ${err.message}`);
-
-                            let map = new mapboxgl.Map({
-                                container: 'map', // container id
-                                style: 'mapbox://styles/mapbox/streets-v10', // stylesheet location
-                                center: [<?php echo $data->utiLongitude ?>, <?php echo $data->utiLatitude ?>], // starting position [lng, lat]
-                                //minZoom: 10,
-                                zoom: 13 // starting zoom
-                            });
-
-                            let marker = new mapboxgl.Marker()
-                                .setLngLat([<?php echo $data->utiLongitude ?>, <?php echo $data->utiLatitude ?>])
-                                .addTo(map);
-
-                            map.on('load', function () {
-                                map.addControl(new MapboxLanguage({
-                                    languageField: 'fr',
-                                    defaultLanguage: 'fr'
-                                }));
-                                map.setLayoutProperty('country-label-lg', 'text-field', ['get', 'name_fr']);
-                            });
+                            if (err.code == err.PERMISSION_DENIED) {
+                                let map = new mapboxgl.Map({
+                                    container: 'map', // container id
+                                    style: 'mapbox://styles/mapbox/streets-v10', // stylesheet location
+                                    center: [<?php echo $data->utiLongitude ?>, <?php echo $data->utiLatitude ?>], // starting position [lng, lat]
+                                    //minZoom: 10,
+                                    zoom: 13 // starting zoom
+                                });
+    
+                                let marker = new mapboxgl.Marker()
+                                    .setLngLat([<?php echo $data->utiLongitude ?>, <?php echo $data->utiLatitude ?>])
+                                    .addTo(map);
+    
+                                map.on('load', function () {
+                                    map.addControl(new MapboxLanguage({
+                                        languageField: 'fr',
+                                        defaultLanguage: 'fr'
+                                    }));
+                                    map.setLayoutProperty('country-label-lg', 'text-field', ['get', 'name_fr']);
+                                });
+                            }
                         };
 
-                        navigator.geolocation.getCurrentPosition(success, error, options);
+                        if (localStorage.coords) {
+                            if((new Date().getTime() - JSON.parse(localStorage.getItem("coords")).timestamp) < 60 * 60 * 1000) {
+                                base_map()
+                            } else {
+                                navigator.geolocation.getCurrentPosition(success, error, options);
+                            }
+                        } else {
+                            navigator.geolocation.getCurrentPosition(success, error, options);
+                        }
 
                     } else {
                         let map = new mapboxgl.Map({
@@ -219,10 +232,7 @@
                     mapboxgl.accessToken = 'pk.eyJ1IjoiNWU5MDA2ODUiLCJhIjoiY2poaHBpZW85MDF4dTM2bzAwbDE0azl1ayJ9.LzXW1H7iBY_b-J0T87gWkQ';
                     let map = new mapboxgl.Map({
                         container: 'map', // container id
-                        style: 'mapbox://styles/mapbox/streets-v10', // stylesheet location
-                        center: [<?php echo $longitude ?>, <?php echo $latitude ?>] // starting position [lng, lat]
-                        //minZoom: 10,
-                        //zoom: 12 // starting zoom
+                        style: 'mapbox://styles/mapbox/streets-v10' // stylesheet location
                     });
 
                     let directions = new MapboxDirections({
