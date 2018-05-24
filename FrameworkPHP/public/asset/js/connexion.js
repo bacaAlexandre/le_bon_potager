@@ -16,7 +16,6 @@ $(function() {
         e.preventDefault();
         $(form).find('.is-invalid').removeClass('is-invalid');
         $(error).empty().hide();
-        $(password).val('');
         $.ajax({
             url: get_url('connexion/login'),
             type: 'POST',
@@ -38,6 +37,8 @@ $(function() {
                     window.location.href = get_url();
                 }
             }
+        }).then(function() {
+            $(password).val('');
         });
     });
 });
