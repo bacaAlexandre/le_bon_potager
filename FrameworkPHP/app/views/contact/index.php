@@ -64,20 +64,6 @@
 
 
                 </div>
-                <div class="form-check">
-                    <input type="checkbox" id="copy" class="form-check-input">
-                    <label for="copy" class="form-check-label">Je souhaite recevoir une copie de cet email</label>
-                </div>
-                <input type="hidden" name="max" value="<?php echo $data->puQuantite ?>">
-                <input type="hidden" name="id" value="<?php echo $data->id_produit ?>">
-                <button type="submit" class="btn btn-success">Envoyer l'email</button>
-                <?php if ($this->flash('error') !== null) { ?>
-                    <ul class='alert alert-danger' role='alert'>
-                        <?php foreach ($this->flash('error') as $error) {
-                            echo "<li>$error</li>";
-                        } ?>
-                    </ul>
-                <?php } ?>
             </fieldset>
         </form>
     </div>
@@ -100,23 +86,6 @@
                     <?php echo $data->utiAdresse ?>
                 </div>
             </div>
-            <div class="form-group">
-                <div class="spe">Carte :</div>
-                <div class="form-control">
-                    <div id="map" class="map"></div>
-                    <script>
-                        mapboxgl.accessToken = 'pk.eyJ1IjoiNWU5MDA2ODUiLCJhIjoiY2poaHBpZW85MDF4dTM2bzAwbDE0azl1ayJ9.LzXW1H7iBY_b-J0T87gWkQ';
-                        var map = new mapboxgl.Map({
-                            container: 'map', // container id
-                            style: 'mapbox://styles/mapbox/streets-v9', // stylesheet location
-                            center: [<?php echo $data->utiLatitude ?>, <?php echo $data->utiLongitude ?>], // starting position [lng, lat]
-                            zoom: 15 // starting zoom
-                        });
-                        var marker = new mapboxgl.Marker()
-                            .setLngLat([<?php echo $data->utiLatitude ?>, <?php echo $data->utiLongitude ?>])
-                            .addTo(map);
-                    </script>
-            </div>
         <?php } ?>
         <?php if (($data->utiTelAffiche) && ($data->utiTel)) { ?>
             <div class="form-group">
@@ -125,6 +94,59 @@
                     <?php echo $data->utiTel ?>
                 </div>
             </div>
+        <?php } ?>
+    </div>
+    <div class="col-md-12 md-12">
+        <?php if ($longitude > 0 && $latitude > 0) { ?>
+        <div class="form-group">
+            <div class="spe">Carte :</div>
+            <div class="form-control">
+                <div id="map" class="map"></div>
+                <script>
+                    mapboxgl.accessToken = 'pk.eyJ1IjoiNWU5MDA2ODUiLCJhIjoiY2poaHBpZW85MDF4dTM2bzAwbDE0azl1ayJ9.LzXW1H7iBY_b-J0T87gWkQ';
+                    let map = new mapboxgl.Map({
+                        container: 'map', // container id
+                        style: 'mapbox://styles/mapbox/streets-v10', // stylesheet location
+                        center: [<?php echo $longitude ?>, <?php echo $latitude ?>] // starting position [lng, lat]
+                        //minZoom: 10,
+                        //zoom: 12 // starting zoom
+                    });
+
+                    let directions = new MapboxDirections({
+                        accessToken: mapboxgl.accessToken,
+                        unit: 'metric',
+                        profile: 'mapbox/driving',
+                        controls: {
+                            inputs: false
+                        }
+                    });
+
+                    map.on('load', function () {
+                        directions.setOrigin([<?php echo $longitude ?>, <?php echo $latitude ?>]);
+                        directions.setDestination([<?php echo $data->utiLongitude ?>, <?php echo $data->utiLatitude ?>]);
+                        map.addControl(directions, 'top-left');
+                        map.addControl(new MapboxLanguage({
+                            languageField: 'fr',
+                            defaultLanguage: 'fr'
+                        }));
+                        map.setLayoutProperty('country-label-lg', 'text-field', ['get', 'name_fr']);
+                    });
+                </script>
+        </div>
+        <?php } ?>
+        <div class="form-check">
+            <input type="checkbox" id="copy" class="form-check-input">
+            <label for="copy" class="form-check-label">Je souhaite recevoir une copie de cet email</label>
+        </div>
+        <input type="hidden" name="max" value="<?php echo $data->puQuantite ?>">
+        <input type="hidden" name="id" value="<?php echo $data->id_produit ?>">
+        <button type="submit" class="btn btn-success">Envoyer l'email</button>
+        <?php if ($this->flash('error') !== null) { ?>
+            <ul class='alert alert-danger' role='alert'>
+                <?php foreach ($this->flash('error') as $error) {
+                    echo "<li>$error</li>";
+                } ?>
+            </ul>
         <?php } ?>
     </div>
 </div>
