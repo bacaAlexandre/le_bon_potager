@@ -50,23 +50,23 @@
                       <fieldset>
                           <div class="form-group">
                               <label for="inscription_email">Votre e-mail* :</label>
-                              <input type="email" id="inscription_email" class="form-control">
+                              <input type="email" name="email" placeholder="Ex: garden.party@orange.fr" id="inscription_email" class="form-control">
                           </div>
                           <div class="form-group">
                               <label for="inscription_password">Votre mot de passe * :</label>
-                              <input type="password" id="inscription_password" class="form-control">
+                              <input type="password" name="password" placeholder="Ex: Garden76" id="inscription_password" class="form-control">
                           </div>
                           <div class="form-group">
                               <label for="inscription_password_repeat">Confirmer votre mot de passe * :</label>
-                              <input type="password" id="inscription_password_repeat" class="form-control">
+                              <input type="password" name="password_repeat" placeholder="Ex: Garden76" id="inscription_password_repeat" class="form-control">
                           </div>
                           <div class="form-group">
                               <label for="inscription_pseudo">Votre pseudonyme * :</label>
-                              <input type="text" id="inscription_pseudo" class="form-control">
+                              <input type="text" name="pseudo" placeholder="Ex: John Smith" id="inscription_pseudo" class="form-control">
                           </div>
                           <div class="form-group">
                               <label for="inscription_adresse">Votre adresse * :</label>
-                              <textarea rows="3" id="inscription_adresse" class="form-control"></textarea>
+                              <textarea rows="3" name="adresse" placeholder="Ex: 5ème Maison en entrant à Asgard, Valhalla" id="inscription_adresse" class="form-control"></textarea>
                           </div>
                           <div class="form-group">
                               <label for="inscription_code_postal">Votre code postal * :</label>
@@ -81,11 +81,11 @@
                           </div>
                           <div class="form-group">
                               <label for="inscription_tel">Votre n° de téléphone :</label>
-                              <input type="tel" id="inscription_tel" class="form-control">
+                              <input type="tel" name="telephone" placeholder="0625091996" id="inscription_tel" class="form-control">
                           </div>
                           <div class="form-group">
                               <label for="inscription_biographie">Votre biographie :</label>
-                              <textarea rows="5" id="inscription_biographie" class="form-control"></textarea>
+                              <textarea rows="5" name="biographie" placeholder="Ancien dieu du royaume du Valhalla j'ai pris ma retraite et je souhaites vous faire découvrir les mets divins présents sur notre terre." id="inscription_biographie" class="form-control"></textarea>
                           </div>
                           <div class="form-check">
                               <input type="checkbox" id="inscription_adresse_visible" class="form-check-input">

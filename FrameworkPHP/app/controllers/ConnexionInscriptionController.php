@@ -57,9 +57,10 @@ class ConnexionInscriptionController extends Controller
                 if ($data->utiDesactive) {
                     $error['input'] = 'connexion_email';
                     $array['message'] = "Votre compte a été desactivé, veuillez contacter un administrateur.";
-                } elseif ($data->utiToken !== null) {
+                } elseif (!$data->utiValide) {
                     $error['input'] = 'connexion_email';
-                    $array['message'] = "Vous devez confirmer votre inscription avant de pouvoir vous connecter.";
+                    $error['message'] = "Vous devez confirmer votre inscription avant de pouvoir vous connecter.";
+                    $array[] = $error;
                 } elseif ($data->utiMdp !== sha1($password)) {
                     $error['input'] = 'connexion_password';
                     $error['message'] = "Le mot de passe ne correspond pas à votre adresse email.";
@@ -78,59 +79,85 @@ class ConnexionInscriptionController extends Controller
 
     public function inscription()
     {
-        $error = array();
+        $array = array();
         $email = $this->input('email');
         $password = $this->input('password');
         $password_repeat = $this->input('password_repeat');
         $pseudo = $this->input('pseudo');
-        $address = $this->input('address');
-        $phone = $this->input('phone');
-        $biography = $this->input('biography');
-        $postal_code = $this->input('postal_code');
-        $tel_affiche = $this->input('tel_affiche') === 'on' ? '1' : '0';
-        $adresse_affiche = $this->input('adresse_affiche') === 'on' ? '1' : '0';
+        $adresse = $this->input('adresse');
+        $code_postal = $this->input('code_postal');
+        $tel = $this->input('tel');
+        $biographie = $this->input('biographie');
+        $adresse_visible = $this->input('adresse_visible');
+        $tel_visible = $this->input('tel_visible');
 
         if (empty($email)) {
-            $error[] = "Vous devez rentrer un email";
+            $error['input'] = 'inscription_email';
+            $error['message'] = "Vous devez rentrer un email";
+            $array[] = $error;
         } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            $error[] = "Vous devez rentrer un email valide";
+            $error['input'] = 'inscription_email';
+            $error['message'] = "Vous devez rentrer un email valide";
+            $array[] = $error;
         } elseif ($this->t_utilisateurs->find(array('utiEmail' => "'$email'"))) {
-            $error[] = "Cette adresse email est déjà utilisée";
+            $error['input'] = 'inscription_email';
+            $error['message'] = "Cette adresse email est déjà utilisée";
+            $array[] = $error;
         }
         if (empty($password)) {
-            $error[] = "Vous devez rentrer un mot de passe";
-        } elseif (!preg_match("/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d-+_]{8,}$/", $_POST['password'])) {
-            $error[] = "Votre mot de passe doit contenir au minimum 8 caractères, une miniscule, une majuscule et un chiffre.";
+            $error['input'] = 'inscription_password';
+            $error['message'] = "Vous devez rentrer un mot de passe";
+            $array[] = $error;
+        } elseif (!preg_match("/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d-+_]{8,}$/", $password)) {
+            $error['input'] = 'inscription_password';
+            $error['message'] = "Votre mot de passe doit contenir au minimum 8 caractères, une miniscule, une majuscule et un chiffre.";
+            $array[] = $error;
         }
         if ($password !== $password_repeat) {
-            $error[] = "Votre mot de passe et votre confirmation de mot de passe ne correspondent pas.";
+            $error['input'] = 'inscription_password_repeat';
+            $error['message'] = "Votre mot de passe et votre confirmation de mot de passe ne correspondent pas.";
+            $array[] = $error;
         }
         if (empty($pseudo)) {
-            $error[] = "Vous devez entrer un pseudo";
+            $error['input'] = 'inscription_pseudo';
+            $error['message'] = "Vous devez entrer un pseudo.";
+            $array[] = $error;
         }
-        if (empty($address)) {
-            $error[] = "Vous devez entrer une adresse";
+        if (empty($adresse)) {
+            $error['input'] = 'inscription_adresse';
+            $error['message'] = "Vous devez entrer une adresse.";
+            $array[] = $error;
         }
-        if (empty($postal_code)) {
-            $error[] = "Vous devez entrer un code postal";
+        if (empty($code_postal)) {
+            $error['input'] = 'inscription_code_postal';
+            $error['message'] = "Vous devez entrer un code postal";
+            $array[] = $error;
+        } else if (!$this->t_code_postal->find(array('id_code_postal' => "$code_postal"))) {
+            $error['input'] = 'inscription_code_postal';
+            $error['message'] = "Le code postal que vous avez entrer n'existe pas.";
+            $array[] = $error;
         }
 
 
-        if (count($error) === 0) {
+        if (count($array) === 0) {
             $token = sha1(bin2hex(time()));
             $this->t_utilisateurs->insert([
                 'utiPseudo' => "'$pseudo'",
                 'utiEmail' => "'$email'",
                 'utiMdp' => "sha1('$password')",
                 'utiToken' => "'$token'",
-                'utiAdresse' => "'$address'",
+                'utiAdresse' => "'$adresse'",
                 'utiRole_id' => "100",
-                'utiCp_id' => "'$postal_code'",
-                'utiTelAffiche' => "$tel_affiche",
-                'utiAdresseAffiche' => "$adresse_affiche",
+                'utiTel' => "'$tel'",
+                'utiDescription' => "'$biographie'",
+                'utiCp_id' => "$code_postal",
+                'utiTelAffiche' => "$tel_visible",
+                'utiAdresseAffiche' => "$adresse_visible",
+                'utiLatitude' => "0",
+                'utiLongitude' => "0"
             ]);
 
-            $message = "<h1>Bienvenue sur Le bon potager !</h1>";
+            $message = "<h1>Bienvenue à vous sur Garden Party !</h1>";
             $message .= "<p>Vous etes maintenant inscrit sur le site.</p>";
             $message .= "<p>Merci de cliquer sur le lien pour valider votre inscription.</p>";
             $message .= "<p><a href='" . $this->view('/connexion/register/' . $token);
@@ -139,20 +166,8 @@ class ConnexionInscriptionController extends Controller
             ini_set("smtp_port", "1025");
             mail($email, 'Confirmation compte', $message);
 
-            $message = "<p>Vous vous êtes bien enregistré. Un email de confirmation à été envoyé à $email</p>";
-            $this->flash('success_registration', $message);
-            return $this->redirect($this->view('/connexion'));
         }
-        $this->flash('error_registration', $error);
-        $this->flash('email_registration', $email);
-        $this->flash('pseudo', $pseudo);
-        $this->flash('address', $address);
-        $this->flash('postal_code', $postal_code);
-        $this->flash('phone', $phone);
-        $this->flash('biography', $biography);
-        $this->flash('tel_affiche', $tel_affiche);
-        $this->flash('adresse_affiche', $adresse_affiche);
-        return $this->redirect($this->view('/connexion'));
+        echo json_encode($array);
     }
 
     public function confirm($token) {
