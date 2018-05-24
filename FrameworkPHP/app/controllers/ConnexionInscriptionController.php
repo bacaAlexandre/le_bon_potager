@@ -38,13 +38,13 @@ class ConnexionInscriptionController extends Controller
         $password = $this->input('password');
 
         if (empty($email)) {
-            $error['input'] = 'email_con';
+            $error['input'] = 'connexion_email';
             $error['message'] = "Veuillez renseignez votre email de connexion.";
             $array[] = $error;
         }
 
         if (empty($password)) {
-            $error['input'] = 'password_con';
+            $error['input'] = 'connexion_password';
             $error['message'] = "Veuillez rentrer le mot de passe correspondant à votre email.";
             $array[] = $error;
         }
@@ -55,18 +55,20 @@ class ConnexionInscriptionController extends Controller
             ));
             if ($data) {
                 if ($data->utiDesactive) {
-                    $array[] = "Votre compte a été desactivé, veuillez contacter un administrateur.";
+                    $error['input'] = 'connexion_email';
+                    $array['message'] = "Votre compte a été desactivé, veuillez contacter un administrateur.";
                 } elseif ($data->utiToken !== null) {
-                    $array[] = "Vous devez confirmer votre inscription avant de pouvoir vous connecter.";
+                    $error['input'] = 'connexion_email';
+                    $array['message'] = "Vous devez confirmer votre inscription avant de pouvoir vous connecter.";
                 } elseif ($data->utiMdp !== sha1($password)) {
-                    $error['input'] = 'password_con';
+                    $error['input'] = 'connexion_password';
                     $error['message'] = "Le mot de passe ne correspond pas à votre adresse email.";
                     $array[] = $error;
                 } else {
                     $this->session()->login($data->id_utilisateur);
                 }
             } else {
-                $error['input'] = 'email_con';
+                $error['input'] = 'connexion_email';
                 $error['message'] = "Cette adresse email ne s'est pas encore inscrite.";
                 $array[] = $error;
             }

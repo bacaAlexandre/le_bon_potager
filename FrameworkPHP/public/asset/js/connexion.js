@@ -4,7 +4,6 @@ $(function() {
     let email = $(form).find('#connexion_email');
     let password = $(form).find('#connexion_password');
     let error = $(form).find('#connexion_error');
-    $(error).empty().hide();
 
     $(form).on('hidden.bs.modal', function () {
         form[0].reset();
@@ -23,7 +22,6 @@ $(function() {
                 'password': password.val()
             },
             success: function(data) {
-                console.log(data);
                 data = JSON.parse(data);
                 $(form).find('.is-invalid').removeClass('is-invalid');
                 $(error).empty().hide();

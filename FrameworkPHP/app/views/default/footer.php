@@ -19,14 +19,14 @@
                       <fieldset>
                           <div class="form-group">
                               <label for="connexion_email">Votre e-mail :</label>
-                              <input type="email" name="email" id="connexion_email" class="form-control">
+                              <input type="email" name="email" placeholder="Ex: garden.party@orange.fr" id="connexion_email" class="form-control">
                           </div>
                           <div class="form-group">
                               <label for="connexion_password">Votre mot de passe :</label>
-                              <input type="password" name="password" id="connexion_password" class="form-control">
+                              <input type="password" name="password" placeholder="Ex: Garden76" id="connexion_password" class="form-control">
                           </div>
 
-                          <ul class="alert alert-danger" id="connexion_error" role="alert"></ul>
+                          <ul class="alert alert-error" id="connexion_error" role="alert"></ul>
                       </fieldset>
                   </div>
 
@@ -99,7 +99,7 @@
                           </div>
                           <p>* Champs obligatoires</p>
 
-                          <ul class="alert alert-danger d-none" id="inscription_error" role="alert"></ul>
+                          <ul class="alert alert-error" id="inscription_error" role="alert"></ul>
                       </fieldset>
                   </div>
 
