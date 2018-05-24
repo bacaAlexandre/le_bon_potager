@@ -106,38 +106,111 @@
             </div>
         <?php } ?>
     </div>
+    <?php if ($data->utiAdresseAffiche) { ?>
     <div class="col-md-12 md-12">
-        <?php if ($longitude == 0 && $latitude == 0) { ?>
+        <?php if (($longitude == 0) && ($latitude == 0)) { ?>
         <div class="form-group">
             <div class="spe">Carte :</div>
             <div class="form-control">
                 <div id="map" class="map"></div>
                 <script>
                     mapboxgl.accessToken = 'pk.eyJ1IjoiNWU5MDA2ODUiLCJhIjoiY2poaHBpZW85MDF4dTM2bzAwbDE0azl1ayJ9.LzXW1H7iBY_b-J0T87gWkQ';
-                    let map = new mapboxgl.Map({
-                        container: 'map', // container id
-                        style: 'mapbox://styles/mapbox/streets-v10', // stylesheet location
-                        center: [<?php echo $data->utiLongitude ?>, <?php echo $data->utiLatitude ?>], // starting position [lng, lat]
-                        //minZoom: 10,
-                        zoom: 13 // starting zoom
-                    });
+                    if(navigator.geolocation) {
+                        let options = {
+                            enableHighAccuracy: true,
+                            timeout: 5000,
+                            maximumAge: 0
+                        };
 
-                    let marker = new mapboxgl.Marker()
-                        .setLngLat([<?php echo $data->utiLongitude ?>, <?php echo $data->utiLatitude ?>])
-                        .addTo(map);
+                        function success(pos) {
+                            let crd = pos.coords;
 
-                    map.on('load', function () {
-                        map.addControl(new MapboxLanguage({
-                            languageField: 'fr',
-                            defaultLanguage: 'fr'
-                        }));
-                        map.setLayoutProperty('country-label-lg', 'text-field', ['get', 'name_fr']);
-                    });
+                            console.log('Votre position actuelle est :');
+                            console.log(`Latitude : ${crd.latitude}`);
+                            console.log(`Longitude: ${crd.longitude}`);
+                            console.log(`Plus ou moins ${crd.accuracy} mètres.`);
+
+                            let map = new mapboxgl.Map({
+                                container: 'map', // container id
+                                style: 'mapbox://styles/mapbox/streets-v10', // stylesheet location
+                                center: [<?php echo $longitude ?>, <?php echo $latitude ?>] // starting position [lng, lat]
+                                //minZoom: 10,
+                                //zoom: 12 // starting zoom
+                            });
+
+                            let directions = new MapboxDirections({
+                                accessToken: mapboxgl.accessToken,
+                                unit: 'metric',
+                                profile: 'mapbox/driving',
+                                controls: {
+                                    inputs: false
+                                }
+                            });
+
+                            map.on('load', function () {
+                                directions.setOrigin([crd.longitude, crd.latitude]);
+                                directions.setDestination([<?php echo $data->utiLongitude ?>, <?php echo $data->utiLatitude ?>]);
+                                map.addControl(directions, 'top-left');
+                                map.addControl(new MapboxLanguage({
+                                    languageField: 'fr',
+                                    defaultLanguage: 'fr'
+                                }));
+                                map.setLayoutProperty('country-label-lg', 'text-field', ['get', 'name_fr']);
+                            });
+                        };
+
+                        function error(err) {
+                            console.warn(`ERROR(${err.code}): ${err.message}`);
+
+                            let map = new mapboxgl.Map({
+                                container: 'map', // container id
+                                style: 'mapbox://styles/mapbox/streets-v10', // stylesheet location
+                                center: [<?php echo $data->utiLongitude ?>, <?php echo $data->utiLatitude ?>], // starting position [lng, lat]
+                                //minZoom: 10,
+                                zoom: 13 // starting zoom
+                            });
+
+                            let marker = new mapboxgl.Marker()
+                                .setLngLat([<?php echo $data->utiLongitude ?>, <?php echo $data->utiLatitude ?>])
+                                .addTo(map);
+
+                            map.on('load', function () {
+                                map.addControl(new MapboxLanguage({
+                                    languageField: 'fr',
+                                    defaultLanguage: 'fr'
+                                }));
+                                map.setLayoutProperty('country-label-lg', 'text-field', ['get', 'name_fr']);
+                            });
+                        };
+
+                        navigator.geolocation.getCurrentPosition(success, error, options);
+
+                    } else {
+                        let map = new mapboxgl.Map({
+                            container: 'map', // container id
+                            style: 'mapbox://styles/mapbox/streets-v10', // stylesheet location
+                            center: [<?php echo $data->utiLongitude ?>, <?php echo $data->utiLatitude ?>], // starting position [lng, lat]
+                            //minZoom: 10,
+                            zoom: 13 // starting zoom
+                        });
+
+                        let marker = new mapboxgl.Marker()
+                            .setLngLat([<?php echo $data->utiLongitude ?>, <?php echo $data->utiLatitude ?>])
+                            .addTo(map);
+
+                        map.on('load', function () {
+                            map.addControl(new MapboxLanguage({
+                                languageField: 'fr',
+                                defaultLanguage: 'fr'
+                            }));
+                            map.setLayoutProperty('country-label-lg', 'text-field', ['get', 'name_fr']);
+                        });
+                    }
                 </script>
             </div>
         </div>
         <?php } ?>
-        <?php if ($longitude != 0 && $latitude != 0) { ?>
+        <?php if (($longitude != 0) && ($latitude != 0)) { ?>
         <div class="form-group">
             <div class="spe">Carte :</div>
             <div class="form-control">
@@ -176,5 +249,6 @@
         </div>
         <?php } ?>
     <div>
+    <?php } ?>
 </div>
 <?php include(VIEW_PATH . 'default/footer.php'); ?>
