@@ -58,12 +58,22 @@
                         <div class="input-group-append">
                             <span class="input-group-text"><?php echo $data->uniLibelle; ?></span>
                         </div>
-
-
                     </div>
-
-
                 </div>
+                <div class="form-check">
+                    <input type="checkbox" id="copy" class="form-check-input">
+                    <label for="copy" class="form-check-label">Je souhaite recevoir une copie de cet email</label>
+                </div>
+                <input type="hidden" name="max" value="<?php echo $data->puQuantite ?>">
+                <input type="hidden" name="id" value="<?php echo $data->id_produit ?>">
+                <button type="submit" class="btn btn-success">Envoyer l'email</button>
+                <?php if ($this->flash('error') !== null) { ?>
+                    <ul class='alert alert-danger' role='alert'>
+                        <?php foreach ($this->flash('error') as $error) {
+                            echo "<li>$error</li>";
+                        } ?>
+                    </ul>
+                <?php } ?>
             </fieldset>
         </form>
     </div>
@@ -124,9 +134,10 @@
                         map.setLayoutProperty('country-label-lg', 'text-field', ['get', 'name_fr']);
                     });
                 </script>
+            </div>
         </div>
         <?php } ?>
-        <?php if ($longitude > 0 && $latitude > 0) { ?>
+        <?php if ($longitude != 0 && $latitude != 0) { ?>
         <div class="form-group">
             <div class="spe">Carte :</div>
             <div class="form-control">
@@ -161,22 +172,9 @@
                         map.setLayoutProperty('country-label-lg', 'text-field', ['get', 'name_fr']);
                     });
                 </script>
+            </div>
         </div>
         <?php } ?>
-        <div class="form-check">
-            <input type="checkbox" id="copy" class="form-check-input">
-            <label for="copy" class="form-check-label">Je souhaite recevoir une copie de cet email</label>
-        </div>
-        <input type="hidden" name="max" value="<?php echo $data->puQuantite ?>">
-        <input type="hidden" name="id" value="<?php echo $data->id_produit ?>">
-        <button type="submit" class="btn btn-success">Envoyer l'email</button>
-        <?php if ($this->flash('error') !== null) { ?>
-            <ul class='alert alert-danger' role='alert'>
-                <?php foreach ($this->flash('error') as $error) {
-                    echo "<li>$error</li>";
-                } ?>
-            </ul>
-        <?php } ?>
-    </div>
+    <div>
 </div>
 <?php include(VIEW_PATH . 'default/footer.php'); ?>
