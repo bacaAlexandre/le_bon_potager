@@ -13,7 +13,7 @@ class MonCompteController extends Controller
     public function index()
     {
         if (!$this->session()->is_logged()) {
-            return $this->redirect($this->view('/connexion'));
+            return $this->redirect($this->view('/') . '#connexion');
         }
         $user = $this->session()->get_user();
 

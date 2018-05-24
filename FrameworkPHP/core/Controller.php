@@ -33,6 +33,7 @@ class Controller {
             $value = trim($value);
             $value = strip_tags($value);
             $value = htmlspecialchars($value);
+            $value = addslashes($value);
             return $value;
         }
         return false;
