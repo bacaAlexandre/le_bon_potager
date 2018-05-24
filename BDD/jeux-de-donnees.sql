@@ -18,7 +18,7 @@ VALUES
 INSERT INTO `T_UTILISATEURS` (`id_utilisateur`, `utiPseudo`, `utiEmail`, `utiMdp`, `utiValide`, `utiToken`, `utiTelAffiche`, `utiTel`, `utiDesactive`, `utiDateDesactive`, `utiDescription`, `utiAdresse`, `utiRole_id`, `utiCp_id`, `utiAdresseAffiche`, `utiLatitude`, `utiLongitude`)
 VALUES
   ('2', 'Brise Massue', 'briseMassue@mail.com', '933370d0a9ea06922ca41c093bb27fcdd7104cf1', '0', NULL, '0', NULL, '0',
-        NULL, NULL, 'vdvdvd', '100', '1', '0', '1.09151', '49.4773');
+        NULL, NULL, 'vdvdvd', '100', '1', '0', '49.4773', '1.09151');
 
 INSERT INTO `T_CATEGORIE` (`id_categorie`, `catNom`) VALUES
   ('1', 'Fruit'),
