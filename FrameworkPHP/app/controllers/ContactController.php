@@ -19,6 +19,8 @@ class ContactController extends Controller
             $email = isset($_POST['email']) ? $_POST['email'] : "";
             $phone = isset($_POST['phone']) ? $_POST['phone'] : "";
             $message = isset($_POST['message']) ? $_POST['message'] : "";
+            $latitude = 0;
+            $longitude = 0;
 
             if ($this->session()->get_user_id()) {
                 $pseudo = $this->session()->get_pseudo();
