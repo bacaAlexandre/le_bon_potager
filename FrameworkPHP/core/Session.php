@@ -150,4 +150,20 @@ class Session
         }
         return false;
     }
+    public function get_latitude() {
+        $user_id = $this->get_user_id();
+        if($user_id !== null){
+            $row = $this->t_utilisateur->findUtilisateur($user_id);
+            return $row->utiLatitude;
+        }
+        return false;
+    }
+    public function get_longitude() {
+        $user_id = $this->get_user_id();
+        if($user_id !== null){
+            $row = $this->t_utilisateur->findUtilisateur($user_id);
+            return $row->utiLongitude;
+        }
+        return false;
+    }
 }
