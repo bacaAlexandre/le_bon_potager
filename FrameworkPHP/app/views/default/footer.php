@@ -7,39 +7,109 @@
   </footer>
 
   <?php if (!$this->session()->is_logged()) { ?>
-      <div class="modal fade" id="connection">
+      <form class="modal fade" id="connexion">
           <div class="modal-dialog">
               <div class="modal-content">
-                  <form>
+                  <div class="modal-header">
+                      <h4 class="modal-title">Déjà inscrit ? Connectez-vous !</h4>
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  </div>
 
-                      <div class="modal-header">
-                          <h4 class="modal-title">Déjà inscrit ? Connectez-vous !</h4>
-                          <button type="button" class="close" data-dismiss="modal">&times;</button>
-                      </div>
+                  <div class="modal-body">
+                      <fieldset>
+                          <div class="form-group">
+                              <label for="connexion_email">Votre e-mail :</label>
+                              <input type="email" name="email" id="connexion_email" class="form-control">
+                          </div>
+                          <div class="form-group">
+                              <label for="connexion_password">Votre mot de passe :</label>
+                              <input type="password" name="password" id="connexion_password" class="form-control">
+                          </div>
 
-                      <div class="modal-body">
-                          <fieldset>
-                              <div class="form-group">
-                                  <label for="email_con">Votre e-mail :</label>
-                                  <input type="email" name="email" id="email_con" class="form-control">
-                              </div>
-                              <div class="form-group">
-                                  <label for="password_con">Votre mot de passe :</label>
-                                  <input type="password" name="password" id="password_con" class="form-control">
-                              </div>
+                          <ul class="alert alert-danger" id="connexion_error" role="alert"></ul>
+                      </fieldset>
+                  </div>
 
-                              <ul class="alert alert-danger" id="error_con" role="alert"></ul>
-                          </fieldset>
-                      </div>
-
-                      <div class="modal-footer">
-                          <button type="button" class="btn btn-danger" data-dismiss="modal">Fermer</button>
-                          <button type="submit" class="btn btn-success">Se connecter</button>
-                      </div>
-                  </form>
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-danger" data-dismiss="modal">Fermer</button>
+                      <button type="submit" class="btn btn-success">Se connecter</button>
+                  </div>
               </div>
           </div>
-      </div>
+      </form>
+
+
+      <form class="modal fade" id="inscription">
+          <div class="modal-dialog">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <h4 class="modal-title">Inscrivez-vous !</h4>
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  </div>
+                  <div class="modal-body">
+                      <fieldset>
+                          <div class="form-group">
+                              <label for="inscription_email">Votre e-mail* :</label>
+                              <input type="email" id="inscription_email" class="form-control">
+                          </div>
+                          <div class="form-group">
+                              <label for="inscription_password">Votre mot de passe * :</label>
+                              <input type="password" id="inscription_password" class="form-control">
+                          </div>
+                          <div class="form-group">
+                              <label for="inscription_password_repeat">Confirmer votre mot de passe * :</label>
+                              <input type="password" id="inscription_password_repeat" class="form-control">
+                          </div>
+                          <div class="form-group">
+                              <label for="inscription_pseudo">Votre pseudonyme * :</label>
+                              <input type="text" id="inscription_pseudo" class="form-control">
+                          </div>
+                          <div class="form-group">
+                              <label for="inscription_adresse">Votre adresse * :</label>
+                              <textarea rows="3" id="inscription_adresse" class="form-control"></textarea>
+                          </div>
+                          <div class="form-group">
+                              <label for="inscription_code_postal">Votre code postal * :</label>
+                              <select id="inscription_code_postal" class="form-control">
+                                  <option disabled selected>--</option>
+                                  <?php
+                                  $t_code_postal = new Model('T_CODE_POSTAL');
+                                  foreach ($t_code_postal->findAll() as $val) {
+                                      echo "<option value=\"" . $val->id_code_postal . "\">" . $val->cpLibelle . "</option>";
+                                  } ?>
+                              </select>
+                          </div>
+                          <div class="form-group">
+                              <label for="inscription_tel">Votre n° de téléphone :</label>
+                              <input type="tel" id="inscription_tel" class="form-control">
+                          </div>
+                          <div class="form-group">
+                              <label for="inscription_biographie">Votre biographie :</label>
+                              <textarea rows="5" id="inscription_biographie" class="form-control"></textarea>
+                          </div>
+                          <div class="form-check">
+                              <input type="checkbox" id="inscription_adresse_visible" class="form-check-input">
+                              <label for="inscription_adresse_visible" class="form-check-label">J'autorise l'affichage de mon adresse dans mes
+                                  annonces.</label>
+                          </div>
+                          <div class="form-check">
+                              <input type="checkbox" id="inscription_tel_visible" class="form-check-input">
+                              <label for="inscription_tel_visible" class="form-check-label">J'autorise l'affichage de mon n° de tél. dans mes
+                                  annonces.</label>
+                          </div>
+                          <p>* Champs obligatoires</p>
+
+                          <ul class="alert alert-danger d-none" id="inscription_error" role="alert"></ul>
+                      </fieldset>
+                  </div>
+
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-danger" data-dismiss="modal">Fermer</button>
+                      <button type="submit" class="btn btn-success">S'inscrire</button>
+                  </div>
+              </div>
+          </div>
+      </form>
   <?php } ?>
 
 

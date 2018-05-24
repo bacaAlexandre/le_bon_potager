@@ -1,12 +1,11 @@
 $(function() {
 
-    let div =  $('#connection');
-    let form = $(div).find('form');
+    /*let form =  $('#inscription');
     let email = $(form).find('#email_con');
     let password = $(form).find('#password_con');
     let error = $(form).find('#error_con');
 
-    $(div).on('hidden.bs.modal', function () {
+    $(form).on('hidden.bs.modal', function () {
         form[0].reset();
         $(form).find('input.is-invalid').removeClass('is-invalid');
         $(form).find('#error_con').empty().hide();
@@ -38,5 +37,5 @@ $(function() {
                 }
             }
         });
-    });
+    });*/
 });
