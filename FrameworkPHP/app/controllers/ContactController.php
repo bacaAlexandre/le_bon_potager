@@ -24,6 +24,8 @@ class ContactController extends Controller
                 $pseudo = $this->session()->get_pseudo();
                 $email = $this->session()->get_email();
                 $phone = $this->session()->get_tel();
+                $latitude = $this->session()->get_latitude();
+                $longitude = $this->session()->get_longitude();
             }
 
             return $this->display('contact.index', array(
@@ -32,6 +34,8 @@ class ContactController extends Controller
                 "email" => $email,
                 "phone" => $phone,
                 "message" => $message,
+                "latitude" => $latitude,
+                "longitude" => $longitude
             ));
         }
         return $this->redirect($this->view('/annonce'));
