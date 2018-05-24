@@ -14,6 +14,9 @@ $(function() {
 
     $(form).on('submit', function(e) {
         e.preventDefault();
+        $(form).find('.is-invalid').removeClass('is-invalid');
+        $(error).empty().hide();
+        $(password).val('');
         $.ajax({
             url: get_url('connexion/login'),
             type: 'POST',
@@ -23,8 +26,6 @@ $(function() {
             },
             success: function(data) {
                 data = JSON.parse(data);
-                $(form).find('.is-invalid').removeClass('is-invalid');
-                $(error).empty().hide();
                 if (data.length > 0) {
                     let i;
                     for (i = 0; i < data.length; i++) {

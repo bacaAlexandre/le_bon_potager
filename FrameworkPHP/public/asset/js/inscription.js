@@ -21,6 +21,10 @@ $(function() {
 
     $(form).on('submit', function(e) {
         e.preventDefault();
+        $(form).find('.is-invalid').removeClass('is-invalid');
+        $(password).val('');
+        $(password_repeat).val('');
+        $(error).empty().hide();
         $.ajax({
             url: get_url('connexion/register'),
             type: 'POST',
@@ -38,8 +42,6 @@ $(function() {
             },
             success: function(data) {
                 data = JSON.parse(data);
-                $(form).find('.is-invalid').removeClass('is-invalid');
-                $(error).empty().hide();
                 if (data.length > 0) {
                     let i;
                     for (i = 0; i < data.length; i++) {

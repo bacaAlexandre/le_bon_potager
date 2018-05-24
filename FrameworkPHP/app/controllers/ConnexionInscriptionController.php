@@ -163,9 +163,10 @@ class ConnexionInscriptionController extends Controller
             $message .= "<p><a href='" . $this->view('/connexion/register/' . $token);
             $message .= "' target='_blank'>Valider mon inscription</a>";
 
-            ini_set("smtp_port", "1025");
-            mail($email, 'Confirmation compte', $message);
-
+            try {
+                ini_set("smtp_port", "1025");
+                mail($email, 'Confirmation compte', $message);
+            } catch (Exception $e) { }
         }
         echo json_encode($array);
     }
